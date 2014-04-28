@@ -1,7 +1,7 @@
 <aside class="right-side">
     <section class="content-header">
         <h1>
-            Dashboard
+            Registro de usuario
             <small>Control panel</small>
         </h1>
         <ol class="breadcrumb">
@@ -13,10 +13,7 @@
         <div class="row">
 	        <div class="col-md-6">
 	            <!-- general form elements -->
-	            <div class="box box-primary">
-	                <div class="box-header">
-	                    <h3 class="box-title">Registro de usuario</h3>
-	                </div><!-- /.box-header -->
+	            <div class="box box-primary"><!-- /.box-header -->
 	                <!-- form start -->
 	                <form role="form">
 	                    <div class="box-body">

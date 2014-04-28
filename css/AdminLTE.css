@@ -3405,3 +3405,11 @@ fieldset[disabled] .btn-vk.active {
   color: #587ea3;
   background-color: #ffffff;
 }
+
+
+#superiorList{
+  text-align: right;
+}
+#superiorList button a{
+  color:  white;
+}

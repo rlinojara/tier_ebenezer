@@ -54,10 +54,10 @@
                                 <!-- Menu Footer-->
                                 <li class="user-footer">
                                     <div class="pull-left">
-                                        <a href="perfil.php" class="btn btn-default btn-flat">Perfil</a>
+                                        <?php echo anchor('usuario/perfil_usuario','Perfil','class="btn btn-default btn-flat"'); ?>
                                     </div>
                                     <div class="pull-right">
-                                        <a href="#" class="btn btn-default btn-flat">Cerrar sesión</a>
+                                        <?php echo anchor('inicio/cerrar_sesion','Cerrar sesi&oacute;n','class="btn btn-default btn-flat"'); ?>
                                     </div>
                                 </li>
                             </ul>
