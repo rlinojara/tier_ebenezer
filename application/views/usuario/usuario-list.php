@@ -1,4 +1,3 @@
-<?php include('header.php'); ?>
 <aside class="right-side">
     <section class="content-header">
         <h1>
@@ -79,4 +78,3 @@
 		</div>
     </section>
 </aside>
-<?php include('footer.php'); ?>

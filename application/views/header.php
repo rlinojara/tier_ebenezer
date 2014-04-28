@@ -5,13 +5,13 @@
         <title>Tier Ebenezer</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
         <!-- bootstrap 3.0.2 -->
-        <link href="/admin/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="<?php echo base_url(); ?>css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <!-- font Awesome -->
-        <link href="/admin/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        <link href="<?php echo base_url(); ?>css/font-awesome.min.css" rel="stylesheet" type="text/css" />
         <!-- Ionicons -->
-        <link href="/admin/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+        <link href="<?php echo base_url(); ?>css/ionicons.min.css" rel="stylesheet" type="text/css" />
         <!-- Theme style -->
-        <link href="/admin/css/AdminLTE.css" rel="stylesheet" type="text/css" />
+        <link href="<?php echo base_url(); ?>css/AdminLTE.css" rel="stylesheet" type="text/css" />
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -23,7 +23,7 @@
     <body class="skin-blue">
         <!-- header logo: style can be found in header.less -->
         <header class="header">
-            <a href="/admin/index.php" class="logo">
+            <a href="index.php" class="logo">
                 <!-- Add the class icon to your logo image or logo icon to add the margining -->
                 Tier Ebenezer
             </a>
@@ -81,14 +81,10 @@
                     <!-- sidebar menu: : style can be found in sidebar.less -->
                     <ul class="sidebar-menu">
                         <li>
-                            <a href="/admin/index.php">
-                                <i class="fa fa-th"></i> <span>inicio</span>
-                            </a>
+                            <?php echo anchor('inicio','<i class="fa fa-th"></i> <span>inicio</span>'); ?>
                         </li>
                         <li>
-                            <a href="/admin/usuario.php">
-                                <i class="fa fa-th"></i> <span>Usuario</span>
-                            </a>
+                            <?php echo anchor('usuario/listar_usuario','<i class="fa fa-th"></i> <span>Usuario</span>'); ?>
                         </li>
                     </ul>
                 </section>
