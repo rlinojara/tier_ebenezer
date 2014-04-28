@@ -10,7 +10,7 @@ class Usuario extends CI_Controller{
 	{
 		$data['view'] = 'usuario/usuario-list';
 		
-		$this->load->view('index.php',$data);
+		$this->load->view('index',$data);
 	}
 	
 	/**
@@ -29,7 +29,7 @@ class Usuario extends CI_Controller{
 	{
 		$data['view'] = 'usuario/usuario-form';
 		
-		$this->load->view('index.php',$data);
+		$this->load->view('index',$data);
 	}
 	
 	/**
@@ -47,7 +47,7 @@ class Usuario extends CI_Controller{
 	{
 		$data['view'] = 'usuario/usuario-form';
 		
-		$this->load->view('index.php',$data);
+		$this->load->view('index',$data);
 	}
 	
 	/**
@@ -62,7 +62,7 @@ class Usuario extends CI_Controller{
 	{
 		$data['view'] = 'usuario/perfil';
 		
-		$this->load->view('index.php',$data);
+		$this->load->view('index',$data);
 	}
 	
 	
