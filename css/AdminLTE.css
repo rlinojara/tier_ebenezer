@@ -863,7 +863,8 @@ body > .header .logo .icon {
   margin-left: -10px;
 }
 .navbar-nav > .user-menu > .dropdown-menu > li.user-header {
-  height: 175px;
+  height: 70px;
+  /*height: 175px;*/
   padding: 10px;
   background: #3c8dbc;
   text-align: center;
@@ -2296,9 +2297,11 @@ Component: timeline
   margin-top: 20px;
 }
 .form-box .body > .form-group > input,
+/*
 .form-box .footer > .form-group > input {
   border: #fff;
 }
+*/
 .form-box .body > .btn,
 .form-box .footer > .btn {
   margin-bottom: 10px;
