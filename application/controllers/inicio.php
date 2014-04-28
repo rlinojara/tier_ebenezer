@@ -8,7 +8,9 @@ class Inicio extends MY_Controller
 	
 	public function bievenida()
 	{
-		$this->load->view('index.php');
+		$data['view'] = 'inicio';
+		
+		$this->load->view('index.php',$data);
 		
 	}
 	
