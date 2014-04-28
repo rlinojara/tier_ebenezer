@@ -38,13 +38,13 @@
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="glyphicon glyphicon-user"></i>
-                                <span>{ Usuario } <i class="caret"></i></span>
+                                <span><?php echo $this->sesion_usuario['usuario'];?><i class="caret"></i></span>
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- User image -->
                                 <li class="user-header bg-light-blue">
                                     <p>
-                                        { Nombre del usuario }
+                                        <?php echo strtoupper($this->sesion_usuario['nombre'].' '.$this->sesion_usuario['apellido']);?>
                                         <small></small>
                                     </p>
                                 </li>
@@ -71,7 +71,7 @@
                     <!-- Sidebar user panel -->
                     <div class="user-panel">
                         <div class="pull-left info">
-                            <p>Bienvenido, {Nombre}</p>
+                            <p>Bienvenido, <?php echo strtoupper($this->sesion_usuario['nombre'].' '.$this->sesion_usuario['apellido']);?></p>
                         </div>
                     </div>
                     <!-- /.search form -->
