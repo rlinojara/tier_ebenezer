@@ -18,7 +18,7 @@ class Sucursal_model extends CI_Model
 	/**
 	 * @param id_sucursal
 	 */
-	public function obter_sucursal_por_id($arg0)
+	public function obtener_sucursal_por_id($arg0)
 	{
 		$sql = 'SELECT id_sucursal,
 					   nombre

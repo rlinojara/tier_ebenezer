@@ -49,6 +49,11 @@ class Login extends CI_Controller
 		{
 			$_SESSION['usuario'] = $result[0];
 			
+			$parametros = array($this->input->post('sucursal'));
+			
+			$_SESSION['usuario']['sucursal'] = $this->sucursal_model->
+											   obtener_sucursal_por_id($parametros);
+			
 			redirect('inicio');
 		}
 		else 

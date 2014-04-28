@@ -9,6 +9,8 @@
     </section>
     <section class="content">
         <div class="row">
+        
+        	<?php print_r($_SESSION['usuario'])?>
             
         </div>
     </section>
