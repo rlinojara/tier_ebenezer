@@ -8,7 +8,9 @@ class Usuario extends CI_Controller{
 	 */
 	public function listar_usuario()
 	{
-	
+		$data['view'] = 'usuario/usuario-list';
+		
+		$this->load->view('index.php',$data);
 	}
 	
 	/**
@@ -25,7 +27,9 @@ class Usuario extends CI_Controller{
 	 */
 	public function registrar_usuario()
 	{
+		$data['view'] = 'usuario/usuario-form';
 		
+		$this->load->view('index.php',$data);
 	}
 	
 	/**
@@ -41,7 +45,9 @@ class Usuario extends CI_Controller{
 	 */
 	public function editar_usuario()
 	{
+		$data['view'] = 'usuario/usuario-form';
 		
+		$this->load->view('index.php',$data);
 	}
 	
 	/**
@@ -50,6 +56,13 @@ class Usuario extends CI_Controller{
 	public function set_editar_usuario()
 	{
 		
+	}
+	
+	public function perfil_usuario()
+	{
+		$data['view'] = 'usuario/perfil';
+		
+		$this->load->view('index.php',$data);
 	}
 	
 	
