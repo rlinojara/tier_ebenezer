@@ -3416,3 +3416,7 @@ fieldset[disabled] .btn-vk.active {
 #superiorList button a{
   color:  white;
 }
+
+.alert.alert-danger.alert-dismissable{
+  display:  none;
+}

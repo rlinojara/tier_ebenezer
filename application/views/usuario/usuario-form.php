@@ -11,12 +11,47 @@
         </ol>
     </section>
     <section class="content">
+<?php
+if(isset($proceso_form) and $proceso_form === FALSE){
+	print_r($error);
+}
+?>
+<div id="errorNombre" class="alert alert-danger alert-dismissable">
+    <i class="fa fa-ban"></i>
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+    <b>El campo del nombre no puede estar vacio.</b>
+</div>
+<div id="errorApellido" class="alert alert-danger alert-dismissable">
+    <i class="fa fa-ban"></i>
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+    <b>El campo del apellido no puede estar vacio.</b>
+</div>
+<div id="errorCorreo" class="alert alert-danger alert-dismissable">
+    <i class="fa fa-ban"></i>
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+    <b>El formato del campo correo no es el correcto.</b>
+</div>
+<div id="errorUsuario" class="alert alert-danger alert-dismissable">
+    <i class="fa fa-ban"></i>
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+    <b>El campo del usuario no puede estar vacio.</b>
+</div>
+<div id="errorPass1" class="alert alert-danger alert-dismissable">
+    <i class="fa fa-ban"></i>
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+    <b>El campo del password no puede estar vacio.</b>
+</div>
+<div id="errorPass2" class="alert alert-danger alert-dismissable">
+    <i class="fa fa-ban"></i>
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+    <b>El campo de la confirmación del password no puede estar vacio y debe coincidir con el password.</b>
+</div>
         <div class="row">
 	        <div class="col-md-12">
 	            <!-- general form elements -->
 	            <div class="box box-primary"><!-- /.box-header -->
 	                <!-- form start -->
-	                <form action="<?php echo site_url($url_form);?>" 
+	                <form id="formRegistroUsuario" action="<?php echo site_url($url_form);?>" 
 	                	  role="form" 
 	                	  method="post">
 	                    <div class="box-body">
@@ -68,7 +103,7 @@
 	                    </div><!-- /.box-body -->
 
 	                    <div class="box-footer">
-	                        <button type="submit" class="btn btn-primary">Enviar</button>
+	                        <button id="btnUsuarioRegistro" type="submit" class="btn btn-primary">Enviar</button>
 	                    </div>
 	                </form>
 	            </div>
