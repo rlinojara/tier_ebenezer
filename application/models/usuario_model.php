@@ -46,6 +46,7 @@ class Usuario_model extends CI_Model
 	 * @param apellido
 	 * @param email
 	 * @param password
+	 * @param id_usuario
 	 */
 	public function editar($arg0)
 	{
@@ -88,6 +89,33 @@ class Usuario_model extends CI_Model
 		else 
 		{
 			return true;
+		}	
+	}
+	
+	/**
+	 * @param id_usario
+	 */
+	public function obtener_usuario_por_id($arg0)
+	{
+		$sql = 'SELECT id_usuario,
+					   nombre,
+					   apellido,
+					   email,
+					   password
+				FROM usuario
+				WHERE id_usuario = ?';
+		
+		$query = $this->db->query($sql,$arg0);
+		
+		$result = $query->result_array();
+		
+		if(is_array($result) && count($result) == 1)
+		{
+			return $result[0];
+		}
+		else 
+		{
+			return array();
 		}	
 	}
 	

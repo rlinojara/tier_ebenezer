@@ -29,6 +29,10 @@ class Usuario extends MY_Controller
 		
 		$data['view'] = 'usuario/usuario-form';
 		
+		$data['url_form'] = 'usuario/set_registrar_usuario';
+		
+		$data['titulo'] = 'Registro';
+		
 		$this->load->view('index',$data);
 	}
 	
@@ -65,6 +69,8 @@ class Usuario extends MY_Controller
 			}
 			
 			$data['view'] = 'usuario/usuario-form';
+			$data['titulo'] = 'Registro';
+			$data['url_form'] = 'usuario/set_registrar_usuario';
 		
 			$this->load->view('index',$data);
 		}
@@ -79,9 +85,30 @@ class Usuario extends MY_Controller
 	 */
 	public function editar_usuario()
 	{
+		$this->load->model('usuario_model');
+		
 		$data['view'] = 'usuario/usuario-form';
 		
-		$this->load->view('index',$data);
+		if( $this->uri->segment(3,0) > 0 )
+		{
+			$parametro = array($this->uri->segment(3,0));
+			
+			$data['usuario'] = $this->usuario_model->obtener_usuario_por_id($parametro);
+			
+			$data['id'] = $this->uri->segment(3,0);
+			
+			$data['url_form'] = 'usuario/set_editar_usuario';
+			
+			$data['titulo'] = 'Edici&oacute;n';
+			
+			$this->load->view('index',$data);
+		}
+		else
+		{
+			redirect('usuario/registrar_usuario');
+		}	
+		
+		
 	}
 	
 	/**
@@ -89,7 +116,24 @@ class Usuario extends MY_Controller
 	 */
 	public function set_editar_usuario()
 	{
-		
+		if ( $this->agent->is_referral() )
+		{
+			$this->load->model('usuario_model');
+			
+			$nombre = trim(strtoupper($this->input->post('nombre')));
+			$apellido = trim(strtoupper($this->input->post('apellido')));
+			$email = trim(strtolower($this->input->post('email')));
+			$password = md5(trim($this->input->post('password')));
+			$id_usuario = $this->input->post('id_usuario');
+			
+			$data = array();
+				
+			$parametros = array($nombre,$apellido,$email,$password,$id_usuario);
+			$this->usuario_model->editar($parametros);
+			
+			redirect('usuario/editar_usuario/'.$id_usuario);
+			
+		}
 	}
 	
 	public function perfil_usuario()
