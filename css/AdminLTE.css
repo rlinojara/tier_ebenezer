@@ -572,6 +572,9 @@ body > .header .logo .icon {
 .user-panel > .info > p {
   margin-bottom: 9px;
 }
+.user-panel > .info > p > span{
+  text-transform: uppercase;
+}
 .user-panel > .info > a {
   text-decoration: none;
   padding-right: 5px;

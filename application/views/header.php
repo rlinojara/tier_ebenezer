@@ -71,7 +71,7 @@
                     <!-- Sidebar user panel -->
                     <div class="user-panel">
                         <div class="pull-left info">
-                            <p>Bienvenido, <?php echo strtoupper($this->sesion_usuario['nombre'].' '.$this->sesion_usuario['apellido']);?></p>
+                            <p>Bienvenido, <span> <?php echo $this->sesion_usuario['nombre'].' '.$this->sesion_usuario['apellido'];?></span></p>
                         </div>
                     </div>
                     <!-- /.search form -->
