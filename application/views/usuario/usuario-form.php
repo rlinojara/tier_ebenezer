@@ -31,10 +31,17 @@
 	                            <label for="exampleInputEmail1">Correo electr&oacute;niico:</label>
 	                            <input type="text" name="email" class="form-control" id="exampleInputEmail1" placeholder="">
 	                        </div>
+	                        
+	          
+	                        <?php ?>
+	                        
 	                        <div class="form-group">
 	                            <label for="exampleInputEmail1">Usuario:</label>
-	                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="">
+	                            <input type="text" name="usuario" class="form-control" id="exampleInputEmail1" placeholder="">
 	                        </div>
+	                        
+	                        <?php ?>
+	                        
 	                        <div class="form-group">
 	                            <label for="exampleInputPassword1">Contrase&ntilde;a</label>
 	                            <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="">

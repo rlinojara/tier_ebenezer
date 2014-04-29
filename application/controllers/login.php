@@ -40,12 +40,12 @@ class Login extends CI_Controller
 				
 		$password = $this->input->post('password');
 		$usuario = addslashes($this->input->post('usuario'));
-		$parametros = array($password,$usuario);
+		$parametros = array($usuario,$password);
 		
 		$result = $this->usuario_model->acceder($parametros);
 		
 
-		if(is_array($result) && count($result) == 1 )
+		if( is_array($result) && count($result) == 1 )
 		{
 			$_SESSION['usuario'] = $result[0];
 			
@@ -53,7 +53,7 @@ class Login extends CI_Controller
 			
 			$_SESSION['usuario']['sucursal'] = $this->sucursal_model->
 											   obtener_sucursal_por_id($parametros);
-			
+						
 			redirect('inicio');
 		}
 		else 

@@ -34,7 +34,7 @@ class Usuario_model extends CI_Model
 	 */
 	public function registrar($arg0)
 	{
-		$sql = 'INSERT INTO usuario(nombre,apellido,email,usuario,md5(password))
+		$sql = 'INSERT INTO usuario(nombre,apellido,email,usuario,password)
 				VALUES (?,?,?,?,?)';
 		
 		$this->db->query($sql,$arg0);
@@ -83,11 +83,11 @@ class Usuario_model extends CI_Model
 		 
 		if ( $result[0]['cantidad'] == 0 )
 		{
-			return true;
+			return false;
 		}
 		else 
 		{
-			return false;
+			return true;
 		}	
 	}
 	

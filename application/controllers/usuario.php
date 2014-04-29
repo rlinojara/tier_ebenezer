@@ -39,12 +39,14 @@ class Usuario extends MY_Controller
 	{
 		if ( $this->agent->is_referral() )
 		{
+			$this->load->model('usuario_model');
 		
 			$nombre = trim(strtoupper($this->input->post('nombre')));
 			$apellido = trim(strtoupper($this->input->post('apellido')));
 			$email = trim(strtolower($this->input->post('email')));
 			$usuario = trim(strtolower($this->input->post('usuario')));
-			$password = $this->input->post('password');
+			$password = md5(trim($this->input->post('password')));
+			$data = array();
 			
 			/**
 			 * @see Validacion de usuario
@@ -55,12 +57,16 @@ class Usuario extends MY_Controller
 			{
 				$data['error'] = 'Usuario ya se encuentra registrado';
 			}
-	
-			$parametros = array($nombre,$apellido,$email,$usuario,$password);
+			else
+			{
+				$parametros = array($nombre,$apellido,$email,$usuario,$password);
+					
+				$this->usuario_model->registrar($parametros);
+			}
 			
-			$this->usuario_model->registrar($parametros);
-			
-			redirect('usuario/listar_usuario','refresh');
+			$data['view'] = 'usuario/usuario-form';
+		
+			$this->load->view('index',$data);
 		}
 		else
 		{
