@@ -18,23 +18,25 @@
 	                    <h3 class="box-title">Datos de perfil</h3>
 	                </div><!-- /.box-header -->
 	                <!-- form start -->
-	                <form role="form">
+	                <form role="form" method="post" action="<?php echo site_url('usuario/set_editar_perfil')?>">
 	                    <div class="box-body">
 	                        <div class="form-group">
-	                            <label for="exampleInputEmail1">Correo electrónico:</label>
-	                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="">
+	                            <label for="exampleInputEmail1">Correo electr&oacute;nico:</label>
+	                            <input type="text" class="form-control" id="exampleInputEmail1"
+	                            	   name="email" 
+	                            	   value="<?php echo $usuario['email']?>" placeholder="">
 	                        </div>
 	                        <div class="form-group">
-	                            <label for="exampleInputPassword1">Contraseña antigua</label>
+	                            <label for="exampleInputPassword1">Contrase&ntilde;a antigua</label>
+	                            <input type="password" name="password_actual" class="form-control" id="exampleInputPassword1" placeholder="">
+	                        </div>
+	                        <div class="form-group">
+	                            <label for="exampleInputPassword1">Nueva contrase&ntilde;a</label>
 	                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="">
 	                        </div>
 	                        <div class="form-group">
-	                            <label for="exampleInputPassword1">Nueva contraseña</label>
-	                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="">
-	                        </div>
-	                        <div class="form-group">
-	                            <label for="exampleInputPassword1">Confirmar nueva contraseña</label>
-	                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="">
+	                            <label for="exampleInputPassword1">Confirmar nueva contrasee&ntilde;a</label>
+	                            <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="">
 	                        </div>
 	                    </div><!-- /.box-body -->
 

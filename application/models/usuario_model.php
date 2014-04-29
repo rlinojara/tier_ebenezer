@@ -57,17 +57,25 @@ class Usuario_model extends CI_Model
 					password = ?
 				WHERE id_usuario = ?';
 
-		$this->db->sql($sql,$arg0);
+		$this->db->query($sql,$arg0);
 	}
 	
-	public function deshabilitar()
+	public function deshabilitar($arg0)
 	{
+		$sql = 'UPDATE usuario
+				SET estado = 2
+				WHERE id_usuario = ?';
 		
+		$this->db->query($sql,$arg0);
 	}
 	
-	public function habilitar()
+	public function habilitar($arg0)
 	{
+		$sql = 'UPDATE usuario
+				SET estado = 1
+				WHERE id_usuario = ?';
 		
+		$this->db->query($sql,$arg0);
 	}
 	
 	/**
@@ -117,6 +125,22 @@ class Usuario_model extends CI_Model
 		{
 			return array();
 		}	
+	}
+	
+	/**
+	 * @param email
+	 * @param password
+	 * @param id_usuario
+	 */
+	public function editar_perfil($arg0)
+	{
+		$sql = 'UPDATE usuario
+				SET email = ?,
+					password = ?
+				WHERE id_usuario = ?';
+		
+		$this->db->query($sql,$arg0);
+		
 	}
 	
 }

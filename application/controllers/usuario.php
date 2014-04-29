@@ -17,7 +17,33 @@ class Usuario extends MY_Controller
 	 */
 	public function deshabilitar_usuario()
 	{
+		$this->load->model('usuario_model');
 		
+		if( $this->uri->segment(3,0) > 0)
+		{
+			$parametro = array($this->uri->segment(3,0));
+			
+			$this->usuario_model->deshabilitar($parametro);	
+		}	
+		
+		redirect('usuario/listar_usuario','refresh');
+	}
+	
+	/**
+	 * @abstract logica de deshabilitar usuario
+	 */
+	public function habilitar_usuario()
+	{
+		$this->load->model('usuario_model');
+	
+		if( $this->uri->segment(3,0) > 0)
+		{
+			$parametro = array($this->uri->segment(3,0));
+				
+			$this->usuario_model->habilitar($parametro);
+		}
+	
+		redirect('usuario/listar_usuario','refresh');
 	}
 	
 	
@@ -60,14 +86,24 @@ class Usuario extends MY_Controller
 			if( $this->usuario_model->validar_usuario($parametro) )
 			{
 				$data['error'] = 'Usuario ya se encuentra registrado';
+				$data['proceso_form'] = false;
 			}
 			else
 			{
+				/**
+				 * Registrando usuario
+				 */
 				$parametros = array($nombre,$apellido,$email,$usuario,$password);
-					
 				$this->usuario_model->registrar($parametros);
+				$data['proceso_form'] = true;
 			}
 			
+			
+			print_r($data);
+			die();
+			/**
+			 * @see Parametros para la vista
+			 */
 			$data['view'] = 'usuario/usuario-form';
 			$data['titulo'] = 'Registro';
 			$data['url_form'] = 'usuario/set_registrar_usuario';
@@ -118,29 +154,111 @@ class Usuario extends MY_Controller
 	{
 		if ( $this->agent->is_referral() )
 		{
-			$this->load->model('usuario_model');
-			
-			$nombre = trim(strtoupper($this->input->post('nombre')));
-			$apellido = trim(strtoupper($this->input->post('apellido')));
-			$email = trim(strtolower($this->input->post('email')));
-			$password = md5(trim($this->input->post('password')));
-			$id_usuario = $this->input->post('id_usuario');
-			
-			$data = array();
+			if( $this->input->post('id_usuario') )
+			{
+				$this->load->model('usuario_model');
+
 				
-			$parametros = array($nombre,$apellido,$email,$password,$id_usuario);
-			$this->usuario_model->editar($parametros);
-			
-			redirect('usuario/editar_usuario/'.$id_usuario);
-			
+				/**
+				 * Datos e Edicion de usuario
+				 */
+				$nombre = trim(strtoupper($this->input->post('nombre')));
+				$apellido = trim(strtoupper($this->input->post('apellido')));
+				$email = trim(strtolower($this->input->post('email')));
+				$password = md5(trim($this->input->post('password')));
+				$id_usuario = $this->input->post('id_usuario');
+				
+				$parametros = array($nombre,$apellido,$email,$password,$id_usuario);
+				$this->usuario_model->editar($parametros);
+				$data['proceso_form'] = true;
+
+				/**
+				 * @see Obteniendo datos del actual usuario
+				 */
+				$parametro = array($id_usuario);
+				$data['usuario'] = $this->usuario_model->obtener_usuario_por_id($parametro);
+				
+				/**
+				 * Parametros para la vista de editar usuario
+				 */
+				$data['view'] = 'usuario/usuario-form';
+				$data['id'] = $id_usuario;
+				$data['url_form'] = 'usuario/set_editar_usuario';
+				$data['titulo'] = 'Edici&oacute;n';
+					
+				$this->load->view('index',$data);
+			}	
+			else 
+			{
+				redirect('usuario/listar_usuario');
+			}
 		}
+		else 
+		{
+			redirect('usuario/listar_usuario');
+		}	 
+			
 	}
 	
 	public function perfil_usuario()
 	{
+		$this->load->model('usuario_model');
+		
 		$data['view'] = 'usuario/perfil';
 		
+		$id = $this->sesion_usuario['id_usuario'];
+		
+		$parametro = array($id);
+		
+		$data['usuario'] = $this->usuario_model->
+								  obtener_usuario_por_id($parametro);
+		
 		$this->load->view('index',$data);
+	}
+	
+	public function set_editar_perfil()
+	{
+		$this->load->model('usuario_model');
+		
+		if ( $this->agent->is_referral() )
+		{
+				
+			$email = trim(strtolower($this->input->post('email')));
+			$password = md5(trim($this->input->post('password')));
+			$password_actual = md5($this->input->post('password_actual'));
+			
+			$id_usuario = $this->sesion_usuario['id_usuario'];
+			
+			$parametro = array($id_usuario);
+			$usuario = $this->usuario_model->obtener_usuario_por_id($parametro);	
+			
+			/**
+			 * @see Validaci—n si la contrase–a es correcta
+			 */
+			if($usuario['password'] != $password_actual)
+			{		
+				$data['error'] = 'La contrase&ntilde;a no coincide';
+				$data['proceso_form'] = false;
+			}
+			else
+			{
+				$parametros = array($email,$password,$id_usuario);
+				$this->usuario_model->editar_perfil($parametros);
+				$data['proceso_form'] = true;
+		
+				$usuario = $this->usuario_model->obtener_usuario_por_id($parametro);
+			}
+			
+			
+			$data['usuario'] = $usuario;
+			$data['view'] = 'usuario/perfil';
+			$this->load->view('index',$data);
+			
+		}
+		else
+		{
+			redirect('inicio');
+		}
 	}
 	
 	
