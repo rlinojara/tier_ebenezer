@@ -30,17 +30,12 @@
 	                            <input type="text" name="email" class="form-control" id="exampleInputEmail1" placeholder="">
 	                        </div>
 	                        <div class="form-group">
-<<<<<<< HEAD
 	                            <label for="exampleInputEmail1">Usuario:</label>
 	                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="">
 	                        </div>
 	                        <div class="form-group">
-	                            <label for="exampleInputPassword1">Contraseña</label>
-	                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="">
-=======
 	                            <label for="exampleInputPassword1">Contrase&ntilde;a</label>
 	                            <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="">
->>>>>>> 42295cd11f8d3f14f54d35853d61c0788de54a06
 	                        </div>
 	                        <div class="form-group">
 	                            <label for="exampleInputPassword1">Confirmar contrase&ntilde;a</label>
