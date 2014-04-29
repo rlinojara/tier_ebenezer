@@ -99,8 +99,6 @@ class Usuario extends MY_Controller
 			}
 			
 			
-			print_r($data);
-			die();
 			/**
 			 * @see Parametros para la vista
 			 */
