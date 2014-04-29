@@ -31,51 +31,23 @@
 	                                <th>Estados</th>
 	                                <th style="width: 160px">Acciones</th>
                             	</tr>
+                            <?php for($i = 0 ; $i < count($usuarios); $i++):?>
                             <tr>
                              	<td>1.</td>
-                                <td>usuario 1</td>
-                                <td>nombre del usuario 1</td>
-                                <td>apellido del usuario 1</td>
-                                <td>estado del usuario 1</td>
+                                <td><?php echo $usuarios[$i]['usuario']?></td>
+                                <td><?php echo $usuarios[$i]['nombre']?></td>
+                                <td><?php echo $usuarios[$i]['apellido']?></td>
+                                <td><?php echo $usuarios[$i]['estado']?></td>
                                 <td>
-                                    <?php echo anchor('usuario/registrar_usuario','Editar','class="btn btn-info btn-sm"'); ?>
-                                    <?php echo anchor('usuario/deshabilitar_usuario','Deshabilitar','class="btn btn-danger btn-sm"'); ?>
+                                    <?php echo anchor('usuario/registrar_usuario/'.$usuarios[$i]['id_usuario'],'Editar','class="btn btn-info btn-sm"'); ?>
+                                    <?php echo anchor('usuario/deshabilitar_usuario/'.$usuarios[$i]['id_usuario'],'Deshabilitar','class="btn btn-danger btn-sm"'); ?>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>2.</td>
-                                <td>usuario 2</td>
-                                <td>nombre del usuario 2</td>
-                                <td>apellido del usuario 2</td>
-                                <td>estado del usuario 2</td>
-                                <td>
-                                    <?php echo anchor('usuario/registrar_usuario','Editar','class="btn btn-info btn-sm"'); ?>
-                                    <?php echo anchor('usuario/deshabilitar_usuario','Deshabilitar','class="btn btn-danger btn-sm"'); ?>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>3.</td>
-                                <td>Usuario 3</td>
-                                <td>nombre del usuario 3</td>
-                                <td>apellido del usuario 3</td>
-                                <td>estado del usuario 3</td>
-                                <td>
-                                    <?php echo anchor('usuario/registrar_usuario','Editar','class="btn btn-info btn-sm"'); ?>
-                                    <?php echo anchor('usuario/deshabilitar_usuario','Deshabilitar','class="btn btn-danger btn-sm"'); ?>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>4.</td>
-                                <td>Usuario 4</td>
-                                <td>nombre del usuario 4</td>
-                                <td>apellido del usuario 4</td>
-                                <td>estado del usuario 4</td>
-                                <td>
-                                    <?php echo anchor('usuario/registrar_usuario','Editar','class="btn btn-info btn-sm"'); ?>
-                                    <?php echo anchor('usuario/deshabilitar_usuario','Deshabilitar','class="btn btn-danger btn-sm"'); ?>
-                                </td>
-                            </tr>
+                            
+                            <?php endfor;?>
                         </tbody></table>
+                        
+                        <?php echo $paginacion?>
                     </div><!-- /.box-body -->
                 </div>
 	        </div>
