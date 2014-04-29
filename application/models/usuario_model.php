@@ -30,11 +30,14 @@ class Usuario_model extends CI_Model
 	 * @param apellido
 	 * @param email
 	 * @param usuario
-	 * @param contrase–a
+	 * @param password
 	 */
 	public function registrar($arg0)
 	{
+		$sql = 'INSERT INTO usuario(nombre,apellido,email,usuario,md5(password))
+				VALUES (?,?,?,?,?)';
 		
+		$this->db->query($sql,$arg0);
 	}
 	
 	
@@ -42,11 +45,18 @@ class Usuario_model extends CI_Model
 	 * @param nombre 
 	 * @param apellido
 	 * @param email
-	 * @param contrase–a
+	 * @param password
 	 */
-	public function editar()
+	public function editar($arg0)
 	{
-		
+		$sql = 'UPDATE usuario
+				SET nombre = ?,
+					apellido = ?,
+					email = ?,
+					password = ?
+				WHERE id_usuario = ?';
+
+		$this->db->sql($sql,$arg0);
 	}
 	
 	public function deshabilitar()
@@ -57,6 +67,28 @@ class Usuario_model extends CI_Model
 	public function habilitar()
 	{
 		
+	}
+	
+	/**
+	 * @param usuario
+	 */
+	public function validar_usuario($arg0)
+	{
+		$sql = 'SELECT count(*) as cantidad FROM usuario 
+				WHERE usuario = ?';
+	
+		$query = $this->db->query($sql,$arg0);
+
+		$result = $query->result_array();
+		 
+		if ( $result[0]['cantidad'] == 0 )
+		{
+			return true;
+		}
+		else 
+		{
+			return false;
+		}	
 	}
 	
 }
