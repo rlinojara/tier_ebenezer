@@ -15,7 +15,7 @@
 	            <!-- general form elements -->
 	            <div class="box box-primary"><!-- /.box-header -->
 	                <!-- form start -->
-	                <form action="<?php echo base_url();?>/usuario/set_registrar_usuario" role="form">
+	                <form action="<?php echo site_url();?>/usuario/set_registrar_usuario" role="form">
 	                    <div class="box-body">
 	                        <div class="form-group">
 	                            <label for="exampleInputEmail1">Nombre:</label>
