@@ -15,31 +15,36 @@
 	            <!-- general form elements -->
 	            <div class="box box-primary"><!-- /.box-header -->
 	                <!-- form start -->
-	                <form action="<?php echo base_url();?>/usuario/set_registrar_usuario" role="form">
+	                <form action="<?php echo site_url("/usuario/set_registrar_usuario");?>" role="form">
 	                    <div class="box-body">
 	                        <div class="form-group">
 	                            <label for="exampleInputEmail1">Nombre:</label>
-	                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="">
+	                            <input type="text" name="nombre" class="form-control" id="exampleInputEmail1" placeholder="">
 	                        </div>
 	                        <div class="form-group">
 	                            <label for="exampleInputEmail1">Apellidos:</label>
-	                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="">
+	                            <input type="text" name="apellido" class="form-control" id="exampleInputEmail1" placeholder="">
 	                        </div>
 	                        <div class="form-group">
-	                            <label for="exampleInputEmail1">Correo electrónico:</label>
-	                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="">
+	                            <label for="exampleInputEmail1">Correo electr&oacute;niico:</label>
+	                            <input type="text" name="email" class="form-control" id="exampleInputEmail1" placeholder="">
 	                        </div>
 	                        <div class="form-group">
+<<<<<<< HEAD
 	                            <label for="exampleInputEmail1">Usuario:</label>
 	                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="">
 	                        </div>
 	                        <div class="form-group">
 	                            <label for="exampleInputPassword1">Contraseña</label>
 	                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="">
+=======
+	                            <label for="exampleInputPassword1">Contrase&ntilde;a</label>
+	                            <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="">
+>>>>>>> 42295cd11f8d3f14f54d35853d61c0788de54a06
 	                        </div>
 	                        <div class="form-group">
-	                            <label for="exampleInputPassword1">Confirmar contraseña</label>
-	                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="">
+	                            <label for="exampleInputPassword1">Confirmar contrase&ntilde;a</label>
+	                            <input type="password" name="confirm_password" class="form-control" id="exampleInputPassword1" placeholder="">
 	                        </div>
 	                    </div><!-- /.box-body -->
 
