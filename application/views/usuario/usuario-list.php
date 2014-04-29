@@ -11,12 +11,10 @@
     </section>
     <section class="content">
         <div class="row">
-	        <div class="col-md-6">
+	        <div class="col-md-12">
                 <div id="superiorList">
                     <div class="btn-group-vertical">
-                        <button class="btn btn-primary btn-flat">
-                            <?php echo anchor('usuario/registrar_usuario','Agregar'); ?>
-                        </button>
+                        <?php echo anchor('usuario/registrar_usuario','Agregar','class="btn btn-primary btn-flat"'); ?>
                     </div>
                 </div>
 				<div class="box">
