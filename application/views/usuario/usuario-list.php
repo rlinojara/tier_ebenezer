@@ -38,8 +38,8 @@
                                 <td>apellido del usuario 1</td>
                                 <td>estado del usuario 1</td>
                                 <td>
-                                	<button class="btn btn-info btn-sm">Editar</button>
-                                	<button class="btn btn-danger btn-sm">Deshabilitar</button>
+                                    <?php echo anchor('usuario/registrar_usuario','Editar','class="btn btn-info btn-sm"'); ?>
+                                    <?php echo anchor('usuario/deshabilitar_usuario','Deshabilitar','class="btn btn-danger btn-sm"'); ?>
                                 </td>
                             </tr>
                             <tr>
@@ -49,8 +49,8 @@
                                 <td>apellido del usuario 2</td>
                                 <td>estado del usuario 2</td>
                                 <td>
-                                	<button class="btn btn-info btn-sm">Editar</button>
-                                	<button class="btn btn-danger btn-sm">Deshabilitar</button>
+                                    <?php echo anchor('usuario/registrar_usuario','Editar','class="btn btn-info btn-sm"'); ?>
+                                    <?php echo anchor('usuario/deshabilitar_usuario','Deshabilitar','class="btn btn-danger btn-sm"'); ?>
                                 </td>
                             </tr>
                             <tr>
@@ -60,8 +60,8 @@
                                 <td>apellido del usuario 3</td>
                                 <td>estado del usuario 3</td>
                                 <td>
-                                	<button class="btn btn-info btn-sm">Editar</button>
-                                	<button class="btn btn-danger btn-sm">Deshabilitar</button>
+                                    <?php echo anchor('usuario/registrar_usuario','Editar','class="btn btn-info btn-sm"'); ?>
+                                    <?php echo anchor('usuario/deshabilitar_usuario','Deshabilitar','class="btn btn-danger btn-sm"'); ?>
                                 </td>
                             </tr>
                             <tr>
@@ -71,8 +71,8 @@
                                 <td>apellido del usuario 4</td>
                                 <td>estado del usuario 4</td>
                                 <td>
-                                	<button class="btn btn-info btn-sm">Editar</button>
-                                	<button class="btn btn-danger btn-sm">Deshabilitar</button>
+                                    <?php echo anchor('usuario/registrar_usuario','Editar','class="btn btn-info btn-sm"'); ?>
+                                    <?php echo anchor('usuario/deshabilitar_usuario','Deshabilitar','class="btn btn-danger btn-sm"'); ?>
                                 </td>
                             </tr>
                         </tbody></table>
