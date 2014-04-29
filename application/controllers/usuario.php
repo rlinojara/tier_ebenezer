@@ -27,6 +27,7 @@ class Usuario extends MY_Controller{
 	 */
 	public function registrar_usuario()
 	{
+		
 		$data['view'] = 'usuario/usuario-form';
 		
 		$this->load->view('index',$data);
@@ -37,6 +38,11 @@ class Usuario extends MY_Controller{
 	 */
 	public function set_registrar_usurio()
 	{
+		$nombre = strtoupper($this->input->post('nombre'));
+		$apellido = strtoupper($this->input->post('apellido'));
+		$email = strtolower($this->input->post('email'));
+		
+		
 		
 	}
 	

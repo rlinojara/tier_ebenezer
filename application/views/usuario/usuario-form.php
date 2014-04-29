@@ -19,23 +19,23 @@
 	                    <div class="box-body">
 	                        <div class="form-group">
 	                            <label for="exampleInputEmail1">Nombre:</label>
-	                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="">
+	                            <input type="text" name="nombre" class="form-control" id="exampleInputEmail1" placeholder="">
 	                        </div>
 	                        <div class="form-group">
 	                            <label for="exampleInputEmail1">Apellidos:</label>
-	                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="">
+	                            <input type="text" name="apellido" class="form-control" id="exampleInputEmail1" placeholder="">
 	                        </div>
 	                        <div class="form-group">
-	                            <label for="exampleInputEmail1">Correo electrónico:</label>
-	                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="">
+	                            <label for="exampleInputEmail1">Correo electr&oacute;niico:</label>
+	                            <input type="text" name="email" class="form-control" id="exampleInputEmail1" placeholder="">
 	                        </div>
 	                        <div class="form-group">
-	                            <label for="exampleInputPassword1">Contraseña</label>
-	                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="">
+	                            <label for="exampleInputPassword1">Contrase&ntilde;a</label>
+	                            <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="">
 	                        </div>
 	                        <div class="form-group">
-	                            <label for="exampleInputPassword1">Confirmar contraseña</label>
-	                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="">
+	                            <label for="exampleInputPassword1">Confirmar contrase&ntilde;a</label>
+	                            <input type="password" name="confirm_password" class="form-control" id="exampleInputPassword1" placeholder="">
 	                        </div>
 	                    </div><!-- /.box-body -->
 
