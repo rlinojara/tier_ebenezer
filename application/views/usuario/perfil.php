@@ -39,7 +39,7 @@
 	                    </div><!-- /.box-body -->
 
 	                    <div class="box-footer">
-	                        <button type="submit" class="btn btn-primary">Submit</button>
+	                        <button type="submit" class="btn btn-primary">Enviar</button>
 	                    </div>
 	                </form>
 	            </div>
