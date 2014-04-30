@@ -38,10 +38,6 @@
                                 <td><?php echo $usuarios[$i]['nombre']?></td>
                                 <td><?php echo $usuarios[$i]['apellido']?></td>
                                 <td>
-
-                                    <?php echo anchor('usuario/editar_usuario/'.$usuarios[$i]['id_usuario'],'Editar','class="btn btn-info btn-sm"'); ?>
-                                    <?php echo anchor('usuario/deshabilitar_usuario/'.$usuarios[$i]['id_usuario'],'Deshabilitar','class="btn btn-danger btn-sm"'); ?>
-
                                     <?php 
                                         if($usuarios[$i]['estado'] == 1):
                                             echo '<span class="btn btn-success disabled">Activo</span>';
