@@ -41,9 +41,9 @@ class Usuario extends MY_Controller
 		
 		$data['paginacion'] =  $this->pagination->create_links();
 		
-		
-		
 		$data['view'] = 'usuario/usuario-list';
+		
+		$data['pagina'] = $this->uri->segment(3,'');
 		
 		$this->load->view('index',$data);
 	}
@@ -60,9 +60,11 @@ class Usuario extends MY_Controller
 			$parametro = array($this->uri->segment(3,0));
 			
 			$this->usuario_model->deshabilitar($parametro);	
-		}	
+		}
+
+		$pagina = $this->uri->segment(4,'');
 		
-		redirect('usuario/listar_usuario','refresh');
+		redirect('usuario/listar_usuario/'.$pagina,'refresh');
 	}
 	
 	/**
@@ -78,8 +80,10 @@ class Usuario extends MY_Controller
 				
 			$this->usuario_model->habilitar($parametro);
 		}
+		
+		$pagina = $this->uri->segment(4,'');
 	
-		redirect('usuario/listar_usuario','refresh');
+		redirect('usuario/listar_usuario/'.$pagina,'refresh');
 	}
 	
 	
