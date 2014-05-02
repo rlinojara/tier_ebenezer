@@ -29,6 +29,7 @@
 	                                <th>Marca</th>
 	                                <th>Medida</th>
 	                                <th>Modelo</th>
+                                    <th>Estado</th>
 	                                <th style="width: 160px">Acciones</th>
                             	</tr>
                             <?php for($i = 0 ; $i < count($productos); $i++):?>
@@ -37,6 +38,7 @@
                                 <td><?php echo $productos[$i]['producto']?></td>
                                 <td><?php echo $productos[$i]['marca']?></td>
                                 <td><?php echo $productos[$i]['medida']?></td>
+                                <td><?php echo $productos[$i]['modelo']?></td>
                                 <td>
                                     <?php 
                                         if($productos[$i]['estado'] == 1):
