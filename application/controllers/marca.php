@@ -10,7 +10,8 @@ class Marca extends MY_Controller
 		$this->load->model('marca_model');
 	
 		$config['base_url'] = site_url('marca/listar_marca/');
-		$config['total_rows'] = $this->marca_model->cantidad_total_marcas();
+		$parametros = array('1');
+		$config['total_rows'] = $this->marca_model->cantidad_total_marcas($parametros);
 		$config['per_page'] = 1;
 	
 	
@@ -30,7 +31,7 @@ class Marca extends MY_Controller
 	
 	
 		$parametros = array(
-	
+				1,
 				intval($this->uri->segment(3,0)),
 				intval($config['per_page'])
 		);
@@ -297,4 +298,37 @@ class Marca extends MY_Controller
 			redirect('inicio');
 		}
 	}
-}
+	
+	public function buscar_marca()
+	{
+		$this->load->library('pagination');
+		$this->load->model('marca_model');
+	
+		$config['base_url'] = site_url('marca/listar_marca/');
+		$parametros = array('1');
+		$config['total_rows'] = $this->marca_model->cantidad_total_marcas($parametros);
+		$config['per_page'] = 1;
+	
+	
+		$config['num_links'] = '2';
+	
+		$config['prev_link'] = 'anterior';
+	
+		$config['next_link'] = 'siguiente';
+	
+		$config['uri_segment'] = '3';
+	
+		$config['first_link'] = '<<';
+	
+		$config['last_link'] = '>>';
+	
+		$this->pagination->initialize($config);
+	
+	
+		$parametros = array(
+							 1,
+							 intval($this->uri->segment(3,0)),
+							 intval($config['per_page'])
+						   );
+	}
+}	

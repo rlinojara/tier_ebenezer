@@ -94,12 +94,14 @@ class Marca_model extends CI_Model
 		}
 	}
 	
-	
-	public function cantidad_total_marcas()
+	/**
+	 * @param estado
+	 */
+	public function cantidad_total_marcas($arg0)
 	{
-		$sql = 'SELECT COUNT(*) as total FROM subcategoria';
+		$sql = 'SELECT COUNT(*) as total FROM subcategoria WHERE estado = ?';
 	
-		$query = $this->db->query($sql);
+		$query = $this->db->query($sql,$arg0);
 	
 		$result = $query->result_array();
 	
@@ -114,7 +116,7 @@ class Marca_model extends CI_Model
 	 */
 	public function paginacion_marca($arg0)
 	{
-		$sql = 'SELECT * FROM subcategoria LIMIT ?,?';
+		$sql = 'SELECT * FROM subcategoria WHERE estado = ? LIMIT ?,?';
 	
 		$query = $this->db->query($sql,$arg0);
 	
