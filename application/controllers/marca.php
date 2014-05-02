@@ -91,7 +91,6 @@ class Marca extends MY_Controller
 	 */
 	public function registrar_marca()
 	{
-	
 		$data['view'] = 'marca/marca-form';
 	
 		$data['url_form'] = 'marca/set_registrar_marca';
@@ -111,20 +110,17 @@ class Marca extends MY_Controller
 			$this->load->model('marca_model');
 	
 			$nombre = trim(strtoupper($this->input->post('nombre')));
-			$apellido = trim(strtoupper($this->input->post('apellido')));
-			$email = trim(strtolower($this->input->post('email')));
-			$marca = trim(strtolower($this->input->post('marca')));
-			$password = md5(trim($this->input->post('password')));
+
 			$data = array();
 				
 			/**
 			 * @see Validacion de marca
 			*/
-			$parametro = array($marca);
+			$parametro = array($nombre);
 				
 			if( $this->marca_model->validar_marca($parametro) )
 			{
-				$data['error'] = 'marca ya se encuentra registrado';
+				$data['error'] = 'marca ya se encuentra registrada';
 				$data['proceso_form'] = false;
 			}
 			else
@@ -132,7 +128,7 @@ class Marca extends MY_Controller
 				/**
 				 * Registrando marca
 				 */
-				$parametros = array($nombre,$apellido,$email,$marca,$password);
+				$parametros = array($nombre,1,1);
 				$this->marca_model->registrar($parametros);
 				$data['proceso_form'] = true;
 			}
