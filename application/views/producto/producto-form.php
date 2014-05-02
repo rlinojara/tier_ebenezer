@@ -69,6 +69,29 @@ if(isset($proceso_form) and $proceso_form === FALSE){
                     <?php endif;?>
                 </div><!-- /.box-body -->
 
+                <div class="box box-info">
+                    <br>
+                        <table class="table table-bordered">
+                            <tbody>
+                            <tr>
+                                <th>Tienda</th>
+                                <th>Stock</th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <select name="tienda[]" class="form-control">
+                                        <option value="Tu mismo eres chini">Tu mismo eres chini</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <input class="form-control" type="text" name="stock[]">
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <br>
+                </div>
                 <div class="box-footer">
                     <button id="btnProductoRegistro" type="submit" class="btn btn-primary">Enviar</button>
                 </div>
