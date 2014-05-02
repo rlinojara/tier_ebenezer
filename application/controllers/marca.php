@@ -31,13 +31,12 @@ class Marca extends MY_Controller
 	
 	
 		$parametros = array(
-				1,
-				intval($this->uri->segment(3,0)),
-				intval($config['per_page'])
-		);
+							 1,
+							 intval($this->uri->segment(3,0)),
+							 intval($config['per_page'])
+						   );
 	
-		$data['marcas'] = $this->marca_model->
-		paginacion_marca($parametros);
+		$data['marcas'] = $this->marca_model->paginacion_marca($parametros);
 	
 		$data['paginacion'] =  $this->pagination->create_links();
 	

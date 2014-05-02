@@ -54,7 +54,7 @@
                             <?php for($i = 0 ; $i < count($marcas); $i++):?>
                             <tr>
                              	<td>1.</td>
-                                <td><?php echo $marcas[$i]['marca']?></td>
+                                <td><?php echo $marcas[$i]['nombre']?></td>
                                 <td>
                                     <?php 
                                         if($marcas[$i]['estado'] == 1):
@@ -66,11 +66,11 @@
                                 </td>
                                 <td>
                                     <?php 
-                                    echo anchor('marca/registrar_marca/'.$marcas[$i]['id_marca'],'Editar','class="btn btn-info btn-sm"');
+                                    echo anchor('marca/registrar_marca/'.$marcas[$i]['id_subcategoria'],'Editar','class="btn btn-info btn-sm"');
                                     if($marcas[$i]['estado'] == 1):
-                                        echo anchor('marca/deshabilitar_marca/'.$marcas[$i]['id_marca'].'/'.$pagina,'Deshabilitar','class="btn btn-danger btn-sm"'); 
+                                        echo anchor('marca/deshabilitar_marca/'.$marcas[$i]['id_subcategoria'].'/'.$pagina,'Deshabilitar','class="btn btn-danger btn-sm"'); 
                                     else:
-                                        echo anchor('marca/habilitar_marca/'.$marcas[$i]['id_marca'].'/'.$pagina,'Habilitar','class="btn btn-success btn-sm"');
+                                        echo anchor('marca/habilitar_marca/'.$marcas[$i]['id_subcategoria'].'/'.$pagina,'Habilitar','class="btn btn-success btn-sm"');
                                     endif;
                                     ?>
 
