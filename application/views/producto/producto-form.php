@@ -77,6 +77,18 @@ if(isset($proceso_form) and $proceso_form === FALSE){
                                 <th>Tienda</th>
                                 <th>Stock</th>
                             </tr>
+                            <?php for( $i = 0 ; $i < count($sucursales) ; $i++):?>
+                            
+                             <tr>
+                                <td>
+                                    <?php echo $sucursales[$i]['nombre']?>
+                                </td>
+                                <td>
+                                    <input class="form-control" type="text" name="stock[]">
+                                </td>
+                            </tr>
+                            
+                            <?php endfor?>
                             <tr>
                                 <td>
                                     <select name="tienda[]" class="form-control">

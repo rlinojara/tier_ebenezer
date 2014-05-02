@@ -91,9 +91,13 @@ class Producto extends MY_Controller
 	public function registrar_producto()
 	{
 	
+		$this->load->model('sucursal_model');
+		
 		$data['view'] = 'producto/producto-form';
 	
 		$data['url_form'] = 'producto/set_registrar_producto';
+		
+		$data['sucursales'] = $this->sucursal_model->obtener_sucursal_activas();
 	
 		$data['titulo'] = 'Registro';
 	
