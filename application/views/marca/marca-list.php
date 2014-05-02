@@ -48,17 +48,13 @@
                             	<tr>
 	                                <th style="width: 10px">#</th>
 	                                <th>marca</th>
-	                                <th>Nombres</th>
-	                                <th>Apellidos</th>
-	                                <th>Estados</th>
+	                                <th>Estado</th>
 	                                <th style="width: 160px">Acciones</th>
                             	</tr>
                             <?php for($i = 0 ; $i < count($marcas); $i++):?>
                             <tr>
                              	<td>1.</td>
                                 <td><?php echo $marcas[$i]['marca']?></td>
-                                <td><?php echo $marcas[$i]['nombre']?></td>
-                                <td><?php echo $marcas[$i]['apellido']?></td>
                                 <td>
                                     <?php 
                                         if($marcas[$i]['estado'] == 1):
