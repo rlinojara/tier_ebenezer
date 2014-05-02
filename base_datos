@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generaci—n: 02-05-2014 a las 18:22:05
+-- Tiempo de generaci—n: 02-05-2014 a las 18:43:40
 -- Versi—n del servidor: 5.5.33
 -- Versi—n de PHP: 5.5.3
 
@@ -13,6 +13,26 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `tier_ebenezer`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `categoria`
+--
+
+CREATE TABLE `categoria` (
+  `id_categoria` int(11) NOT NULL,
+  `nombre` varchar(150) NOT NULL,
+  `estado` tinyint(4) NOT NULL DEFAULT '1' COMMENT '1 habilitado, 2 deshabilitado',
+  PRIMARY KEY (`id_categoria`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `categoria`
+--
+
+INSERT INTO `categoria` (`id_categoria`, `nombre`, `estado`) VALUES
+(1, 'LLantas', 1);
 
 -- --------------------------------------------------------
 
@@ -27,3 +47,90 @@ CREATE TABLE `producto` (
   `estado` int(11) NOT NULL DEFAULT '1' COMMENT '1 habilitado, 2 deshabilitado',
   `id_moneda` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `rol`
+--
+
+CREATE TABLE `rol` (
+  `id_rol` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(50) NOT NULL,
+  `estado` tinyint(1) NOT NULL COMMENT '1 activo, 2 inactivo',
+  PRIMARY KEY (`id_rol`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `subcategoria`
+--
+
+CREATE TABLE `subcategoria` (
+  `id_subcategoria` int(11) NOT NULL,
+  `nombre` varchar(150) NOT NULL,
+  `estado` tinyint(4) NOT NULL DEFAULT '1' COMMENT '1 habilitado, 2 deshabilitado',
+  `id_categoria` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `sucursal`
+--
+
+CREATE TABLE `sucursal` (
+  `id_sucursal` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(50) NOT NULL,
+  `estado` tinyint(4) NOT NULL,
+  PRIMARY KEY (`id_sucursal`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+
+--
+-- Volcado de datos para la tabla `sucursal`
+--
+
+INSERT INTO `sucursal` (`id_sucursal`, `nombre`, `estado`) VALUES
+(3, 'tienda1', 1),
+(4, 'tienda2', 1),
+(5, 'almacen', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuario`
+--
+
+CREATE TABLE `usuario` (
+  `id_usuario` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(50) NOT NULL,
+  `apellido` varchar(50) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `usuario` varchar(15) NOT NULL,
+  `password` varchar(50) NOT NULL,
+  `estado` smallint(4) NOT NULL DEFAULT '1' COMMENT '1 activo, 2 desactivado',
+  PRIMARY KEY (`id_usuario`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+
+--
+-- Volcado de datos para la tabla `usuario`
+--
+
+INSERT INTO `usuario` (`id_usuario`, `nombre`, `apellido`, `email`, `usuario`, `password`, `estado`) VALUES
+(1, 'NOMBRE3', 'ADMIN', 'superarchi@admin.com', 'admin', '21232f297a57a5a743894a0e4a801fc3', 1),
+(9, 'RAœL', 'LINO JARA', 'rlinojara@gmail.com', 'rlinojara', '21232f297a57a5a743894a0e4a801fc3', 2),
+(10, 'JUAN', 'PEREZ CASTRO', 'jperez@gmail.com', 'jperezc', '7256c889e249ebb5ce85beb23417bf8b', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuario_rol`
+--
+
+CREATE TABLE `usuario_rol` (
+  `id_usuario_rol` int(11) NOT NULL AUTO_INCREMENT,
+  `id_usuario` int(11) NOT NULL,
+  `id_rol` int(11) NOT NULL,
+  PRIMARY KEY (`id_usuario_rol`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
