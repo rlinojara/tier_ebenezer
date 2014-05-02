@@ -2,7 +2,7 @@
     <section class="content-header">
     
         <h1>
-            <?php echo $titulo?> de usuario
+            <?php echo $titulo?> de Marca
             <small>Control panel</small>
         </h1>
         <ol class="breadcrumb">
@@ -21,7 +21,7 @@ if(isset($proceso_form) and $proceso_form === FALSE){
         <!-- general form elements -->
         <div class="box box-primary"><!-- /.box-header -->
             <!-- form start -->
-            <form id="formRegistroUsuario" action="<?php echo site_url($url_form);?>" 
+            <form id="formRegistroMarca" action="<?php echo site_url($url_form);?>" 
             	  role="form" 
             	  method="post">
                 <div class="box-body">
@@ -35,13 +35,13 @@ if(isset($proceso_form) and $proceso_form === FALSE){
       
                     <?php if(isset($id)):?>
                     
-                    <input type="hidden" name="id_usuario" value="<?php echo $id?>">
+                    <input type="hidden" name="id_Marca" value="<?php echo $id?>">
                     
                     <?php endif;?>
                 </div><!-- /.box-body -->
 
                 <div class="box-footer">
-                    <button id="btnUsuarioRegistro" type="submit" class="btn btn-primary">Enviar</button>
+                    <button id="btnMarcaRegistro" type="submit" class="btn btn-primary">Enviar</button>
                 </div>
             </form>
         </div>
