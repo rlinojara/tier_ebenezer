@@ -91,12 +91,26 @@ if(isset($proceso_form) and $proceso_form === FALSE){
                             <?php endfor?>
                             <tr>
                                 <td>
-                                    <select name="tienda[]" class="form-control">
-                                        <option value="Tu mismo eres chini">Tu mismo eres chini</option>
-                                    </select>
+                                    <p class="text-light-blue">Tienda 1</p>
                                 </td>
                                 <td>
-                                    <input class="form-control" type="text" name="stock[]">
+                                    <input class="form-control" type="text" name="stock1">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p class="text-light-blue">Tienda 2</p>
+                                </td>
+                                <td>
+                                    <input class="form-control" type="text" name="stock2">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p class="text-light-blue">Tienda 3</p>
+                                </td>
+                                <td>
+                                    <input class="form-control" type="text" name="stock3">
                                 </td>
                             </tr>
                             </tbody>
