@@ -11,6 +11,28 @@
     </section>
     <section class="content">
         <div class="row">
+            <div class="col-md-6">
+                <div class="col-md-10">
+                    <form action="">
+                        <div class="input-group input-group">
+                            <div class="input-group-btn">
+                                <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown">Filtros <span class="fa fa-caret-down"></span></button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Habilitados</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="#">Deshabilitados</a></li>
+                                </ul>
+                            </div><!-- /btn-group -->
+                            <input type="text" class="form-control">
+                        </div>
+                    </form>     
+                </div>
+                <div class="col-md-2">
+                     <button class="btn btn-primary">Buscar</button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
 	        <div class="col-md-12">
                 <div id="superiorList">
                     <div class="btn-group-vertical">
