@@ -10,7 +10,11 @@ class Producto_model extends CI_Model
 	 */
 	public function registrar($arg0)
 	{
-		$sql = 'INSERT INTO producto(nombre,apellido,email,producto,password)
+		$sql = 'INSERT INTO producto(nombre,
+									 id_subcategoria,
+									 nombre,
+									 estado,
+									 id_moneda)
 				VALUES (?,?,?,?,?)';
 	
 		$this->db->query($sql,$arg0);
@@ -19,18 +23,17 @@ class Producto_model extends CI_Model
 	
 	/**
 	 * @param nombre
-	 * @param apellido
-	 * @param email
-	 * @param password
-	 * @param id_producto
+	 * @param id_subcategoria
+	 * @param estado
+	 * @param id_moneda
 	 */
 	public function editar($arg0)
 	{
 		$sql = 'UPDATE producto
 				SET nombre = ?,
-					apellido = ?,
-					email = ?,
-					password = ?
+					id_subcategoria = ?,
+					estado = ?,
+					id_moneda = ?
 				WHERE id_producto = ?';
 	
 		$this->db->query($sql,$arg0);

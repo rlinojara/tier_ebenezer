@@ -3,15 +3,13 @@ class Marca_model extends CI_Model
 {
 	/**
 	 * @param nombre
-	 * @param apellido
-	 * @param email
-	 * @param marca
-	 * @param password
+	 * @param estado
+	 * @param id_categoria
 	 */
 	public function registrar($arg0)
 	{
-		$sql = 'INSERT INTO marca(nombre,apellido,email,marca,password)
-				VALUES (?,?,?,?,?)';
+		$sql = 'INSERT INTO subcategoria(nombre,estado,id_categoria)
+				VALUES (?,?,?)';
 	
 		$this->db->query($sql,$arg0);
 	}
@@ -19,48 +17,44 @@ class Marca_model extends CI_Model
 	
 	/**
 	 * @param nombre
-	 * @param apellido
-	 * @param email
-	 * @param password
-	 * @param id_marca
+	 * @param estado
+	 * @param id_subcategoria
 	 */
 	public function editar($arg0)
 	{
-		$sql = 'UPDATE marca
+		$sql = 'UPDATE subcategoria
 				SET nombre = ?,
-					apellido = ?,
-					email = ?,
-					password = ?
-				WHERE id_marca = ?';
+					estado = ?
+				WHERE id_subcategoria = ?';
 	
 		$this->db->query($sql,$arg0);
 	}
 	
 	public function deshabilitar($arg0)
 	{
-		$sql = 'UPDATE marca
+		$sql = 'UPDATE subcategoria
 				SET estado = 2
-				WHERE id_marca = ?';
+				WHERE id_subcategoria = ?';
 	
 		$this->db->query($sql,$arg0);
 	}
 	
 	public function habilitar($arg0)
 	{
-		$sql = 'UPDATE marca
+		$sql = 'UPDATE subcategoria
 				SET estado = 1
-				WHERE id_marca = ?';
+				WHERE id_subcategoria = ?';
 	
 		$this->db->query($sql,$arg0);
 	}
 	
 	/**
-	 * @param marca
+	 * @param nombremarca
 	 */
 	public function validar_marca($arg0)
 	{
-		$sql = 'SELECT count(*) as cantidad FROM marca
-				WHERE marca = ?';
+		$sql = 'SELECT count(*) as cantidad FROM subcategoria
+				WHERE nombre = ?';
 	
 		$query = $this->db->query($sql,$arg0);
 	
@@ -77,17 +71,14 @@ class Marca_model extends CI_Model
 	}
 	
 	/**
-	 * @param id_usario
+	 * @param id_subcategoria
 	 */
 	public function obtener_marca_por_id($arg0)
 	{
-		$sql = 'SELECT id_marca,
-					   nombre,
-					   apellido,
-					   email,
-					   password
-				FROM marca
-				WHERE id_marca = ?';
+		$sql = 'SELECT id_subcategoria,
+					   nombre
+				FROM subcategoria
+				WHERE id_subcategoria = ?';
 	
 		$query = $this->db->query($sql,$arg0);
 	
@@ -103,25 +94,10 @@ class Marca_model extends CI_Model
 		}
 	}
 	
-	/**
-	 * @param email
-	 * @param password
-	 * @param id_marca
-	 */
-	public function editar_perfil($arg0)
-	{
-		$sql = 'UPDATE marca
-				SET email = ?,
-					password = ?
-				WHERE id_marca = ?';
-	
-		$this->db->query($sql,$arg0);
-	
-	}
 	
 	public function cantidad_total_marcas()
 	{
-		$sql = 'SELECT COUNT(*) as total FROM marca';
+		$sql = 'SELECT COUNT(*) as total FROM subcategoria';
 	
 		$query = $this->db->query($sql);
 	
@@ -138,7 +114,7 @@ class Marca_model extends CI_Model
 	 */
 	public function paginacion_marca($arg0)
 	{
-		$sql = 'SELECT * FROM marca LIMIT ?,?';
+		$sql = 'SELECT * FROM subcategoria LIMIT ?,?';
 	
 		$query = $this->db->query($sql,$arg0);
 	
