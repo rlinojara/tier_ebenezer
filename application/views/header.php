@@ -83,6 +83,12 @@
                         <li>
                             <?php echo anchor('usuario/listar_usuario','<i class="fa fa-th"></i> <span>Usuario</span>'); ?>
                         </li>
+                        <li>
+                            <?php echo anchor('producto/listar_producto','<i class="fa fa-th"></i> <span>Producto</span>'); ?>
+                        </li>
+                        <li>
+                            <?php echo anchor('marca/listar_marca','<i class="fa fa-th"></i> <span>Marca</span>'); ?>
+                        </li>
                     </ul>
                 </section>
                 <!-- /.sidebar -->
