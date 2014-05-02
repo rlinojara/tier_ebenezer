@@ -39,9 +39,16 @@ class Usuario extends MY_Controller
 		
 		if( count($data['usuarios']) == 0 )
 		{
+			$pagina = (intval($this->uri->segment(3,0)) - 1);
+			
+			if($pagina < 0)
+			{
+				$pagina = 0;
+			}	
+			
 			$parametros = array(
-									(intval($this->uri->segment(3,0)) - 1),
-									intval($config['per_page'])
+								  $pagina,
+								  intval($config['per_page'])
 							   );
 		
 			$data['usuarios'] = $this->usuario_model->

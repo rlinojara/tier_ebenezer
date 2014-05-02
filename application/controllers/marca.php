@@ -39,11 +39,20 @@ class Marca extends MY_Controller
 		
 		$data['marcas'] = $this->marca_model->paginacion_marca($parametros);
 		
+		
 		if( count($data['marcas']) == 0 )
 		{
+			
+			$pagina = (intval($this->uri->segment(3,0)) - 1);
+			
+			if( $pagina < 0)
+			{
+				$pagina = 0;
+			}
+			
 			$parametros = array(
 									1,
-									(intval($this->uri->segment(3,0)) - 1),
+									$pagina,
 									intval($config['per_page'])
 							   );
 				
