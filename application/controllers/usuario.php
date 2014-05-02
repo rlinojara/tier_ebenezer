@@ -29,16 +29,25 @@ class Usuario extends MY_Controller
 		
 		$this->pagination->initialize($config);
 		
-		
-		$parametros = array( 
-							 
-							 intval($this->uri->segment(3,0)),
-							 intval($config['per_page'])
+		$parametros = array(
+								intval($this->uri->segment(3,0)),
+								intval($config['per_page'])
 						   );
 		
 		$data['usuarios'] = $this->usuario_model->
-								  paginacion_usuario($parametros);
+								   paginacion_usuario($parametros);
 		
+		if( count($data['usuarios']) == 0 )
+		{
+			$parametros = array(
+									(intval($this->uri->segment(3,0)) - 1),
+									intval($config['per_page'])
+							   );
+		
+			$data['usuarios'] = $this->usuario_model->
+								paginacion_usuario($parametros);
+		}
+
 		$data['paginacion'] =  $this->pagination->create_links();
 		
 		$data['view'] = 'usuario/usuario-list';

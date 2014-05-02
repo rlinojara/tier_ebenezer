@@ -30,13 +30,12 @@ class Producto extends MY_Controller
 	
 	
 		$parametros = array(
-	
-				intval($this->uri->segment(3,0)),
-				intval($config['per_page'])
-		);
+								intval($this->uri->segment(3,0)),
+								intval($config['per_page'])
+						   );
 	
 		$data['productos'] = $this->producto_model->
-		paginacion_producto($parametros);
+							 paginacion_producto($parametros);
 	
 		$data['paginacion'] =  $this->pagination->create_links();
 	

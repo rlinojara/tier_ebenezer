@@ -8,6 +8,7 @@ class Marca extends MY_Controller
 	{
 		$this->load->library('pagination');
 		$this->load->model('marca_model');
+		
 	
 		$config['base_url'] = site_url('marca/listar_marca/');
 		$parametros = array('1');
@@ -35,8 +36,20 @@ class Marca extends MY_Controller
 							 intval($this->uri->segment(3,0)),
 							 intval($config['per_page'])
 						   );
-	
+		
 		$data['marcas'] = $this->marca_model->paginacion_marca($parametros);
+		
+		if( count($data['marcas']) == 0 )
+		{
+			$parametros = array(
+									1,
+									(intval($this->uri->segment(3,0)) - 1),
+									intval($config['per_page'])
+							   );
+				
+			$data['marcas'] = $this->marca_model->paginacion_marca($parametros);
+		}	
+		
 	
 		$data['paginacion'] =  $this->pagination->create_links();
 	
