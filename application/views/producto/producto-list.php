@@ -25,7 +25,6 @@
                             <tbody>
                             	<tr>
 	                                <th style="width: 10px">#</th>
-	                                <th>Producto</th>
 	                                <th>Marca</th>
 	                                <th>Medida</th>
 	                                <th>Modelo</th>
@@ -35,8 +34,7 @@
                             <?php for($i = 0 ; $i < count($productos); $i++):?>
                             <tr>
                              	<td>1.</td>
-                                <td><?php echo $productos[$i]['producto']?></td>
-                                <td><?php echo $productos[$i]['marca']?></td>
+                                <td><?php echo $productos[$i]['nombre_marca']?></td>
                                 <td><?php echo $productos[$i]['medida']?></td>
                                 <td><?php echo $productos[$i]['modelo']?></td>
                                 <td>

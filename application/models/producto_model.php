@@ -2,22 +2,24 @@
 class Producto_model extends CI_Model
 {
 	/**
-	 * @param nombre
-	 * @param apellido
-	 * @param email
-	 * @param producto
-	 * @param password
+	 * @param id_subcategoria 
+	 * @param nombre (medida)
+	 * @param estado
+	 * @param id_moneda
+	 * @param precio
 	 */
 	public function registrar($arg0)
 	{
-		$sql = 'INSERT INTO producto(nombre,
-									 id_subcategoria,
+		$sql = 'INSERT INTO producto(id_subcategoria,
 									 nombre,
 									 estado,
-									 id_moneda)
+									 id_moneda,
+									 precio)
 				VALUES (?,?,?,?,?)';
 	
 		$this->db->query($sql,$arg0);
+		
+		return $this->db->insert_id(); 
 	}
 	
 	
@@ -124,7 +126,7 @@ class Producto_model extends CI_Model
 	
 	public function cantidad_total_productos()
 	{
-		$sql = 'SELECT COUNT(*) as total FROM producto';
+		$sql = 'SELECT COUNT(*) as total FROM v_producto';
 	
 		$query = $this->db->query($sql);
 	
@@ -141,7 +143,7 @@ class Producto_model extends CI_Model
 	 */
 	public function paginacion_producto($arg0)
 	{
-		$sql = 'SELECT * FROM producto LIMIT ?,?';
+		$sql = 'SELECT * FROM v_producto LIMIT ?,?';
 	
 		$query = $this->db->query($sql,$arg0);
 	

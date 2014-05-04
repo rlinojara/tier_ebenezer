@@ -120,20 +120,22 @@ class Producto extends MY_Controller
 		if ( $this->agent->is_referral() )
 		{
 			$this->load->model('producto_model');
+			$this->load->model('llanta_model');
+			$this->load->model('producto_sucursal_model');
 	
-			$nombre = trim(strtoupper($this->input->post('nombre')));
-			$apellido = trim(strtoupper($this->input->post('apellido')));
-			$email = trim(strtolower($this->input->post('email')));
-			$producto = trim(strtolower($this->input->post('producto')));
-			$password = md5(trim($this->input->post('password')));
+			$medida = trim(strtoupper($this->input->post('medida')));
+			$modelo = trim(strtoupper($this->input->post('modelo')));
+			$tipo = $this->input->post('modelo_tipo');
+			$precio = trim($this->input->post('precio'));
+			$moneda = $this->input->post('moneda');
 			$data = array();
 				
 			/**
 			 * @see Validacion de producto
-			*/
-			$parametro = array($producto);
+			 */
+			//$parametro = array($producto);
 				
-			if( $this->producto_model->validar_producto($parametro) )
+			if( /*$this->producto_model->validar_producto($parametro)*/ false )
 			{
 				$data['error'] = 'producto ya se encuentra registrado';
 				$data['proceso_form'] = false;
@@ -143,8 +145,30 @@ class Producto extends MY_Controller
 				/**
 				 * Registrando producto
 				 */
-				$parametros = array($nombre,$apellido,$email,$producto,$password);
-				$this->producto_model->registrar($parametros);
+				$parametros = array(1,$medida,1,$moneda,$precio);
+				$id_producto = $this->producto_model->registrar($parametros);
+				
+				/**
+			     * Registrando llanta
+				 */
+				
+				$parametros = array($modelo,$tipo,$id_producto);
+				$this->llanta_model->registrar($parametros);
+				
+				
+				
+				/** 
+				 * Registrando stock por sucursal
+				 */
+				$stock = $this->input->post('stock');
+				
+				foreach ($stock as $i => $valor) 
+				{
+        			$parametros = array($id_producto,$i,$valor);
+        			$this->producto_sucursal_model->registrar($parametros);
+        			
+        		} 
+				
 				$data['proceso_form'] = true;
 			}
 				
@@ -247,7 +271,5 @@ class Producto extends MY_Controller
 		}
 			
 	}
-	
-	
 	
 }

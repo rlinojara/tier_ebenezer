@@ -46,7 +46,7 @@ if(isset($proceso_form) and $proceso_form === FALSE){
                         <select name="modelo_tipo" class="form-control">
                         <?php for( $i = 0 ; $i < count($modelo_tipo) ; $i++):?>
                         
-                         <option value="<?php $modelo_tipo[$i]['id_modelo_tipo']?>">
+                         <option value="<?php echo $modelo_tipo[$i]['id_modelo_tipo']?>">
                          	<?php echo $modelo_tipo[$i]['nombre']?>
                          </option>
                         
@@ -56,7 +56,7 @@ if(isset($proceso_form) and $proceso_form === FALSE){
                     </div>
                     <div class="form-group">
                         <label for="medida">Precio de lista:</label>
-                        <input type="text" name="medida" 
+                        <input type="text" name="precio" 
                                class="form-control" id="txtPrecio" 
                                value="<?php if(isset($producto['precio'])) echo $producto['precio']?>" placeholder="">
                     </div>
@@ -93,7 +93,7 @@ if(isset($proceso_form) and $proceso_form === FALSE){
                                     <input class="form-control" type="text" 
                                     	   name="stock[<?php echo $sucursales[$i]['id_sucursal']?>]">
                                 </td>
-                            </tr>
+                             </tr>
                             
                             <?php endfor;?>
                             </tbody>
