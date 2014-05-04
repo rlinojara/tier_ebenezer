@@ -84,7 +84,7 @@ class Producto_model extends CI_Model
 	/**
 	 * @param id_usario
 	 */
-	public function obtener_producto_por_id($arg0)
+	public function obtener_vproducto_por_id($arg0)
 	{
 		$sql = 'SELECT id_producto,
 					   nombre,
