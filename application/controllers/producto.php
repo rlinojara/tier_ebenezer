@@ -161,13 +161,17 @@ class Producto extends MY_Controller
 				 * Registrando stock por sucursal
 				 */
 				$stock = $this->input->post('stock');
+			
+				
 				
 				foreach ($stock as $i => $valor) 
 				{
         			$parametros = array($id_producto,$i,$valor);
+
         			$this->producto_sucursal_model->registrar($parametros);
         			
         		} 
+        		
 				
 				$data['proceso_form'] = true;
 			}
@@ -176,10 +180,15 @@ class Producto extends MY_Controller
 			/**
 			 * @see Parametros para la vista
 			 */
+			$this->load->model('sucursal_model');
+			$this->load->model('moneda_model');
+			$this->load->model('modelo_tipo_model');
 			$data['view'] = 'producto/producto-form';
-			$data['titulo'] = 'Registro';
 			$data['url_form'] = 'producto/set_registrar_producto';
-	
+			$data['sucursales'] = $this->sucursal_model->obtener_sucursal_activas();
+			$data['modelo_tipo'] = $this->modelo_tipo_model->listar();
+			$data['moneda'] = $this->moneda_model->listar();
+			$data['titulo'] = 'Registro';
 			$this->load->view('index',$data);
 		}
 		else

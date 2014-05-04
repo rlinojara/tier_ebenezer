@@ -11,8 +11,7 @@ class Producto_sucursal_model extends CI_Model
 		$sql = 'INSERT INTO producto_sucursal (id_producto,id_sucursal,stock)
 				VALUES (?,?,?)';
 		
-		$query = $this->db->query($sql,$arg0);
-		
-		return $query->result_array();
+		$this->db->query($sql,$arg0);
+	
 	}
 }
