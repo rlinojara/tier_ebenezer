@@ -276,4 +276,18 @@ class Marca extends MY_Controller
 							 intval($config['per_page'])
 						   );
 	}
+	
+	public function obtener_marca_json()
+	{
+		$this->load->model('marca_model');
+		
+		$nombre = strtoupper($this->input->post('marca'));
+		
+		$parametro = array($nombre);
+		
+		$marca = $this->marca_model->obtener_marca($parametro);
+		
+		return json_encode($marca);
+	}
+	
 }	

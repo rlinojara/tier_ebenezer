@@ -125,4 +125,18 @@ class Marca_model extends CI_Model
 	
 		return $query->result_array();
 	}
+	
+	
+	/**
+	 * @param nombre
+	 */
+	public function obtener_marca($arg0)
+	{
+		$sql = 'SELECT id_subcategoria,nombre FROM subcategoria
+				WHERE nombre LIKE \'?%\'';
+		
+		$query = $this->db->query($sql,$arg0);
+		
+		return $query->result_array();
+	}
 }
