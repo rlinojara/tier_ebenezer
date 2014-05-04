@@ -281,17 +281,17 @@ class Producto extends MY_Controller
 			
 	}
 	
-	/**
-	 * @param nombre
-	 */
-	public function obtener_marca($arg0)
+	public function obtener_marca_json()
 	{
-		$sql = 'SELECT id_subcategoria,nombre FROM subcategoria
-				WHERE nombre LIKE \'?%\'';
+		$this->load->model('marca_model');
 	
-		$query = $this->db->query($sql,$arg0);
+		$nombre = strtoupper($this->input->post('marca'));
 	
-		return $query->result_array();
+		$parametro = array($nombre);
+	
+		$marca = $this->marca_model->obtener_marca($parametro);
+	
+		return json_encode($marca);
 	}
 	
 }

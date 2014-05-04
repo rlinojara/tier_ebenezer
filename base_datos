@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generaci—n: 02-05-2014 a las 19:01:14
+-- Tiempo de generaci—n: 05-05-2014 a las 01:20:32
 -- Versi—n del servidor: 5.5.33
 -- Versi—n de PHP: 5.5.3
 
@@ -23,7 +23,7 @@ USE `tier_ebenezer`;
 --
 
 DROP TABLE IF EXISTS `categoria`;
-CREATE TABLE IF NOT EXISTS `categoria` (
+CREATE TABLE `categoria` (
   `id_categoria` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(150) NOT NULL,
   `estado` tinyint(4) NOT NULL DEFAULT '1' COMMENT '1 habilitado, 2 deshabilitado',
@@ -44,12 +44,55 @@ INSERT INTO `categoria` (`id_categoria`, `nombre`, `estado`) VALUES
 --
 
 DROP TABLE IF EXISTS `llanta`;
-CREATE TABLE IF NOT EXISTS `llanta` (
+CREATE TABLE `llanta` (
   `id_llanta` int(11) NOT NULL AUTO_INCREMENT,
   `modelo` varchar(150) NOT NULL,
+  `id_modelo_tipo` int(11) NOT NULL,
   `id_producto` int(11) NOT NULL,
   PRIMARY KEY (`id_llanta`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
+
+--
+-- Volcado de datos para la tabla `llanta`
+--
+
+INSERT INTO `llanta` (`id_llanta`, `modelo`, `id_modelo_tipo`, `id_producto`) VALUES
+(1, 'MODELO', 0, 1),
+(2, 'MODELO', 0, 2),
+(3, 'MODELO', 0, 3),
+(4, '', 0, 4),
+(5, 'MODELO', 0, 5),
+(6, 'MODELO', 5, 6),
+(7, 'MODELO1', 7, 7),
+(8, 'MODELO2', 7, 8),
+(9, 'MODELO', 7, 9),
+(10, 'MODELO1', 5, 10),
+(11, 'MODELO2', 5, 11),
+(12, 'MODELO5', 6, 12),
+(13, 'MODELO2', 5, 13);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `modelo_tipo`
+--
+
+DROP TABLE IF EXISTS `modelo_tipo`;
+CREATE TABLE `modelo_tipo` (
+  `id_modelo_tipo` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(50) NOT NULL,
+  PRIMARY KEY (`id_modelo_tipo`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+
+--
+-- Volcado de datos para la tabla `modelo_tipo`
+--
+
+INSERT INTO `modelo_tipo` (`id_modelo_tipo`, `nombre`) VALUES
+(5, 'delantera'),
+(6, 'posterior pistera'),
+(7, 'mixta'),
+(8, 'tracci—n');
 
 -- --------------------------------------------------------
 
@@ -58,11 +101,19 @@ CREATE TABLE IF NOT EXISTS `llanta` (
 --
 
 DROP TABLE IF EXISTS `moneda`;
-CREATE TABLE IF NOT EXISTS `moneda` (
+CREATE TABLE `moneda` (
   `id_moneda` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(50) NOT NULL,
   PRIMARY KEY (`id_moneda`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Volcado de datos para la tabla `moneda`
+--
+
+INSERT INTO `moneda` (`id_moneda`, `nombre`) VALUES
+(1, 'soles'),
+(2, 'd—lares');
 
 -- --------------------------------------------------------
 
@@ -71,14 +122,34 @@ CREATE TABLE IF NOT EXISTS `moneda` (
 --
 
 DROP TABLE IF EXISTS `producto`;
-CREATE TABLE IF NOT EXISTS `producto` (
+CREATE TABLE `producto` (
   `id_producto` int(11) NOT NULL AUTO_INCREMENT,
   `id_subcategoria` int(11) NOT NULL,
   `nombre` varchar(150) NOT NULL,
   `estado` int(11) NOT NULL DEFAULT '1' COMMENT '1 habilitado, 2 deshabilitado',
   `id_moneda` int(11) NOT NULL,
+  `precio` decimal(10,2) NOT NULL,
   PRIMARY KEY (`id_producto`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
+
+--
+-- Volcado de datos para la tabla `producto`
+--
+
+INSERT INTO `producto` (`id_producto`, `id_subcategoria`, `nombre`, `estado`, `id_moneda`, `precio`) VALUES
+(1, 1, 'MEDIDA', 1, 1, 12.00),
+(2, 1, 'MEDIDA', 1, 1, 12.00),
+(3, 1, 'MEDIDA', 1, 2, 45.23),
+(4, 1, 'MEDIDA', 1, 1, 0.00),
+(5, 1, 'MEDIDA', 1, 2, 67.89),
+(6, 1, 'MEDIDA', 1, 1, 2212.22),
+(7, 1, 'MEDIDA1', 1, 1, 15.67),
+(8, 1, 'MEDIDA2', 1, 1, 90.00),
+(9, 1, 'MEDIDA', 1, 1, 2.00),
+(10, 1, 'MEDIDA1', 1, 1, 12.00),
+(11, 1, 'MEDIDA1', 1, 1, 21.00),
+(12, 1, 'MEDIDA5', 1, 1, 12.00),
+(13, 1, 'MEDIDA1', 1, 1, 12.20);
 
 -- --------------------------------------------------------
 
@@ -87,12 +158,30 @@ CREATE TABLE IF NOT EXISTS `producto` (
 --
 
 DROP TABLE IF EXISTS `producto_sucursal`;
-CREATE TABLE IF NOT EXISTS `producto_sucursal` (
-  `id_producto` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `producto_sucursal` (
+  `id_producto_sucursal` int(11) NOT NULL AUTO_INCREMENT,
+  `id_producto` int(11) NOT NULL,
   `id_sucursal` int(11) NOT NULL,
   `stock` int(11) NOT NULL,
-  PRIMARY KEY (`id_producto`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  PRIMARY KEY (`id_producto_sucursal`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+
+--
+-- Volcado de datos para la tabla `producto_sucursal`
+--
+
+INSERT INTO `producto_sucursal` (`id_producto_sucursal`, `id_producto`, `id_sucursal`, `stock`) VALUES
+(1, 6, 3, 1),
+(2, 7, 3, 12),
+(3, 11, 3, 2),
+(4, 11, 4, 2),
+(5, 11, 5, 2),
+(6, 12, 3, 1),
+(7, 12, 4, 2),
+(8, 12, 5, 3),
+(9, 13, 3, 1),
+(10, 13, 4, 2),
+(11, 13, 5, 3);
 
 -- --------------------------------------------------------
 
@@ -101,7 +190,7 @@ CREATE TABLE IF NOT EXISTS `producto_sucursal` (
 --
 
 DROP TABLE IF EXISTS `rol`;
-CREATE TABLE IF NOT EXISTS `rol` (
+CREATE TABLE `rol` (
   `id_rol` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(50) NOT NULL,
   `estado` tinyint(1) NOT NULL COMMENT '1 activo, 2 inactivo',
@@ -115,13 +204,23 @@ CREATE TABLE IF NOT EXISTS `rol` (
 --
 
 DROP TABLE IF EXISTS `subcategoria`;
-CREATE TABLE IF NOT EXISTS `subcategoria` (
+CREATE TABLE `subcategoria` (
   `id_subcategoria` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(150) NOT NULL,
   `estado` tinyint(4) NOT NULL DEFAULT '1' COMMENT '1 habilitado, 2 deshabilitado',
   `id_categoria` int(11) NOT NULL,
   PRIMARY KEY (`id_subcategoria`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Volcado de datos para la tabla `subcategoria`
+--
+
+INSERT INTO `subcategoria` (`id_subcategoria`, `nombre`, `estado`, `id_categoria`) VALUES
+(1, 'KHUMO1', 1, 1),
+(2, 'Marshall', 1, 1),
+(3, 'MARCA1', 1, 1),
+(4, 'MARCA2', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -130,7 +229,7 @@ CREATE TABLE IF NOT EXISTS `subcategoria` (
 --
 
 DROP TABLE IF EXISTS `sucursal`;
-CREATE TABLE IF NOT EXISTS `sucursal` (
+CREATE TABLE `sucursal` (
   `id_sucursal` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(50) NOT NULL,
   `estado` tinyint(4) NOT NULL,
@@ -153,7 +252,7 @@ INSERT INTO `sucursal` (`id_sucursal`, `nombre`, `estado`) VALUES
 --
 
 DROP TABLE IF EXISTS `usuario`;
-CREATE TABLE IF NOT EXISTS `usuario` (
+CREATE TABLE `usuario` (
   `id_usuario` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(50) NOT NULL,
   `apellido` varchar(50) NOT NULL,
@@ -180,9 +279,38 @@ INSERT INTO `usuario` (`id_usuario`, `nombre`, `apellido`, `email`, `usuario`, `
 --
 
 DROP TABLE IF EXISTS `usuario_rol`;
-CREATE TABLE IF NOT EXISTS `usuario_rol` (
+CREATE TABLE `usuario_rol` (
   `id_usuario_rol` int(11) NOT NULL AUTO_INCREMENT,
   `id_usuario` int(11) NOT NULL,
   `id_rol` int(11) NOT NULL,
   PRIMARY KEY (`id_usuario_rol`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura Stand-in para la vista `v_producto`
+--
+DROP VIEW IF EXISTS `v_producto`;
+CREATE TABLE `v_producto` (
+`id_producto` int(11)
+,`medida` varchar(150)
+,`estado_producto` int(11)
+,`id_marca` int(11)
+,`id_moneda` int(11)
+,`nombre_marca` varchar(150)
+,`nombre_moneda` varchar(50)
+,`modelo` varchar(150)
+,`id_modelo_tipo` int(11)
+,`nombre_modelo_tipo` varchar(50)
+,`precio` decimal(10,2)
+,`estado` int(11)
+);
+-- --------------------------------------------------------
+
+--
+-- Estructura para la vista `v_producto`
+--
+DROP TABLE IF EXISTS `v_producto`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_producto` AS select `a`.`id_producto` AS `id_producto`,`a`.`nombre` AS `medida`,`a`.`estado` AS `estado_producto`,`a`.`id_subcategoria` AS `id_marca`,`a`.`id_moneda` AS `id_moneda`,`b`.`nombre` AS `nombre_marca`,`c`.`nombre` AS `nombre_moneda`,`d`.`modelo` AS `modelo`,`d`.`id_modelo_tipo` AS `id_modelo_tipo`,`e`.`nombre` AS `nombre_modelo_tipo`,`a`.`precio` AS `precio`,`a`.`estado` AS `estado` from ((((`producto` `a` join `subcategoria` `b` on((`a`.`id_subcategoria` = `b`.`id_subcategoria`))) join `moneda` `c` on((`c`.`id_moneda` = `a`.`id_moneda`))) join `llanta` `d` on((`a`.`id_producto` = `d`.`id_producto`))) join `modelo_tipo` `e` on((`e`.`id_modelo_tipo` = `d`.`id_modelo_tipo`)));
