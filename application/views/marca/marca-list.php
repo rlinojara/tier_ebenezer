@@ -66,7 +66,7 @@
                                 </td>
                                 <td>
                                     <?php 
-                                    echo anchor('marca/registrar_marca/'.$marcas[$i]['id_subcategoria'],'Editar','class="btn btn-info btn-sm"');
+                                    echo anchor('marca/editar_marca/'.$marcas[$i]['id_subcategoria'],'Editar','class="btn btn-info btn-sm"');
                                     if($marcas[$i]['estado'] == 1):
                                         echo anchor('marca/deshabilitar_marca/'.$marcas[$i]['id_subcategoria'].'/'.$pagina,'Deshabilitar','class="btn btn-danger btn-sm"'); 
                                     else:

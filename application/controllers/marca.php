@@ -39,20 +39,11 @@ class Marca extends MY_Controller
 		
 		$data['marcas'] = $this->marca_model->paginacion_marca($parametros);
 		
-		
 		if( count($data['marcas']) == 0 )
 		{
-			
-			$pagina = (intval($this->uri->segment(3,0)) - 1);
-			
-			if( $pagina < 0)
-			{
-				$pagina = 0;
-			}
-			
 			$parametros = array(
 									1,
-									$pagina,
+									(intval($this->uri->segment(3,0)) - 1),
 									intval($config['per_page'])
 							   );
 				
@@ -218,12 +209,9 @@ class Marca extends MY_Controller
 				 * Datos e Edicion de marca
 				*/
 				$nombre = trim(strtoupper($this->input->post('nombre')));
-				$apellido = trim(strtoupper($this->input->post('apellido')));
-				$email = trim(strtolower($this->input->post('email')));
-				$password = md5(trim($this->input->post('password')));
 				$id_marca = $this->input->post('id_marca');
 	
-				$parametros = array($nombre,$apellido,$email,$password,$id_marca);
+				$parametros = array($nombre,$id_marca);
 				$this->marca_model->editar($parametros);
 				$data['proceso_form'] = true;
 	
@@ -255,66 +243,6 @@ class Marca extends MY_Controller
 			
 	}
 	
-	public function perfil_marca()
-	{
-		$this->load->model('marca_model');
-	
-		$data['view'] = 'marca/perfil';
-	
-		$id = $this->sesion_marca['id_marca'];
-	
-		$parametro = array($id);
-	
-		$data['marca'] = $this->marca_model->
-		obtener_marca_por_id($parametro);
-	
-		$this->load->view('index',$data);
-	}
-	
-	public function set_editar_perfil()
-	{
-		$this->load->model('marca_model');
-	
-		if ( $this->agent->is_referral() )
-		{
-	
-			$email = trim(strtolower($this->input->post('email')));
-			$password = md5(trim($this->input->post('password')));
-			$password_actual = md5($this->input->post('password_actual'));
-				
-			$id_marca = $this->sesion_marca['id_marca'];
-				
-			$parametro = array($id_marca);
-			$marca = $this->marca_model->obtener_marca_por_id($parametro);
-				
-			/**
-			 * @see Validaci—n si la contrase–a es correcta
-			*/
-			if($marca['password'] != $password_actual)
-			{
-				$data['error'] = 'La contrase&ntilde;a no coincide';
-				$data['proceso_form'] = false;
-			}
-			else
-			{
-				$parametros = array($email,$password,$id_marca);
-				$this->marca_model->editar_perfil($parametros);
-				$data['proceso_form'] = true;
-	
-				$marca = $this->marca_model->obtener_marca_por_id($parametro);
-			}
-				
-				
-			$data['marca'] = $marca;
-			$data['view'] = 'marca/perfil';
-			$this->load->view('index',$data);
-				
-		}
-		else
-		{
-			redirect('inicio');
-		}
-	}
 	
 	public function buscar_marca()
 	{

@@ -23,11 +23,14 @@ class Marca_model extends CI_Model
 	public function editar($arg0)
 	{
 		$sql = 'UPDATE subcategoria
-				SET nombre = ?,
-					estado = ?
+				SET nombre = ?
 				WHERE id_subcategoria = ?';
 	
 		$this->db->query($sql,$arg0);
+		
+		echo $this->db->last_query();
+		
+		die();
 	}
 	
 	public function deshabilitar($arg0)

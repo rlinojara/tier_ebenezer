@@ -27,7 +27,7 @@ if(isset($proceso_form) and $proceso_form === FALSE){
                 <div class="box-body">
                     <div class="form-group">
                         <label for="nombre">Marca:</label>
-                        <input type="text" name="nombre" 
+                        <input type="text" name="marca" 
                         	   class="form-control" id="txtMarca" 
                         	   value="<?php if(isset($producto['marca'])) echo $producto['marca']?>" placeholder="">
                     </div>
@@ -43,11 +43,15 @@ if(isset($proceso_form) and $proceso_form === FALSE){
                                class="form-control" id="txtModelo" 
                                value="<?php if(isset($producto['modelo'])) echo $producto['modelo']?>" placeholder="">
                         <label for="sucursal">Tipo:</label>
-                        <select name="sucursal" class="form-control">
-                            <option value="">Delantera</option>
-                            <option value="">Postereor pistera</option>
-                            <option value="">Mixta</option>
-                            <option value="">Tracción</option>
+                        <select name="modelo_tipo" class="form-control">
+                        <?php for( $i = 0 ; $i < count($modelo_tipo) ; $i++):?>
+                        
+                         <option value="<?php $modelo_tipo[$i]['id_modelo_tipo']?>">
+                         	<?php echo $modelo_tipo[$i]['nombre']?>
+                         </option>
+                        
+                        <?php endfor;?>
+                         
                         </select>
                     </div>
                     <div class="form-group">
@@ -59,7 +63,13 @@ if(isset($proceso_form) and $proceso_form === FALSE){
                     <div class="form-group">
                         <label for="moneda">Moneda:</label>
                         <select name="moneda" class="form-control">
-                            <option value="Tu mismo eres chini">Tu mismo eres chini</option>
+                            <?php for( $i = 0 ; $i < count($moneda) ; $i++):?>
+                            
+                            <option value="<?php echo $moneda[$i]['id_moneda']?>">
+                            	<?php echo $moneda[$i]['nombre']?>
+                            </option>
+                            
+                            <?php endfor?>
                         </select>
                     </div>
                     <?php if(isset($id)):?>
@@ -73,46 +83,19 @@ if(isset($proceso_form) and $proceso_form === FALSE){
                     <br>
                         <table class="table table-bordered">
                             <tbody>
-                            <tr>
-                                <th>Tienda</th>
-                                <th>Stock</th>
-                            </tr>
                             <?php for( $i = 0 ; $i < count($sucursales) ; $i++):?>
                             
                              <tr>
                                 <td>
-                                    <?php echo $sucursales[$i]['nombre']?>
+                                    <p class="text-light-blue"> <?php echo $sucursales[$i]['nombre']?> </p>
                                 </td>
                                 <td>
-                                    <input class="form-control" type="text" name="stock[]">
+                                    <input class="form-control" type="text" 
+                                    	   name="stock[<?php echo $sucursales[$i]['id_sucursal']?>]">
                                 </td>
                             </tr>
                             
-                            <?php endfor?>
-                            <tr>
-                                <td>
-                                    <p class="text-light-blue">Tienda 1</p>
-                                </td>
-                                <td>
-                                    <input class="form-control" type="text" name="stock1">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <p class="text-light-blue">Tienda 2</p>
-                                </td>
-                                <td>
-                                    <input class="form-control" type="text" name="stock2">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <p class="text-light-blue">Tienda 3</p>
-                                </td>
-                                <td>
-                                    <input class="form-control" type="text" name="stock3">
-                                </td>
-                            </tr>
+                            <?php endfor;?>
                             </tbody>
                         </table>
                     </div>

@@ -29,13 +29,13 @@ if(isset($proceso_form) and $proceso_form === FALSE){
                         <label for="exampleInputEmail1">Nombre:</label>
                         <input type="text" name="nombre" 
                         	   class="form-control" id="exampleInputEmail1" 
-                        	   value="<?php if(isset($usuario['nombre'])) echo $usuario['nombre']?>" placeholder="">
+                        	   value="<?php if(isset($marca['nombre'])) echo $marca['nombre']?>" placeholder="">
                     </div>
                     
       
                     <?php if(isset($id)):?>
                     
-                    <input type="hidden" name="id_Marca" value="<?php echo $id?>">
+                    <input type="hidden" name="id_marca" value="<?php echo $id?>">
                     
                     <?php endif;?>
                 </div><!-- /.box-body -->

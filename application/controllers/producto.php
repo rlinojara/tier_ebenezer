@@ -93,11 +93,19 @@ class Producto extends MY_Controller
 	
 		$this->load->model('sucursal_model');
 		
+		$this->load->model('moneda_model');
+		
+		$this->load->model('modelo_tipo_model');
+		
 		$data['view'] = 'producto/producto-form';
 	
 		$data['url_form'] = 'producto/set_registrar_producto';
 		
 		$data['sucursales'] = $this->sucursal_model->obtener_sucursal_activas();
+		
+		$data['modelo_tipo'] = $this->modelo_tipo_model->listar();
+		
+		$data['moneda'] = $this->moneda_model->listar();
 	
 		$data['titulo'] = 'Registro';
 	
@@ -239,6 +247,7 @@ class Producto extends MY_Controller
 		}
 			
 	}
+	
 	
 	
 }
