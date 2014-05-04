@@ -33,7 +33,7 @@
                             	</tr>
                             <?php for($i = 0 ; $i < count($usuarios); $i++):?>
                             <tr>
-                             	<td>1.</td>
+                             	<td><?php echo ($i+1)?></td>
                                 <td><?php echo $usuarios[$i]['usuario']?></td>
                                 <td><?php echo $usuarios[$i]['nombre']?></td>
                                 <td><?php echo $usuarios[$i]['apellido']?></td>

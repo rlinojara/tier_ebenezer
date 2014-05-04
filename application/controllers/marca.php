@@ -13,7 +13,7 @@ class Marca extends MY_Controller
 		$config['base_url'] = site_url('marca/listar_marca/');
 		$parametros = array('1');
 		$config['total_rows'] = $this->marca_model->cantidad_total_marcas($parametros);
-		$config['per_page'] = 1;
+		$config['per_page'] = 100;
 	
 	
 		$config['num_links'] = '2';

@@ -33,7 +33,7 @@
                             	</tr>
                             <?php for($i = 0 ; $i < count($productos); $i++):?>
                             <tr>
-                             	<td>1.</td>
+                             	<td><?php echo ($i+1)?></td>
                                 <td><?php echo $productos[$i]['nombre_marca']?></td>
                                 <td><?php echo $productos[$i]['medida']?></td>
                                 <td><?php echo $productos[$i]['modelo']?></td>
@@ -48,7 +48,7 @@
                                 </td>
                                 <td>
                                     <?php 
-                                    echo anchor('producto/registrar_producto/'.$productos[$i]['id_producto'],'Editar','class="btn btn-info btn-sm"');
+                                    echo anchor('producto/editar_producto/'.$productos[$i]['id_producto'],'Editar','class="btn btn-info btn-sm"');
                                     if($productos[$i]['estado'] == 1):
                                         echo anchor('producto/deshabilitar_producto/'.$productos[$i]['id_producto'],'Deshabilitar','class="btn btn-danger btn-sm"'); 
                                     else:

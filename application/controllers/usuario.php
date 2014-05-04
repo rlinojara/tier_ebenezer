@@ -12,7 +12,7 @@ class Usuario extends MY_Controller
 		
 		$config['base_url'] = site_url('usuario/listar_usuario/');
 		$config['total_rows'] = $this->usuario_model->cantidad_total_usuarios();
-		$config['per_page'] = 1;
+		$config['per_page'] = 100;
 	
 		
 		$config['num_links'] = '2'; 

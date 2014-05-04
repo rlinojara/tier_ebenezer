@@ -53,7 +53,7 @@
                             	</tr>
                             <?php for($i = 0 ; $i < count($marcas); $i++):?>
                             <tr>
-                             	<td>1.</td>
+                             	<td><?php echo ($i+1)?></td>
                                 <td><?php echo $marcas[$i]['nombre']?></td>
                                 <td>
                                     <?php 
