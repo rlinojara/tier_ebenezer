@@ -203,7 +203,7 @@ $('#txtMarca').keyup(function(){
             };
 
             //Escribimos las sugerencias que nos manda la consulta
-            $('#sugerencias').fadeIn(1000).html(html);
+            $('#sugerencias').fadeIn(500).html(html);
         }
     });
 });
@@ -218,5 +218,5 @@ $('#sugerencias').on('click','.sugerenciaMarca',function(){
     $('#marcaReal').val(idSub);
     $('#txtMarca').val(texto);
     //Hacemos desaparecer el resto de sugerencias
-    $('#sugerencias').fadeOut(1000);
+    $('#sugerencias').fadeOut(500);
 });
