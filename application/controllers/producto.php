@@ -123,6 +123,7 @@ class Producto extends MY_Controller
 			$this->load->model('llanta_model');
 			$this->load->model('producto_sucursal_model');
 	
+			
 			$medida = trim(strtoupper($this->input->post('medida')));
 			$modelo = trim(strtoupper($this->input->post('modelo')));
 			$tipo = $this->input->post('modelo_tipo');
@@ -143,18 +144,17 @@ class Producto extends MY_Controller
 			else
 			{
 				/**
-				 * Registrando producto
+				 * Registrar producto
 				 */
 				$parametros = array(1,$medida,1,$moneda,$precio);
 				$id_producto = $this->producto_model->registrar($parametros);
 				
 				/**
-			     * Registrando llanta
+			     * Registrar llanta
 				 */
 				
 				$parametros = array($modelo,$tipo,$id_producto);
 				$this->llanta_model->registrar($parametros);
-				
 				
 				
 				/** 
@@ -244,24 +244,60 @@ class Producto extends MY_Controller
 	 */
 	public function set_editar_producto()
 	{
+		$this->load->model('producto_model');
+		$this->load->model('llanta_model');
+		$this->load->model('producto_sucursal_model');
+		
 		if ( $this->agent->is_referral() )
 		{
 			if( $this->input->post('id_producto') )
 			{
 				$this->load->model('producto_model');
 	
-	
 				/**
 				 * Datos e Edicion de producto
-				*/
-				$nombre = trim(strtoupper($this->input->post('nombre')));
-				$apellido = trim(strtoupper($this->input->post('apellido')));
-				$email = trim(strtolower($this->input->post('email')));
-				$password = md5(trim($this->input->post('password')));
-				$id_producto = $this->input->post('id_producto');
-	
-				$parametros = array($nombre,$apellido,$email,$password,$id_producto);
+				 */
+				$id_producto = $this->input->post('id_producto');	
+				$medida = trim(strtoupper($this->input->post('medida')));
+				$modelo = trim(strtoupper($this->input->post('modelo')));
+				$tipo = $this->input->post('modelo_tipo');
+				$precio = trim($this->input->post('precio'));
+				$moneda = $this->input->post('moneda');
+				
+				/**
+				 * Editar producto
+				 */
+				$parametros = array(1,$medida,1,$moneda,$precio);
 				$this->producto_model->editar($parametros);
+				
+				/**
+				 * Editarllanta
+				 */
+				$parametros = array($modelo,$tipo,$id_producto);
+				$this->llanta_model->editar($parametros);
+				
+				
+				/**
+				 * Eliminar stock
+				 */
+				$parametro = array($id_producto);
+				$this->producto_sucursal_model->
+					   eliminar_por_producto($parametro);
+				
+				
+				/**
+				 * Registrando stock por sucursal
+				 */
+				$stock = $this->input->post('stock');
+				
+				foreach ($stock as $i => $valor)
+				{
+					$parametros = array($id_producto,$i,$valor);
+				
+					$this->producto_sucursal_model->registrar($parametros);
+					 
+				}
+				
 				$data['proceso_form'] = true;
 	
 				/**
@@ -270,13 +306,23 @@ class Producto extends MY_Controller
 				$parametro = array($id_producto);
 				$data['producto'] = $this->producto_model->obtener_producto_por_id($parametro);
 	
-				/**
-				 * Parametros para la vista de editar producto
+			   /**
+				* Parametros para la vista de editar producto
 				*/
+				$parametro = array($id_producto);	
+							
+				$data['producto'] = $this->producto_model->
+										   obtener_vproducto_por_id($parametro);
+				
+				$data['sucursal'] = $this->producto_sucursal_model->
+										   obtener_por_producto($parametro);
+				
 				$data['view'] = 'producto/producto-form';
-				$data['id'] = $id_producto;
-				$data['url_form'] = 'producto/set_editar_producto';
-				$data['titulo'] = 'Edici&oacute;n';
+				$data['url_form'] = 'producto/set_registrar_producto';
+				$data['sucursales'] = $this->sucursal_model->obtener_sucursal_activas();
+				$data['moneda'] = $this->combo_moneda($moneda);
+				$data['modelo_tipo'] = $this->combo_modelo_tipo($tipo);
+				$data['titulo'] = 'Editar';
 					
 				$this->load->view('index',$data);
 			}

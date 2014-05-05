@@ -29,4 +29,12 @@ class Producto_sucursal_model extends CI_Model
 		
 		return $query->result_array();
 	}
+	
+	public function eliminar_por_producto($arg0)
+	{
+		$sql = 'DELETE FROM producto_sucursal
+				WHERE id_producto = ?';
+		
+		$this->db->query($sql,$arg0);
+	}
 }

@@ -97,7 +97,7 @@ if(isset($proceso_form) and $proceso_form === FALSE){
                     </div>
                     <?php if(isset($id)):?>
                     
-                    <input type="hidden" name="id_Producto" value="<?php echo $id?>">
+                    <input type="hidden" name="id_producto" value="<?php echo $id?>">
                     
                     <?php endif;?>
                 </div><!-- /.box-body -->

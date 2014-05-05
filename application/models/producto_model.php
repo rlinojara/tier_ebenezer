@@ -32,10 +32,11 @@ class Producto_model extends CI_Model
 	public function editar($arg0)
 	{
 		$sql = 'UPDATE producto
-				SET nombre = ?,
-					id_subcategoria = ?,
+				SET id_subcategoria = ?,
+					nombre = ?,
 					estado = ?,
-					id_moneda = ?
+					id_moneda = ?,
+					precio = ?
 				WHERE id_producto = ?';
 	
 		$this->db->query($sql,$arg0);
