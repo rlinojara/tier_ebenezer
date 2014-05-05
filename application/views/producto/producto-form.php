@@ -54,7 +54,7 @@ if(isset($proceso_form) and $proceso_form === FALSE)
                     <div class="form-group">
                         <label for="nombre">Marca:</label>
                         <input type="text" name="marca" 
-                               class="form-control" id="txtMarca" 
+                               class="form-control" id="txtmarca" 
                                value="<?php if(isset($producto['nombre_marca'])) echo $producto['nombre_marca']?>" placeholder="">
                         <div id="sugerencias"></div>
                         <input id="marcaReal" name="marcaReal" type="hidden" value="<?php if(isset($producto['id_marca'])) echo $producto['id_marca'];?>">
@@ -62,13 +62,13 @@ if(isset($proceso_form) and $proceso_form === FALSE)
                     <div class="form-group">
                         <label for="medida">Medida:</label>
                         <input type="text" name="medida" 
-                               class="form-control" id="txtMedida" 
+                               class="form-control" id="txtmedida" 
                                value="<?php if(isset($producto['medida'])) echo $producto['medida']?>" placeholder="">
                     </div>
                     <div class="form-group">
                         <label for="modelo">Modelo:</label>
                         <input type="text" name="modelo" 
-                               class="form-control" id="txtModelo" 
+                               class="form-control" id="txtmodelo" 
                                value="<?php if(isset($producto['modelo'])) echo $producto['modelo']?>" placeholder="">
                         <label for="sucursal">Tipo:</label>
                         <select name="modelo_tipo" class="form-control">
@@ -84,7 +84,7 @@ if(isset($proceso_form) and $proceso_form === FALSE)
                     <div class="form-group">
                         <label for="medida">Precio de lista:</label>
                         <input type="text" name="precio" 
-                               class="form-control" id="txtPrecio" 
+                               class="form-control" id="txtprecio" 
                                value="<?php if(isset($producto['precio'])) echo $producto['precio']?>" placeholder="">
                     </div>
                     <div class="form-group">
@@ -142,7 +142,8 @@ if(isset($proceso_form) and $proceso_form === FALSE)
                     <br>
                 </div>
                 <div class="box-footer">
-                    <button id="btnProductoRegistro" type="submit" class="btn btn-primary">Enviar</button>
+                    <div id="btnRegistroProducto" class="btn btn-primary btnInactivo btnEnviar">Enviar</div>
+                    <button value="asd" type="submit" id="btnRegistroProducto2" class="btn btn-primary btnActivo btnEnviar">Enviar</button>
                 </div>
             </form>
         </div>

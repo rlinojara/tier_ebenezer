@@ -103,7 +103,7 @@ if(isset($proceso_form) and $proceso_form === FALSE){
 	                    </div><!-- /.box-body -->
 
 	                    <div class="box-footer">
-							<div id="btnRegistroUsuario" class="btn btn-primary btnInactivo btnEnviar">Enviar</div>
+							<div id="btnRegistroUsuario" class="btn btn-primary btnInactivo btnEnviar">Validar</div>
 							<button value="asd" type="submit" id="btnRegistroUsuario2" class="btn btn-primary btnActivo btnEnviar">Enviar</button>
 	                    </div>
 	                </form>
