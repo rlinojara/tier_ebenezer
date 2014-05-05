@@ -247,6 +247,7 @@ class Producto extends MY_Controller
 		$this->load->model('producto_model');
 		$this->load->model('llanta_model');
 		$this->load->model('producto_sucursal_model');
+		$this->load->model('sucursal_model');
 		
 		if ( $this->agent->is_referral() )
 		{
@@ -257,7 +258,8 @@ class Producto extends MY_Controller
 				/**
 				 * Datos e Edicion de producto
 				 */
-				$id_producto = $this->input->post('id_producto');	
+				$id_producto = $this->input->post('id_producto');
+				$marca = $this->input->post('marcaReal');
 				$medida = trim(strtoupper($this->input->post('medida')));
 				$modelo = trim(strtoupper($this->input->post('modelo')));
 				$tipo = $this->input->post('modelo_tipo');
@@ -267,7 +269,7 @@ class Producto extends MY_Controller
 				/**
 				 * Editar producto
 				 */
-				$parametros = array(1,$medida,1,$moneda,$precio);
+				$parametros = array($marca,$medida,1,$moneda,$precio,$id_producto);
 				$this->producto_model->editar($parametros);
 				
 				/**
@@ -299,13 +301,8 @@ class Producto extends MY_Controller
 				}
 				
 				$data['proceso_form'] = true;
-	
-				/**
-				 * @see Obteniendo datos del actual producto
-				 */
-				$parametro = array($id_producto);
-				$data['producto'] = $this->producto_model->obtener_producto_por_id($parametro);
-	
+				
+
 			   /**
 				* Parametros para la vista de editar producto
 				*/
@@ -323,6 +320,7 @@ class Producto extends MY_Controller
 				$data['moneda'] = $this->combo_moneda($moneda);
 				$data['modelo_tipo'] = $this->combo_modelo_tipo($tipo);
 				$data['titulo'] = 'Editar';
+				$data['id'] = $id_producto;
 					
 				$this->load->view('index',$data);
 			}
@@ -365,6 +363,8 @@ class Producto extends MY_Controller
 		
 		for($i = 0 ; $i < count($modelo_tipo) ; $i++)
 		{
+			$opcion = '';
+			
 			if( $modelo_tipo[$i]['id_modelo_tipo'] == $arg0)
 			{
 				$opcion = ' selected="selected" ';	
@@ -396,6 +396,8 @@ class Producto extends MY_Controller
 		
 		for($i = 0 ; $i < count($moneda) ; $i++)
 		{
+			$opcion = '';
+			
 			if( $moneda[$i]['id_moneda'] == $arg0)
 			{
 				$opcion = ' selected="selected" ';
