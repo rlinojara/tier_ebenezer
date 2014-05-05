@@ -48,12 +48,15 @@
                                 </td>
                                 <td>
                                     <?php 
-                                    echo anchor('usuario/registrar_usuario/'.$usuarios[$i]['id_usuario'],'Editar','class="btn btn-info btn-sm"');
-                                    if($usuarios[$i]['estado'] == 1):
-                                        echo anchor('usuario/deshabilitar_usuario/'.$usuarios[$i]['id_usuario'].'/'.$pagina,'Deshabilitar','class="btn btn-danger btn-sm"'); 
-                                    else:
-                                        echo anchor('usuario/habilitar_usuario/'.$usuarios[$i]['id_usuario'].'/'.$pagina,'Habilitar','class="btn btn-success btn-sm"');
-                                    endif;
+                                    echo anchor('usuario/editar_usuario/'.$usuarios[$i]['id_usuario'],'Editar','class="btn btn-info btn-sm"');
+                                    if($usuarios[$i]['id_usuario'] > 1)
+                                    {	
+	                                    if($usuarios[$i]['estado'] == 1):
+	                                        echo anchor('usuario/deshabilitar_usuario/'.$usuarios[$i]['id_usuario'].'/'.$pagina,'Deshabilitar','class="btn btn-danger btn-sm"'); 
+	                                    else:
+	                                        echo anchor('usuario/habilitar_usuario/'.$usuarios[$i]['id_usuario'].'/'.$pagina,'Habilitar','class="btn btn-success btn-sm"');
+	                                    endif;
+                                    }   
                                     ?>
 
                                 </td>

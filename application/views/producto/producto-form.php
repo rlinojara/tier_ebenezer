@@ -14,7 +14,7 @@
 <?php
 if(isset($proceso_form) and $proceso_form === FALSE)
 {
-	print_r($error);
+    print_r($error);
 }
 ?>
 <div id="errormarca" class="alert alert-danger alert-dismissable">
@@ -48,27 +48,27 @@ if(isset($proceso_form) and $proceso_form === FALSE)
         <div class="box box-primary"><!-- /.box-header -->
             <!-- form start -->
             <form id="formRegistroProducto" action="<?php echo site_url($url_form);?>" 
-            	  role="form" 
-            	  method="post">
+                  role="form" 
+                  method="post">
                 <div class="box-body">
                     <div class="form-group">
                         <label for="nombre">Marca:</label>
                         <input type="text" name="marca" 
-                        	   class="form-control" id="txtmarca" 
-                        	   value="<?php if(isset($producto['marca'])) echo $producto['marca']?>" placeholder="">
+                               class="form-control" id="txtMarca" 
+                               value="<?php if(isset($producto['nombre_marca'])) echo $producto['nombre_marca']?>" placeholder="">
                         <div id="sugerencias"></div>
-                        <input id="marcaReal" name="marcaReal" type="hidden" value="">
+                        <input id="marcaReal" name="marcaReal" type="hidden" value="<?php if(isset($producto['id_marca'])) echo $producto['id_marca'];?>">
                     </div>
                     <div class="form-group">
                         <label for="medida">Medida:</label>
                         <input type="text" name="medida" 
-                               class="form-control" id="txtmedida" 
+                               class="form-control" id="txtMedida" 
                                value="<?php if(isset($producto['medida'])) echo $producto['medida']?>" placeholder="">
                     </div>
                     <div class="form-group">
                         <label for="modelo">Modelo:</label>
                         <input type="text" name="modelo" 
-                               class="form-control" id="txtmodelo" 
+                               class="form-control" id="txtModelo" 
                                value="<?php if(isset($producto['modelo'])) echo $producto['modelo']?>" placeholder="">
                         <label for="sucursal">Tipo:</label>
                         <select name="modelo_tipo" class="form-control">
@@ -84,12 +84,12 @@ if(isset($proceso_form) and $proceso_form === FALSE)
                     <div class="form-group">
                         <label for="medida">Precio de lista:</label>
                         <input type="text" name="precio" 
-                               class="form-control" id="txtprecio" 
+                               class="form-control" id="txtPrecio" 
                                value="<?php if(isset($producto['precio'])) echo $producto['precio']?>" placeholder="">
                     </div>
                     <div class="form-group">
                         <label for="moneda">Moneda:</label>
-                        <select id="txtmoneda" name="moneda" class="form-control">
+                        <select name="moneda" class="form-control">
                             <?php for( $i = 0 ; $i < count($moneda) ; $i++):?>
                             
                             <?php echo $moneda;?>
@@ -120,18 +120,18 @@ if(isset($proceso_form) and $proceso_form === FALSE)
                                 </td>
                                 <td>
                                     <input class="stock form-control" type="text" 
-                                    	   name="stock[<?php echo $sucursales[$i]['id_sucursal']?>]"
-                                    	   value="<?php 
-                                    	   if( isset($sucursal))
-                                    	   {	
-                                    	   	for( $j = 0 ; $j < count($sucursal) ; $j++)
-                                    	   	{
-                                    	   		if( $sucursales[$i]['id_sucursal'] == $sucursal[$j]['id_sucursal'] )
-                                    	   		 {
-                                    	   		 	echo $sucursal[$j]['stock'];
-                                    	   		 }	
-                                    	   	}
-                                    	   }?>">
+                                           name="stock[<?php echo $sucursales[$i]['id_sucursal']?>]"
+                                           value="<?php 
+                                           if( isset($sucursal))
+                                           {    
+                                            for( $j = 0 ; $j < count($sucursal) ; $j++)
+                                            {
+                                                if( $sucursales[$i]['id_sucursal'] == $sucursal[$j]['id_sucursal'] )
+                                                 {
+                                                    echo $sucursal[$j]['stock'];
+                                                 }  
+                                            }
+                                           }?>">
                                 </td>
                              </tr>
                             
@@ -142,9 +142,7 @@ if(isset($proceso_form) and $proceso_form === FALSE)
                     <br>
                 </div>
                 <div class="box-footer">
-                    <div id="btnRegistroProducto" class="btn btn-primary btnInactivo btnEnviar">Enviar</div>
-                    <button value="asd" type="submit" id="btnRegistroProducto2" class="btn btn-primary btnActivo btnEnviar">Enviar</button>
-                    <!--<button id="btnProductoRegistro" type="submit" class="btn btn-primary">Enviar</button>-->
+                    <button id="btnProductoRegistro" type="submit" class="btn btn-primary">Enviar</button>
                 </div>
             </form>
         </div>
