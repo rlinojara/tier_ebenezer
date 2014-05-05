@@ -348,7 +348,7 @@ class Producto extends MY_Controller
 	
 		$marca = $this->marca_model->obtener_marca($parametro);
 	
-		return json_encode($marca);
+		echo json_encode($marca);
 	}
 	
 	public function combo_modelo_tipo($arg0)

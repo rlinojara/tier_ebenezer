@@ -188,20 +188,35 @@ $('#txtMarca').keyup(function(){
         url: "obtener_marca_json",
         data: dataString,
         success: function(data) {
-            console.log(data);
+            var inicio;
+            objetoJson = JSON.parse(data);
+            longitud = objetoJson.length;
+
+            var html = '';
+
+            for (var inicio = 0; inicio < longitud; inicio++) {
+                var id = objetoJson[inicio].id_subcategoria;
+                var nombre = objetoJson[inicio].nombre;
+
+                html += '<div id="idMarca'+id+'" class="sugerenciaMarca" >'+nombre;
+                html += '</div>';
+            };
+
             //Escribimos las sugerencias que nos manda la consulta
-            /*
-            $('#sugerencias').fadeIn(1000).html(data);
-            //Al hacer click en algua de las sugerencias
-            $('.suggest-element').live('click', function(){
-                //Obtenemos la id unica de la sugerencia pulsada
-                var id = $(this).attr('id');
-                //Editamos el valor del input con data de la sugerencia pulsada
-                $('#service').val($('#'+id).attr('data'));
-                //Hacemos desaparecer el resto de sugerencias
-                $('#suggestions').fadeOut(1000);
-            });  
-            */            
+            $('#sugerencias').fadeIn(1000).html(html);
         }
     });
+});
+
+$('#sugerencias').on('click','.sugerenciaMarca',function(){
+    var id = $(this).attr('id');
+    console.log(id);
+    var idSub = id.replace('idMarca','');
+    var texto = $(this).text();
+
+    //Editamos el valor del input con data de la sugerencia pulsada
+    $('#marcaReal').val(idSub);
+    $('#txtMarca').val(texto);
+    //Hacemos desaparecer el resto de sugerencias
+    $('#sugerencias').fadeOut(1000);
 });

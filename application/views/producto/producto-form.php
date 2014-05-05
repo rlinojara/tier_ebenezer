@@ -56,6 +56,7 @@ if(isset($proceso_form) and $proceso_form === FALSE){
                         	   class="form-control" id="txtMarca" 
                         	   value="<?php if(isset($producto['marca'])) echo $producto['marca']?>" placeholder="">
                         <div id="sugerencias"></div>
+                        <input id="marcaReal" name="marcaReal" type="hidden" value="">
                     </div>
                     <div class="form-group">
                         <label for="medida">Medida:</label>

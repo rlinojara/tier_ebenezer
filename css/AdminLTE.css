@@ -3420,3 +3420,22 @@ fieldset[disabled] .btn-vk.active {
 .alert.alert-danger.alert-dismissable{
   display:  none;
 }
+
+#sugerencias{
+  border: 1px solid #ddd;
+  padding: 5px;
+}
+
+#sugerencias > .sugerenciaMarca{
+  border-bottom: 1px solid #aaf;
+  cursor: pointer;
+  padding: 2px;
+}
+
+#sugerencias > .sugerenciaMarca:hover{
+  background: rgba(120,120,120,0.2)
+}
+
+#sugerencias > .sugerenciaMarca:last-child{
+  border: none;
+}
