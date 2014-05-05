@@ -16,6 +16,31 @@ if(isset($proceso_form) and $proceso_form === FALSE){
 	print_r($error);
 }
 ?>
+<div id="errormarca" class="alert alert-danger alert-dismissable">
+    <i class="fa fa-ban"></i>
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+    <b>El campo de la marca no puede estar vacio.</b>
+</div>
+<div id="errormedida" class="alert alert-danger alert-dismissable">
+    <i class="fa fa-ban"></i>
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+    <b>El campo de medida no puede estar vacio.</b>
+</div>
+<div id="errormodelo" class="alert alert-danger alert-dismissable">
+    <i class="fa fa-ban"></i>
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+    <b>El formato del modelo correo no es el correcto.</b>
+</div>
+<div id="errormodelo_tipo" class="alert alert-danger alert-dismissable">
+    <i class="fa fa-ban"></i>
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+    <b>El campo del tipo de modelo no puede estar vacio.</b>
+</div>
+<div id="errorprecio" class="alert alert-danger alert-dismissable">
+    <i class="fa fa-ban"></i>
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+    <b>El campo del precio no puede estar vacio.</b>
+</div>
 <div class="row">
     <div class="col-md-12">
         <!-- general form elements -->
@@ -30,6 +55,7 @@ if(isset($proceso_form) and $proceso_form === FALSE){
                         <input type="text" name="marca" 
                         	   class="form-control" id="txtMarca" 
                         	   value="<?php if(isset($producto['marca'])) echo $producto['marca']?>" placeholder="">
+                        <div id="sugerencias"></div>
                     </div>
                     <div class="form-group">
                         <label for="medida">Medida:</label>
@@ -80,6 +106,10 @@ if(isset($proceso_form) and $proceso_form === FALSE){
                     <br>
                         <table class="table table-bordered">
                             <tbody>
+                            <tr>
+                                <th>Local</th>
+                                <th>Stock</th>
+                            </tr>
                             <?php for( $i = 0 ; $i < count($sucursales) ; $i++):?>
                             
                              <tr>
@@ -87,7 +117,7 @@ if(isset($proceso_form) and $proceso_form === FALSE){
                                     <p class="text-light-blue"> <?php echo $sucursales[$i]['nombre']?> </p>
                                 </td>
                                 <td>
-                                    <input class="form-control" type="text" 
+                                    <input class="stock form-control" type="text" 
                                     	   name="stock[<?php echo $sucursales[$i]['id_sucursal']?>]">
                                 </td>
                              </tr>

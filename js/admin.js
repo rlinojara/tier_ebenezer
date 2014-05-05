@@ -1,4 +1,5 @@
 $('#btnUsuarioRegistro').on('click',enviarFormularioUsuario);
+$('#btnProductoRegistro').on('click',enviarFormularioProducto);
 
 function enviarFormularioUsuario(){
 
@@ -87,7 +88,120 @@ function enviarFormularioUsuario(){
     });
 }
 
+function enviarFormularioProducto(){
+
+    $("#formRegistroProducto").submit(function(event) {
+
+        event.preventDefault();
+
+        var $form = $( this ),
+            marca = $form.find( 'input[name="marca"]' ).val(),
+            medida = $form.find( 'input[name="medida"]' ).val(),
+            modelo = $form.find( 'input[name="modelo"]' ).val(),
+            modelo_tipo = $form.find( 'input[name="modelo_tipo"]' ).val(),
+            precio = $form.find( 'input[name="precio"]' ).val(),
+            moneda = $form.find( 'input[name="moneda"]' ).val(),
+            url = $form.attr( 'action' );
+
+        var contador = 0;
+
+        if(marca == ''){
+            $form.find( 'input[name="marca"]' ).css('box-shadow','0 0 1px 1px #F45');
+            contador++
+            $('#errormarca').show();
+        }
+        else{
+            $form.find( 'input[name="marca"]' ).css('box-shadow','0 0 2px 1px #aaa');
+            $('#errormarca').hide();
+        }
+        
+        if(medida == ''){
+            $form.find( 'input[name="medida"]' ).css('box-shadow','0 0 1px 1px #F45');
+            contador++
+            $('#errormedida').show();
+        }
+        else{
+            $form.find( 'input[name="medida"]' ).css('box-shadow','0 0 2px 1px #aaa');
+            $('#errormedida').hide();
+        }
+
+        if(modelo == ''){
+            $form.find( 'input[name="modelo"]' ).css('box-shadow','0 0 1px 1px #F45');
+            contador++
+            $('#errormodelo').show();
+        }
+        else{
+            $form.find( 'input[name="modelo"]' ).css('box-shadow','0 0 2px 1px #aaa');
+            $('#errormodelo').hide();
+        }
+
+        if(modelo_tipo == ''){
+            $form.find( 'input[name="modelo_tipo"]' ).css('box-shadow','0 0 1px 1px #F45');
+            contador++
+            $('#errormodelo_tipo').show();
+        }
+        else{
+            $form.find( 'input[name="modelo_tipo"]' ).css('box-shadow','0 0 2px 1px #aaa');
+            $('#errormodelo_tipo').hide();
+        }
+
+        if(precio == ''){
+            $form.find( 'input[name="precio"]' ).css('box-shadow','0 0 1px 1px #F45');
+            contador++
+            $('#errorprecio').show();
+        }
+        else{
+            $form.find( 'input[name="precio"]' ).css('box-shadow','0 0 2px 1px #aaa');
+            $('#errorprecio').hide();
+        }
+
+        if(moneda == ''){
+            $form.find( 'input[name="moneda"]' ).css('box-shadow','0 0 1px 1px #F45');
+            contador++
+            $('#errormoneda').show();
+        }
+        else{
+            $form.find( 'input[name="moneda"]' ).css('box-shadow','0 0 2px 1px #aaa');
+            $('#errormoneda').hide();
+        }
+
+        if(contador <= 0){
+            $("#formRegistroProducto").unbind('submit'); 
+            console.log('bien');
+        }
+        else{
+            console.log('Error');
+        }
+    });
+}
+
 function ValidaMail(mail) {
 	var er = /^[0-9a-z_\-\.]+@([a-z0-9\-]+\.?)*[a-z0-9]+\.([a-z]{2,4}|travel)$/i;
 	return er.test(mail);
 }
+
+$('#txtMarca').keyup(function(){
+    var query = $(this).val();
+    var dataString = 'marca='+query;
+    $.ajax({
+        type: "POST",
+        url: "obtener_marca_json",
+        data: dataString,
+        success: function(data) {
+            console.log(data);
+            //Escribimos las sugerencias que nos manda la consulta
+            /*
+            $('#sugerencias').fadeIn(1000).html(data);
+            //Al hacer click en algua de las sugerencias
+            $('.suggest-element').live('click', function(){
+                //Obtenemos la id unica de la sugerencia pulsada
+                var id = $(this).attr('id');
+                //Editamos el valor del input con data de la sugerencia pulsada
+                $('#service').val($('#'+id).attr('data'));
+                //Hacemos desaparecer el resto de sugerencias
+                $('#suggestions').fadeOut(1000);
+            });  
+            */            
+        }
+    });
+});
