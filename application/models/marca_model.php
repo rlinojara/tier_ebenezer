@@ -133,7 +133,7 @@ class Marca_model extends CI_Model
 	public function obtener_marca($arg0)
 	{
 		$sql = 'SELECT id_subcategoria,nombre FROM subcategoria
-				WHERE nombre LIKE \'?%\'';
+				WHERE nombre LIKE ?';
 	
 		$query = $this->db->query($sql,$arg0);
 		

@@ -289,7 +289,7 @@ class Producto extends MY_Controller
 	{
 		$this->load->model('marca_model');
 	
-		$nombre = strtoupper($this->input->post('marca'));
+		$nombre = strtoupper($this->input->post('marca')).'%';
 	
 		$parametro = array($nombre);
 	
