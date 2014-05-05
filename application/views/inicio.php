@@ -10,7 +10,7 @@
     <section class="content">
         <div class="row">
         
-        	<h1>Bienvenido(a) usuario : </h1>
+        	<p>Bienvenido(a) al sistema el cual permitir‡ gestionar sus productos <p>
             
         </div>
     </section>
