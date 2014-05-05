@@ -1,5 +1,6 @@
-$('#btnUsuarioRegistro').on('click',enviarFormularioUsuario);
-$('#btnProductoRegistro').on('click',enviarFormularioProducto);
+$('#btnRegistroUsuario').on('click',validarFormulario);
+$('#btnRegistroProducto').on('click',validarFormulario);
+$('#btnRegistroMarca').on('click',validarFormulario);
 
 function enviarFormularioUsuario(){
 
@@ -88,6 +89,7 @@ function enviarFormularioUsuario(){
     });
 }
 
+/*
 function enviarFormularioProducto(){
 
     $("#formRegistroProducto").submit(function(event) {
@@ -174,13 +176,50 @@ function enviarFormularioProducto(){
         }
     });
 }
+*/
+
+        
+
+        function validarFormulario(data){
+            var idBtn = data.currentTarget.id;
+            console.log(idBtn);
+            var idForm = idBtn.replace('btn','form');
+            console.log(idForm);
+            var contador = 0;
+
+            $('#'+idForm+' input').not(':button').each(function(){
+                var idCampo = $(this).attr('id');
+
+                if(idCampo != undefined){
+                    var idBase = idCampo.replace('txt','');
+                    var valorCampo = $(this).val();
+
+                    if(valorCampo == ''){
+                        $(this).css('box-shadow','0 0 1px 1px #F45');
+                        $('#error'+idBase).show();
+                        contador++
+                    }
+                    else{
+                        $(this).css('box-shadow','0 0 2px 1px #aaa');
+                        $('#error'+idBase).hide();
+                    }
+                }
+            });
+
+            if(contador <= 0){
+                $('.btnInactivo').hide();
+                $('.btnActivo').show();
+            }
+        }
+
+
 
 function ValidaMail(mail) {
 	var er = /^[0-9a-z_\-\.]+@([a-z0-9\-]+\.?)*[a-z0-9]+\.([a-z]{2,4}|travel)$/i;
 	return er.test(mail);
 }
 
-$('#txtMarca').keyup(function(){
+$('#txtmarca').keyup(function(){
     var query = $(this).val();
     var dataString = 'marca='+query;
     $.ajax({
@@ -216,7 +255,7 @@ $('#sugerencias').on('click','.sugerenciaMarca',function(){
 
     //Editamos el valor del input con data de la sugerencia pulsada
     $('#marcaReal').val(idSub);
-    $('#txtMarca').val(texto);
+    $('#txtmarca').val(texto);
     //Hacemos desaparecer el resto de sugerencias
     $('#sugerencias').fadeOut(500);
 });
