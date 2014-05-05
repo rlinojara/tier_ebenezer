@@ -14,4 +14,19 @@ class Producto_sucursal_model extends CI_Model
 		$this->db->query($sql,$arg0);
 	
 	}
+	
+	public function obtener_por_producto($arg0)
+	{
+		$sql = 'SELECT 
+					id_producto_sucursal,
+					id_producto,
+					id_sucursal,
+					stock
+				FROM producto_sucursal
+				WHERE id_producto = ?';
+		
+		$query = $this->db->query($sql,$arg0);
+		
+		return $query->result_array();
+	}
 }

@@ -118,7 +118,14 @@ if(isset($proceso_form) and $proceso_form === FALSE){
                                 </td>
                                 <td>
                                     <input class="stock form-control" type="text" 
-                                    	   name="stock[<?php echo $sucursales[$i]['id_sucursal']?>]">
+                                    	   name="stock[<?php echo $sucursales[$i]['id_sucursal']?>]"
+                                    	   value="<?php for( $j = 0 ; $j < count($sucursal) ; $j++)
+                                    	   		 		{
+                                    	   		 			if( $sucursales[$i]['id_sucursal'] == $sucursal[$j]['id_sucursal'] )
+                                    	   		 			{
+                                    	   		 				echo $sucursal[$j]['stock'];
+                                    	   		 			}	
+                                    	   		 		}?>">
                                 </td>
                              </tr>
                             

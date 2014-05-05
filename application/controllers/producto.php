@@ -204,6 +204,7 @@ class Producto extends MY_Controller
 	{
 		$this->load->model('producto_model');
 		$this->load->model('sucursal_model');
+		$this->load->model('producto_sucursal_model');
 		
 	
 		$data['view'] = 'producto/producto-form';
@@ -212,15 +213,21 @@ class Producto extends MY_Controller
 		{
 			$parametro = array($this->uri->segment(3,0));
 				
-			$data['producto'] = $this->producto_model->obtener_vproducto_por_id($parametro);
+			$data['producto'] = $this->producto_model->
+									   obtener_vproducto_por_id($parametro);
+			
+			$data['sucursal'] = $this->producto_sucursal_model->
+									   obtener_por_producto($parametro);
 				
 			$data['id'] = $this->uri->segment(3,0);
 			$data['url_form'] = 'producto/set_editar_producto';	
 			$data['titulo'] = 'Edici&oacute;n';
 
 			$data['sucursales'] = $this->sucursal_model->obtener_sucursal_activas();
-			$data['modelo_tipo'] = $this->combo_modelo_tipo('');
-			$data['moneda'] = $this->combo_moneda('');
+			$data['modelo_tipo'] = $this->combo_modelo_tipo($data['producto']['id_modelo_tipo']);
+			$data['moneda'] = $this->combo_moneda($data['producto']['id_moneda']);
+			
+			
 			
 			$this->load->view('index',$data);
 		}
