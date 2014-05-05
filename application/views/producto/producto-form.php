@@ -55,9 +55,9 @@ if(isset($proceso_form) and $proceso_form === FALSE)
                         <label for="nombre">Marca:</label>
                         <input type="text" name="marca" 
                         	   class="form-control" id="txtMarca" 
-                        	   value="<?php if(isset($producto['marca'])) echo $producto['marca']?>" placeholder="">
+                        	   value="<?php if(isset($producto['nombre_marca'])) echo $producto['nombre_marca']?>" placeholder="">
                         <div id="sugerencias"></div>
-                        <input id="marcaReal" name="marcaReal" type="hidden" value="">
+                        <input id="marcaReal" name="marcaReal" type="hidden" value="<?php if(isset($producto['id_marca'])) echo $producto['id_marca'];?>">
                     </div>
                     <div class="form-group">
                         <label for="medida">Medida:</label>
