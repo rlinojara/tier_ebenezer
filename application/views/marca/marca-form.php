@@ -16,6 +16,11 @@ if(isset($proceso_form) and $proceso_form === FALSE){
 	print_r($error);
 }
 ?>
+<div id="errornombre" class="alert alert-danger alert-dismissable">
+    <i class="fa fa-ban"></i>
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+    <b>El campo del nombre no puede estar vacio.</b>
+</div>
 <div class="row">
     <div class="col-md-12">
         <!-- general form elements -->
@@ -28,7 +33,7 @@ if(isset($proceso_form) and $proceso_form === FALSE){
                     <div class="form-group">
                         <label for="exampleInputEmail1">Nombre:</label>
                         <input type="text" name="nombre" 
-                        	   class="form-control" id="exampleInputEmail1" 
+                        	   class="form-control" id="txtnombre" 
                         	   value="<?php if(isset($marca['nombre'])) echo $marca['nombre']?>" placeholder="">
                     </div>
                     
@@ -41,7 +46,8 @@ if(isset($proceso_form) and $proceso_form === FALSE){
                 </div><!-- /.box-body -->
 
                 <div class="box-footer">
-                    <button id="btnMarcaRegistro" type="submit" class="btn btn-primary">Enviar</button>
+                    <div id="btnRegistroMarca" class="btn btn-primary btnInactivo btnEnviar">Validar</div>
+                    <button value="asd" type="submit" id="btnRegistroMarca2" class="btn btn-primary btnActivo btnEnviar">Enviar</button>
                 </div>
             </form>
         </div>
