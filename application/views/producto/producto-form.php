@@ -12,7 +12,8 @@
     </section>
     <section class="content">
 <?php
-if(isset($proceso_form) and $proceso_form === FALSE){
+if(isset($proceso_form) and $proceso_form === FALSE)
+{
 	print_r($error);
 }
 ?>

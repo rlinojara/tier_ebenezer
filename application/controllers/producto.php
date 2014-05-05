@@ -123,7 +123,7 @@ class Producto extends MY_Controller
 			$this->load->model('llanta_model');
 			$this->load->model('producto_sucursal_model');
 	
-			
+			$marca = $this->input->post('marcaReal');
 			$medida = trim(strtoupper($this->input->post('medida')));
 			$modelo = trim(strtoupper($this->input->post('modelo')));
 			$tipo = $this->input->post('modelo_tipo');
@@ -146,7 +146,7 @@ class Producto extends MY_Controller
 				/**
 				 * Registrar producto
 				 */
-				$parametros = array(1,$medida,1,$moneda,$precio);
+				$parametros = array($marca,$medida,1,$moneda,$precio);
 				$id_producto = $this->producto_model->registrar($parametros);
 				
 				/**
