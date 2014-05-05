@@ -318,7 +318,7 @@ class Producto extends MY_Controller
 										   obtener_por_producto($parametro);
 				
 				$data['view'] = 'producto/producto-form';
-				$data['url_form'] = 'producto/set_registrar_producto';
+				$data['url_form'] = 'producto/set_editar_producto';
 				$data['sucursales'] = $this->sucursal_model->obtener_sucursal_activas();
 				$data['moneda'] = $this->combo_moneda($moneda);
 				$data['modelo_tipo'] = $this->combo_modelo_tipo($tipo);
