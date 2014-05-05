@@ -136,7 +136,7 @@ class Marca_model extends CI_Model
 				WHERE nombre LIKE \'?%\'';
 	
 		$query = $this->db->query($sql,$arg0);
-	
+		
 		return $query->result_array();
 	}
 	

@@ -44,11 +44,10 @@ if(isset($proceso_form) and $proceso_form === FALSE){
                                value="<?php if(isset($producto['modelo'])) echo $producto['modelo']?>" placeholder="">
                         <label for="sucursal">Tipo:</label>
                         <select name="modelo_tipo" class="form-control">
+                        
                         <?php for( $i = 0 ; $i < count($modelo_tipo) ; $i++):?>
                         
-                         <option value="<?php echo $modelo_tipo[$i]['id_modelo_tipo']?>">
-                         	<?php echo $modelo_tipo[$i]['nombre']?>
-                         </option>
+                         <?php echo $modelo_tipo;?>
                         
                         <?php endfor;?>
                          
@@ -65,9 +64,7 @@ if(isset($proceso_form) and $proceso_form === FALSE){
                         <select name="moneda" class="form-control">
                             <?php for( $i = 0 ; $i < count($moneda) ; $i++):?>
                             
-                            <option value="<?php echo $moneda[$i]['id_moneda']?>">
-                            	<?php echo $moneda[$i]['nombre']?>
-                            </option>
+                            <?php echo $moneda;?>
                             
                             <?php endfor?>
                         </select>

@@ -87,11 +87,18 @@ class Producto_model extends CI_Model
 	public function obtener_vproducto_por_id($arg0)
 	{
 		$sql = 'SELECT id_producto,
-					   nombre,
-					   apellido,
-					   email,
-					   password
-				FROM producto
+					   medida,
+					   estado_producto,
+					   id_marca,
+					   id_moneda,
+					   nombre_marca,
+					   nombre_moneda,
+					   modelo,
+					   id_modelo_tipo,
+					   nombre_modelo_tipo,
+					   precio,
+					   estado
+				FROM v_producto
 				WHERE id_producto = ?';
 	
 		$query = $this->db->query($sql,$arg0);

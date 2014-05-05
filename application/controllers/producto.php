@@ -103,9 +103,9 @@ class Producto extends MY_Controller
 		
 		$data['sucursales'] = $this->sucursal_model->obtener_sucursal_activas();
 		
-		$data['modelo_tipo'] = $this->modelo_tipo_model->listar();
+		$data['moneda'] = $this->combo_moneda('');
 		
-		$data['moneda'] = $this->moneda_model->listar();
+		$data['modelo_tipo'] = $this->combo_modelo_tipo('');
 	
 		$data['titulo'] = 'Registro';
 	
@@ -203,6 +203,8 @@ class Producto extends MY_Controller
 	public function editar_producto()
 	{
 		$this->load->model('producto_model');
+		$this->load->model('sucursal_model');
+		
 	
 		$data['view'] = 'producto/producto-form';
 	
@@ -210,14 +212,16 @@ class Producto extends MY_Controller
 		{
 			$parametro = array($this->uri->segment(3,0));
 				
-			$data['producto'] = $this->producto_model->obtener_producto_por_id($parametro);
+			$data['producto'] = $this->producto_model->obtener_vproducto_por_id($parametro);
 				
 			$data['id'] = $this->uri->segment(3,0);
-				
-			$data['url_form'] = 'producto/set_editar_producto';
-				
+			$data['url_form'] = 'producto/set_editar_producto';	
 			$data['titulo'] = 'Edici&oacute;n';
-				
+
+			$data['sucursales'] = $this->sucursal_model->obtener_sucursal_activas();
+			$data['modelo_tipo'] = $this->combo_modelo_tipo('');
+			$data['moneda'] = $this->combo_moneda('');
+			
 			$this->load->view('index',$data);
 		}
 		else
@@ -292,6 +296,67 @@ class Producto extends MY_Controller
 		$marca = $this->marca_model->obtener_marca($parametro);
 	
 		return json_encode($marca);
+	}
+	
+	public function combo_modelo_tipo($arg0)
+	{
+		$this->load->model('modelo_tipo_model');
+		
+		$modelo_tipo = $this->modelo_tipo_model->listar();
+		
+		$plantilla = '<option value="%s" %s>%s</option>';
+		
+		$html = '';
+		
+		$opcion = '';
+		
+		for($i = 0 ; $i < count($modelo_tipo) ; $i++)
+		{
+			if( $modelo_tipo[$i]['id_modelo_tipo'] == $arg0)
+			{
+				$opcion = ' selected="selected" ';	
+			}	
+			
+			$html .=  sprintf(
+							  	$plantilla,
+							  	$modelo_tipo[$i]['id_modelo_tipo'],
+							  	$opcion,
+							  	$modelo_tipo[$i]['nombre']	
+							  );
+		}	
+		
+		return $html;
+		
+	}
+	
+	public function combo_moneda($arg0)
+	{
+		$this->load->model('moneda_model');
+		
+		$moneda = $this->moneda_model->listar();
+		
+		$plantilla = '<option value="%s" %s>%s</option>';
+		
+		$html = '';
+		
+		$opcion = '';
+		
+		for($i = 0 ; $i < count($moneda) ; $i++)
+		{
+			if( $moneda[$i]['id_moneda'] == $arg0)
+			{
+				$opcion = ' selected="selected" ';
+			}
+		
+			$html .=  sprintf(
+								$plantilla,
+								$moneda[$i]['id_moneda'],
+								$opcion,
+							  	$moneda[$i]['nombre']
+							);
+		}
+		
+		return $html;
 	}
 	
 }
