@@ -28,9 +28,6 @@ class Marca_model extends CI_Model
 	
 		$this->db->query($sql,$arg0);
 		
-		echo $this->db->last_query();
-		
-		die();
 	}
 	
 	public function deshabilitar($arg0)
