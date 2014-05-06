@@ -11,21 +11,16 @@ class Marca extends MY_Controller
 		
 	
 		$config['base_url'] = site_url('marca/listar_marca/');
-		$parametros = array('1');
+		$parametros = array('1','');
 		$config['total_rows'] = $this->marca_model->cantidad_total_marcas($parametros);
-		$config['per_page'] = 100;
+		$config['per_page'] = 1;
 	
 	
 		$config['num_links'] = '2';
-	
 		$config['prev_link'] = 'anterior';
-	
 		$config['next_link'] = 'siguiente';
-	
 		$config['uri_segment'] = '3';
-	
 		$config['first_link'] = '<<';
-	
 		$config['last_link'] = '>>';
 	
 		$this->pagination->initialize($config);
@@ -33,6 +28,7 @@ class Marca extends MY_Controller
 	
 		$parametros = array(
 							 1,
+							 '',	
 							 intval($this->uri->segment(3,0)),
 							 intval($config['per_page'])
 						   );
@@ -50,13 +46,17 @@ class Marca extends MY_Controller
 			$data['marcas'] = $this->marca_model->paginacion_marca($parametros);
 		}	
 		
+		/**
+		 * Eliminando la sesion
+		 */
+		if(isset($_SESSION['marca']['buscar']))
+		{
+			unset($_SESSION['marca']['buscar']);
+		}	
 	
 		$data['paginacion'] =  $this->pagination->create_links();
-	
 		$data['view'] = 'marca/marca-list';
-	
 		$data['pagina'] = $this->uri->segment(3,'');
-	
 		$this->load->view('index',$data);
 	}
 	
@@ -75,8 +75,16 @@ class Marca extends MY_Controller
 		}
 	
 		$pagina = $this->uri->segment(4,'');
-	
-		redirect('marca/listar_marca/'.$pagina,'refresh');
+		
+		if(isset($_SESSION['marca']['busqueda']))
+		{
+			redirect('marca/buscar/'.$pagina,'refresh');
+		}	
+		else
+		{
+			redirect('marca/listar_marca/'.$pagina,'refresh');
+		}	 
+		
 	}
 	
 	/**
@@ -244,37 +252,79 @@ class Marca extends MY_Controller
 	}
 	
 	
-	public function buscar_marca()
+	public function buscar()
 	{
 		$this->load->library('pagination');
 		$this->load->model('marca_model');
-	
-		$config['base_url'] = site_url('marca/listar_marca/');
-		$parametros = array('1');
+		
+		$parametros = array();
+		
+		if( isset($_POST) && count($_POST) > 0)
+		{	
+			if(isset($_SESSION['marca']))
+			{	
+				unset($_SESSION['marca']['busqueda']);
+			}
+			
+			$nombre = strtoupper(trim($this->input->post('txtbusqueda')));
+			$_SESSION['marca']['busqueda']['nombre'] = $nombre ;
+		}
+		else 
+		{
+			$nombre = $_SESSION['marca']['busqueda']['nombre'];
+		}		
+		
+		$data['busqueda']['nombre'] = $nombre;
+		
+		$estado = 1;
+		
+		
+		$parametros = array($estado,$nombre.'%');
+		
+		$config['base_url'] = site_url('marca/buscar/');
 		$config['total_rows'] = $this->marca_model->cantidad_total_marcas($parametros);
 		$config['per_page'] = 1;
-	
-	
 		$config['num_links'] = '2';
-	
 		$config['prev_link'] = 'anterior';
-	
 		$config['next_link'] = 'siguiente';
-	
 		$config['uri_segment'] = '3';
-	
 		$config['first_link'] = '<<';
-	
 		$config['last_link'] = '>>';
-	
 		$this->pagination->initialize($config);
-	
+		
+		$pagina = intval($this->uri->segment(3,0));
 	
 		$parametros = array(
 							 1,
-							 intval($this->uri->segment(3,0)),
+							 $nombre.'%',  	
+							 $pagina,
 							 intval($config['per_page'])
 						   );
+		
+		$data['marcas'] = $this->marca_model->paginacion_marca($parametros);
+		
+		if( count($data['marcas']) == 0 )
+		{
+			$pagina--;
+			
+			$parametros = array(
+									1,
+									$nombre.'%',
+									$pagina,
+									intval($config['per_page'])
+								);
+		
+			$data['marcas'] = $this->marca_model->paginacion_marca($parametros);
+		}
+		
+		
+		$data['pagina'] = $pagina;
+		$data['paginacion'] =  $this->pagination->create_links();
+		$data['view'] = 'marca/marca-list';
+		$data['pagina'] = $this->uri->segment(3,'');
+		$this->load->view('index',$data);
+		
+			
 	}
 	
 }	

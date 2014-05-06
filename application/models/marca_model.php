@@ -99,9 +99,17 @@ class Marca_model extends CI_Model
 	 */
 	public function cantidad_total_marcas($arg0)
 	{
+		$parametros = array($arg0[0]);
+		
 		$sql = 'SELECT COUNT(*) as total FROM subcategoria WHERE estado = ?';
-	
-		$query = $this->db->query($sql,$arg0);
+		
+		if( strlen($arg0[1]) > 1 )
+		{
+			$sql.= ' AND nombre LIKE ?';
+			array_push($parametros, $arg0[1]);
+		}	
+		
+		$query = $this->db->query($sql,$parametros);
 	
 		$result = $query->result_array();
 	
@@ -116,9 +124,22 @@ class Marca_model extends CI_Model
 	 */
 	public function paginacion_marca($arg0)
 	{
-		$sql = 'SELECT * FROM subcategoria WHERE estado = ? LIMIT ?,?';
-	
-		$query = $this->db->query($sql,$arg0);
+		$parametros = array($arg0[0]);
+		
+		$sql = 'SELECT * FROM subcategoria WHERE estado = ? ';
+		
+		if( strlen($arg0[1]) > 1 )
+		{
+			$sql.= ' AND nombre LIKE ?';
+			array_push($parametros, $arg0[1]);
+		}
+		
+		$sql .= ' LIMIT ?,?';
+		
+		array_push($parametros, $arg0[2]);
+		array_push($parametros, $arg0[3]);
+		
+		$query = $this->db->query($sql,$parametros);
 	
 		return $query->result_array();
 	}
@@ -130,7 +151,7 @@ class Marca_model extends CI_Model
 	public function obtener_marca($arg0)
 	{
 		$sql = 'SELECT id_subcategoria,nombre FROM subcategoria
-				WHERE nombre LIKE ?';
+				WHERE nombre LIKE ? AND estado = 1';
 	
 		$query = $this->db->query($sql,$arg0);
 		

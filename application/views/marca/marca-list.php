@@ -10,12 +10,11 @@
         </ol>
     </section>
     <section class="content">
-    	<!-- 
+   
+   <form action="<?php echo site_url('marca/buscar')?>" method="post">
         <div class="row">
             <div class="col-md-6">
-                <div class="col-md-10">
-                    <form action="">
-                    	<!-- 
+                <div class="col-md-10">         	
                         <div class="input-group input-group">
                             <div class="input-group-btn">
                                 <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown">Filtros <span class="fa fa-caret-down"></span></button>
@@ -25,16 +24,18 @@
                                     <li><a href="#">Deshabilitados</a></li>
                                 </ul>
                             </div><!-- /btn-group -->
-                            <!-- <input type="text" class="form-control">
+                            <input type="text" name="txtbusqueda" class="form-control"
+                            value="<?php if(isset($busqueda['nombre'])) echo $busqueda['nombre']?>">
                         </div>
-                         -->
-                  <!--  </form>     
+                      
+                    
                 </div>
                 <div class="col-md-2">
-                     <button class="btn btn-primary">Buscar</button>
+                     <button  type="submit" class="btn btn-primary">Buscar</button>
                 </div>
             </div>
-        </div> -->
+        </div> 
+    </form>       
         <div class="row">
 	        <div class="col-md-12">
                 <div id="superiorList">
@@ -69,7 +70,9 @@
                                 </td>
                                 <td>
                                     <?php 
-                                    echo anchor('marca/editar_marca/'.$marcas[$i]['id_subcategoria'],'Editar','class="btn btn-info btn-sm"');
+                                    echo anchor('marca/editar_marca/'.
+												 $marcas[$i]['id_subcategoria'].'/'.
+												 $pagina,'Editar','class="btn btn-info btn-sm"');
                                     if($marcas[$i]['estado'] == 1):
                                         echo anchor('marca/deshabilitar_marca/'.$marcas[$i]['id_subcategoria'].'/'.$pagina,'Deshabilitar','class="btn btn-danger btn-sm"'); 
                                     else:
