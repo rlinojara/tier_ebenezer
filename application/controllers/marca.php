@@ -13,7 +13,7 @@ class Marca extends MY_Controller
 		$config['base_url'] = site_url('marca/listar_marca/');
 		$parametros = array('1','');
 		$config['total_rows'] = $this->marca_model->cantidad_total_marcas($parametros);
-		$config['per_page'] = 1;
+		$config['per_page'] = 100;
 	
 	
 		$config['num_links'] = '2';
@@ -103,7 +103,14 @@ class Marca extends MY_Controller
 	
 		$pagina = $this->uri->segment(4,'');
 	
-		redirect('marca/listar_marca/'.$pagina,'refresh');
+		if(isset($_SESSION['marca']['busqueda']))
+		{
+			redirect('marca/buscar/'.$pagina,'refresh');
+		}	
+		else
+		{
+			redirect('marca/listar_marca/'.$pagina,'refresh');
+		}	 
 	}
 	
 	
@@ -283,7 +290,7 @@ class Marca extends MY_Controller
 		
 		$config['base_url'] = site_url('marca/buscar/');
 		$config['total_rows'] = $this->marca_model->cantidad_total_marcas($parametros);
-		$config['per_page'] = 1;
+		$config['per_page'] = 100;
 		$config['num_links'] = '2';
 		$config['prev_link'] = 'anterior';
 		$config['next_link'] = 'siguiente';
