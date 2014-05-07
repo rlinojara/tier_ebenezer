@@ -3,6 +3,7 @@ class Compra extends  MY_Controller
 {
 	public function listar_compra()
 	{
+		$data['paginacion'] = '';
 		$data['view'] = 'compra/compra-list';
 		$this->load->view('index',$data);	
 	}

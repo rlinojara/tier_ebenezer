@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generaci—n: 05-05-2014 a las 21:53:55
+-- Tiempo de generaci—n: 08-05-2014 a las 01:41:47
 -- Versi—n del servidor: 5.5.33
 -- Versi—n de PHP: 5.5.3
 
@@ -48,9 +48,17 @@ CREATE TABLE `llanta` (
   `id_llanta` int(11) NOT NULL AUTO_INCREMENT,
   `modelo` varchar(150) NOT NULL,
   `id_modelo_tipo` int(11) NOT NULL,
+  `pliegue` varchar(100) NOT NULL,
   `id_producto` int(11) NOT NULL,
   PRIMARY KEY (`id_llanta`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Volcado de datos para la tabla `llanta`
+--
+
+INSERT INTO `llanta` (`id_llanta`, `modelo`, `id_modelo_tipo`, `pliegue`, `id_producto`) VALUES
+(1, 'MODELO 1', 7, '', 1);
 
 -- --------------------------------------------------------
 
@@ -111,7 +119,14 @@ CREATE TABLE `producto` (
   `id_moneda` int(11) NOT NULL,
   `precio` decimal(10,2) NOT NULL,
   PRIMARY KEY (`id_producto`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Volcado de datos para la tabla `producto`
+--
+
+INSERT INTO `producto` (`id_producto`, `id_subcategoria`, `nombre`, `estado`, `id_moneda`, `precio`) VALUES
+(1, 5, '899/22323', 1, 2, 2567.56);
 
 -- --------------------------------------------------------
 
@@ -126,7 +141,16 @@ CREATE TABLE `producto_sucursal` (
   `id_sucursal` int(11) NOT NULL,
   `stock` int(11) NOT NULL,
   PRIMARY KEY (`id_producto_sucursal`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+
+--
+-- Volcado de datos para la tabla `producto_sucursal`
+--
+
+INSERT INTO `producto_sucursal` (`id_producto_sucursal`, `id_producto`, `id_sucursal`, `stock`) VALUES
+(4, 1, 3, 12),
+(5, 1, 4, 13),
+(6, 1, 5, 14);
 
 -- --------------------------------------------------------
 
@@ -155,7 +179,7 @@ CREATE TABLE `subcategoria` (
   `estado` tinyint(4) NOT NULL DEFAULT '1' COMMENT '1 habilitado, 2 deshabilitado',
   `id_categoria` int(11) NOT NULL,
   PRIMARY KEY (`id_subcategoria`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
 --
 -- Volcado de datos para la tabla `subcategoria`
@@ -166,8 +190,12 @@ INSERT INTO `subcategoria` (`id_subcategoria`, `nombre`, `estado`, `id_categoria
 (2, 'Marshall', 1, 1),
 (3, 'MARCA1', 1, 1),
 (4, 'MARCA2', 1, 1),
-(5, 'LINO', 1, 1),
-(6, '', 1, 1);
+(5, 'LINO', 2, 1),
+(7, 'LINO2', 2, 1),
+(8, 'LINO3', 2, 1),
+(9, 'LINO4', 2, 1),
+(10, 'LINO5', 2, 1),
+(11, 'LINO6', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -208,14 +236,16 @@ CREATE TABLE `usuario` (
   `password` varchar(50) NOT NULL,
   `estado` smallint(4) NOT NULL DEFAULT '1' COMMENT '1 activo, 2 desactivado',
   PRIMARY KEY (`id_usuario`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
 
 --
 -- Volcado de datos para la tabla `usuario`
 --
 
 INSERT INTO `usuario` (`id_usuario`, `nombre`, `apellido`, `email`, `usuario`, `password`, `estado`) VALUES
-(1, 'SUPER', 'ADMIN', 'superarchi@admin.com', 'admin', '21232f297a57a5a743894a0e4a801fc3', 1);
+(1, 'SUPER', 'ADMIN', 'superarchi@admin.com', 'admin', '21232f297a57a5a743894a0e4a801fc3', 1),
+(12, 'MARIA ELENA', 'ENCISO CHAVEZ', 'maria_27_19@hotmail.com', '2719', '680e89809965ec41e64dc7e447f175ab', 1),
+(13, 'RODOLFO', 'IZARRA LAURA', 'rodolfo_19_27@hotmail.com', '1927', '4c25b32a72699ed712dfa80df77fc582', 1);
 
 -- --------------------------------------------------------
 
