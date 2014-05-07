@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generaci—n: 08-05-2014 a las 01:41:47
+-- Tiempo de generaci—n: 08-05-2014 a las 01:58:10
 -- Versi—n del servidor: 5.5.33
 -- Versi—n de PHP: 5.5.3
 
@@ -36,6 +36,67 @@ CREATE TABLE `categoria` (
 
 INSERT INTO `categoria` (`id_categoria`, `nombre`, `estado`) VALUES
 (1, 'LLantas', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `compra`
+--
+
+DROP TABLE IF EXISTS `compra`;
+CREATE TABLE `compra` (
+  `id_compra` int(11) NOT NULL AUTO_INCREMENT,
+  `id_compra_tipo_doc` int(11) NOT NULL,
+  `id_moneda` int(11) NOT NULL,
+  `id_compra_estado` int(11) NOT NULL,
+  `id_compra_tipo_pago` int(11) NOT NULL,
+  `numero_documento` varchar(50) NOT NULL,
+  `numero_guia_remision` varchar(50) NOT NULL,
+  `nombre_proveedor` varchar(250) NOT NULL,
+  `cambio_moneda` decimal(10,2) NOT NULL,
+  PRIMARY KEY (`id_compra`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `compra_estado`
+--
+
+DROP TABLE IF EXISTS `compra_estado`;
+CREATE TABLE `compra_estado` (
+  `id_compra_estado` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(50) NOT NULL,
+  PRIMARY KEY (`id_compra_estado`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `compra_tipo_doc`
+--
+
+DROP TABLE IF EXISTS `compra_tipo_doc`;
+CREATE TABLE `compra_tipo_doc` (
+  `id_compra_tipo_doc` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(50) NOT NULL,
+  `estado` int(11) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id_compra_tipo_doc`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `compra_tipo_pago`
+--
+
+DROP TABLE IF EXISTS `compra_tipo_pago`;
+CREATE TABLE `compra_tipo_pago` (
+  `id_compra_tipo_pago` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(50) NOT NULL,
+  `estado` int(11) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id_compra_tipo_pago`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
