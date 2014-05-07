@@ -12,9 +12,25 @@
     </section>
     <section class="content">
 <?php
-if(isset($proceso_form) and $proceso_form === FALSE){
-	print_r($error);
-}
+if(isset($proceso_form)):
+    if($proceso_form === FALSE):
+?>  
+<div class="display alert alert-danger alert-dismissable">
+    <i class="fa fa-ban"></i>
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+    <b>El nombre de marca ya existe.</b>
+</div>
+<?php
+    else:
+?>
+<div class="alert alert-success alert-dismissable">
+    <i class="fa fa-check"></i>
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+    <b>La marca ha sido creado satisfactoriamente.</b>
+</div>
+<?php
+    endif;
+endif;
 ?>
 <div id="errornombre" class="alert alert-danger alert-dismissable">
     <i class="fa fa-ban"></i>

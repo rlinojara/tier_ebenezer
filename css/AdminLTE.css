@@ -3420,6 +3420,9 @@ fieldset[disabled] .btn-vk.active {
 .alert.alert-danger.alert-dismissable{
   display:  none;
 }
+.display.alert.alert-danger.alert-dismissable{
+  display:  block;
+}
 
 #sugerencias{
   border: 1px solid #ddd;
