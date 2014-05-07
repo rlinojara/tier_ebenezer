@@ -89,6 +89,9 @@
                         <li>
                             <?php echo anchor('producto/listar_producto','<i class="fa fa-th"></i> <span>Producto</span>'); ?>
                         </li>
+                        <li>
+                            <?php echo anchor('compra/listar_compra','<i class="fa fa-th"></i> <span>Compra</span>'); ?>
+                        </li>
                     </ul>
                 </section>
                 <!-- /.sidebar -->
