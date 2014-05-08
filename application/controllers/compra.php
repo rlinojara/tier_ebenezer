@@ -63,7 +63,15 @@ class Compra extends  MY_Controller
 	
 	public function set_registrar_compra()
 	{
-		die("entre");
+		$fecha_compra = $this->input-post('fecha_compra');
+		$tipo_compra = $this->input->post('tipo_compra');
+		$numero_documento = $this->input->post('numero_documento');
+		$num_guia_remision = $this->input->post('num_guia_remision');
+		$proveedor = $this->input->post('proveedor');
+		$razon_social = $this->input->post('razon_social');
+		$moneda = $this->input->post('moneda');
+		$tipo_cambio = $this->input->post('tipo_cambio');
+		$tipo_pago = $this->input->post('tipo_pago');
 	}
 	
 	public function editar_compra()
