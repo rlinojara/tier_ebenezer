@@ -16,7 +16,7 @@
 		        <!-- general form elements -->
 		        <div class="box box-primary"><!-- /.box-header -->
 		            <!-- form start -->
-		            <form id="formRegistroCompra" action="<?php echo site_url();?>" role="form" method="post">
+		            <form id="formRegistroCompra" action="<?php echo site_url('set_registrar_compra');?>" role="form" method="post">
 		                <div class="box-body">
 		                    <div class="form-group col-lg-6 col-xs-6">
 		                        <label for="txtfechacompra">Fecha de compra:</label>
