@@ -97,14 +97,18 @@ function facturaoboleta(){
 }
 
 function listarCompra(){
+
+    var vmarca = $('#marcaRealp').val();
+    var vproducto = $('#ProductoRealp').val();
+
     var marca = $('#txtmarcap').val();
     var producto = $('#txtproducto').val();
     var cantidad = $('#txtcantidad').val();
     var punitario = $('#txtpunitario').val();
     var total = cantidad*punitario;
 
-    var campos = '<input type="hidden" value="'+marca+'" name="txtmarca[]">';
-    campos += '<input type="hidden" value="'+producto+'" name="txtproducto[]">';
+    var campos = '<input type="hidden" value="'+vmarca+'" name="txtmarca[]">';
+    campos += '<input type="hidden" value="'+vproducto+'" name="txtproducto[]">';
     campos += '<input type="hidden" value="'+cantidad+'" name="txtcantidad[]">';
     campos += '<input type="hidden" value="'+punitario+'" name="txtpunitario[]">';
 
@@ -152,7 +156,6 @@ $('#txtmarcap').keyup(function(){
 
 $('#sugerenciasMarcap').on('click','.sugerenciaMarcap',function(){
     var id = $(this).attr('id');
-    console.log(id);
     var idSub = id.replace('idMarcap','');
     var texto = $(this).text();
 
@@ -163,13 +166,18 @@ $('#sugerenciasMarcap').on('click','.sugerenciaMarcap',function(){
     $('#sugerenciasMarcap').fadeOut(500);
 });
 
-$('#txtproductop').keyup(function(){
+$('#txtproducto').keyup(function(){
+    var marca = $('#marcaRealp').val();
     var query = $(this).val();
-    var dataString = 'marca='+query;
+
+    console.log(marca);
+    console.log(query);
+
+    var dataString = 'marca='+marca+'&producto='+query;
     $.ajax({
         type: "POST",
-        url: "/tier_ebenezer/index.php/producto/obtener_marca_json",
-        data: dataString,
+        url: "/tier_ebenezer/index.php/compra/obtener_producto_marca_json",
+        data: { marca: marca, producto: query },
         success: function(data) {
             var inicio;
             objetoJson = JSON.parse(data);
@@ -178,28 +186,29 @@ $('#txtproductop').keyup(function(){
             var html = '';
 
             for (var inicio = 0; inicio < longitud; inicio++) {
-                var id = objetoJson[inicio].id_subcategoria;
-                var nombre = objetoJson[inicio].nombre;
+                var id = objetoJson[inicio].id_producto;
+                var medida = objetoJson[inicio].medida;
+                var modelo = objetoJson[inicio].modelo;
 
-                html += '<div id="idProductop'+id+'" class="sugerenciaProductop" >'+nombre;
+                html += '<div id="idProductop'+id+'" class="sugerenciaProductop" >'+medida;
                 html += '</div>';
             };
 
             //Escribimos las sugerencias que nos manda la consulta
-            $('#sugerenciasproductop').fadeIn(500).html(html);
+            $('#sugerenciasProductop').fadeIn(500).html(html);
         }
     });
 });
 
-$('#sugerenciasproductop').on('click','.sugerenciaProductop',function(){
+$('#sugerenciasProductop').on('click','.sugerenciaProductop',function(){
     var id = $(this).attr('id');
     console.log(id);
     var idSub = id.replace('idProductop','');
     var texto = $(this).text();
 
     //Editamos el valor del input con data de la sugerencia pulsada
-    $('#productoRealp').val(idSub);
+    $('#ProductoRealp').val(idSub);
     $('#txtproducto').val(texto);
     //Hacemos desaparecer el resto de sugerencias
-    $('#sugerenciasproductop').fadeOut(500);
+    $('#sugerenciasProductop').fadeOut(500);
 });
