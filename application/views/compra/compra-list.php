@@ -25,26 +25,19 @@
                             <tbody>
                             	<tr>
 	                                <th style="width: 10px">#</th>
-	                                <th>campo1</th>
-	                                <th>campo2</th>
-	                                <th>campo3</th>
-                                    <th>campo4</th>
+	                                <th>Fecha</th>
+	                                <th>Tipo Doc.</th>
+	                                <th>N&uacute;m Doc.</th>
+                                    <th>Estado</th>
 	                                <th style="width: 160px">Acciones</th>
                             	</tr>
+                            	<?php for( $i = 0 ; $i < count($compras) ; $i++):?>
 	                            <tr>
 	                             	<td>1</td>
-	                                <td>dato1</td>
-	                                <td>dato2</td>
-	                                <td>dato3</td>
-	                                <td>
-	                                    <?php 
-	                                        if(1 == 1):
-	                                            echo '<span class="btn btn-success disabled">Activo</span>';
-	                                        else:
-	                                            echo '<span class="btn btn-danger disabled">Inactivo</span>';
-	                                        endif;
-	                                    ?>
-	                                </td>
+	                                <td><?php $compras[$i]['fecha_compra']?></td>
+	                                <td><?php $compras[$i]['nombre_tipo_doc']?></td>
+	                                <td><?php $compras[$i]['numero_doc']?></td>
+	                                <td><?php $compras[$i]['nombre_estado']?></td>
 	                                <td>
 	                                    <?php 
 	                                    echo anchor('compra/editar_compra/'.'1','Editar','class="btn btn-info btn-sm"');
@@ -54,9 +47,9 @@
 	                                        echo anchor('compra/habilitar_compra/'.'1','Habilitar','class="btn btn-success btn-sm"');
 	                                    endif;
 	                                    ?>
-
 	                                </td>
 	                            </tr>
+	                            <?php endfor;?>
                         	</tbody>
                         </table>
                         

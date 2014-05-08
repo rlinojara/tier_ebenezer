@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generaci—n: 08-05-2014 a las 01:58:10
+-- Tiempo de generaci—n: 08-05-2014 a las 02:43:00
 -- Versi—n del servidor: 5.5.33
 -- Versi—n de PHP: 5.5.3
 
@@ -54,6 +54,7 @@ CREATE TABLE `compra` (
   `numero_guia_remision` varchar(50) NOT NULL,
   `nombre_proveedor` varchar(250) NOT NULL,
   `cambio_moneda` decimal(10,2) NOT NULL,
+  `fecha_compra` date NOT NULL,
   PRIMARY KEY (`id_compra`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
@@ -67,6 +68,7 @@ DROP TABLE IF EXISTS `compra_estado`;
 CREATE TABLE `compra_estado` (
   `id_compra_estado` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(50) NOT NULL,
+  `estado` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id_compra_estado`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
