@@ -11,7 +11,7 @@ class Producto extends MY_Controller
 	
 		$config['base_url'] = site_url('producto/listar_producto/');
 		$config['total_rows'] = $this->producto_model->cantidad_total_productos();
-		$config['per_page'] = 100;
+		$config['per_page'] = 10;
 	
 	
 		$config['num_links'] = '2';

@@ -18,12 +18,63 @@
 		            <!-- form start -->
 		            <form id="formRegistroCompra" action="<?php echo site_url();?>" role="form" method="post">
 		                <div class="box-body">
-		                    <div class="form-group">
+		                    <div class="form-group col-lg-6 col-xs-6">
 		                        <label for="txtfechacompra">Fecha de compra:</label>
 		                        <input type="text" name="fechacompra" class="form-control" id="txtfechacompra" value="" placeholder="Fecha de compra">
 		                    </div>
+		                    <div class="form-group col-lg-6 col-xs-6">
+		                        <label for="txttipocompra">Tipo de compra:</label>
+		                        <select name="tipocompra" id="txttipocompra" class="form-control">
+		                        	<option value="0">Boleta</option>
+		                        	<option value="1">Factura</option>
+		                        </select>
+		                    </div>
+		                    <div class="form-group col-lg-6 col-xs-6">
+		                        <label for="txtnumerofb"># de factura o boleta:</label>
+		                        <input type="text" name="numerofb" class="form-control" id="txtnumerofb" value="" placeholder="Número de factura o boleta">
+		                    </div>
+		                    <div class="form-group col-lg-6 col-xs-6">
+		                        <label for="txtguia"># de guía:</label>
+		                        <input type="text" name="guia" class="form-control" id="txtguia" value="" placeholder="Número de guía">
+		                    </div>
+		                    <div class="form-group col-lg-12 col-xs-12">
+		                        <label for="txtproveedor">Proveedor:</label>
+		                        <input type="text" name="proveedor" class="form-control" id="txtproveedor" value="" placeholder="Número de guía">
+		                    </div>
+		                    <div class="form-group col-lg-6 col-xs-6">
+		                        <label for="txttipocompra">Razón social:</label>
+		                        <select name="tipocompra" id="txttipocompra" class="form-control">
+		                        	<option value="0">TIERS EBEN-EZER</option>
+		                        	<option value="1">MARIA ELENA ENCIZO CHAVEZ</option>
+		                        </select>
+		                    </div>
+		                    <div class="form-group col-lg-6 col-xs-6">
+		                        <label for="txtmoneda">Moneda:</label>
+		                        <select name="moneda" id="txtmoneda" class="form-control">
+		                        	<option value="0">moneda1</option>
+		                        	<option value="1">moneda2/option>
+		                        </select>
+		                    </div>
+		                    <div class="form-group col-lg-12 col-xs-12">
+		                        <label for="txtcambio">Tipo de cambio:</label>
+		                        <input type="text" name="cambio" class="form-control" id="txtcambio" value="" placeholder="Número de guía">
+		                    </div>
+		                    <div class="form-group col-lg-6 col-xs-6">
+		                        <label for="txttipopago">Tipo de pago:</label>
+		                        <select name="tipopago" id="txttipopago" class="form-control">
+		                        	<option value="0">tipopago1</option>
+		                        	<option value="1">tipopago2/option>
+		                        </select>
+		                    </div>
+		                    <div class="form-group col-lg-6 col-xs-6">
+		                        <label for="txtmoneda">Moneda:</label>
+		                        <select name="moneda" id="txtmoneda" class="form-control">
+		                        	<option value="0">moneda1</option>
+		                        	<option value="1">moneda2/option>
+		                        </select>
+		                    </div>
 		                </div>
-		                <div class="box-footer">
+		                <div class="box-footer col-lg-12 col-xs-12">
 		                    <div id="btnRegistroCompra" class="btn btn-primary btnInactivo btnEnviar">Validar</div>
 		                    <button value="asd" type="submit" id="btnRegistroCompra2" class="btn btn-primary btnActivo btnEnviar">Enviar</button>
 		                </div>
