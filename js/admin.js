@@ -1,6 +1,8 @@
 $('#btnRegistroUsuario').on('click',validarFormulario);
 $('#btnRegistroProducto').on('click',validarFormulario);
 $('#btnRegistroMarca').on('click',validarFormulario);
+$('#txttipocompra').on('change',facturaoboleta);
+$('#btnAgregarCompra').on('click',listarCompra);
 
         function validarFormulario(data){
             var idBtn = data.currentTarget.id;
@@ -99,3 +101,31 @@ $('#sugerencias').on('click','.sugerenciaMarca',function(){
     //Hacemos desaparecer el resto de sugerencias
     $('#sugerencias').fadeOut(500);
 });
+
+function facturaoboleta(){
+    var id = $(this).val();
+    if(id == 0){
+        $('#divGuia').show();
+    }
+    else{
+        $('#divGuia').hide();
+    }
+}
+
+function listarCompra(){
+    var producto = $('#txtproducto').val();
+    var cantidad = $('#txtcantidad').val();
+    var punitario = $('#txtpunitario').val();
+    var total = cantidad*punitario;
+
+    var html = '<tr>';
+    html += '<td>'+producto+'</td>';
+    html += '<td>'+cantidad+'</td>';
+    html += '<td>'+punitario+'</td>';
+    html += '<td>'+total+'</td>';
+    html += '</tr>';
+
+    $('#listadoCompras').append(html);
+
+    $('#formRegistroCompra input').val('');
+}
