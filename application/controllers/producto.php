@@ -340,8 +340,13 @@ class Producto extends MY_Controller
 	{
 		$this->load->model('marca_model');
 	
-		$nombre = strtoupper($this->input->post('marca')).'%';
-	
+		if(isset($_POST['marca'])){
+			$nombre = strtoupper($this->input->post('marca')).'%';
+		}
+		else{
+			$nombre = strtoupper($this->input->get('query')).'%';
+		}
+
 		$parametro = array($nombre);
 	
 		$marca = $this->marca_model->obtener_marca($parametro);

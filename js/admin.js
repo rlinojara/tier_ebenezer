@@ -69,6 +69,24 @@ $('#txtmarca').keyup(function(){
     });
 });
 
+$(function(){
+
+    $('#txtmarcap').typeahead({
+
+        source: function (query, process) {
+            return $.getJSON(
+                '/tier_ebenezer/index.php/producto/obtener_marca_json',
+                { query: query },
+                function (data) {
+                    return process(data);
+                });
+        }
+    
+    });         
+    
+});
+
+
 $('#sugerencias').on('click','.sugerenciaMarca',function(){
     var id = $(this).attr('id');
     console.log(id);
