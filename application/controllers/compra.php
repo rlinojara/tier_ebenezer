@@ -51,6 +51,12 @@ class Compra extends  MY_Controller
 	
 	public function registrar_compra()
 	{
+		/**
+		 *@see Combos dinamicos
+		 */
+		$data['tipo_compra'] = $this->combo_tipo_compra('');
+		$data['moneda'] = $this->combo_moneda('');
+		
 		$data['view'] = 'compra/compra-form';
 		$this->load->view('index',$data);
 	}
@@ -146,14 +152,14 @@ class Compra extends  MY_Controller
 		{
 			$opcion = '';
 			
-			if( $tipo_pago[$i]['id_moneda'] == $arg0)
+			if( $tipo_pago[$i]['id_compra_tipo_pago'] == $arg0)
 			{
 				$opcion = ' selected="selected" ';
 			}
 		
 			$html .=  sprintf(
 								$plantilla,
-								$tipo_pago[$i]['id_moneda'],
+								$tipo_pago[$i]['id_compra_tipo_pago'],
 								$opcion,
 								$tipo_pago[$i]['nombre']
 							);
