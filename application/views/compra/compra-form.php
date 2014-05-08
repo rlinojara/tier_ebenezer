@@ -73,10 +73,14 @@
 					                    <div class="form-group col-lg-3 col-xs-3">
 					                        <label for="txtmarca">Marca:</label>
 					                        <input type="text" class="campos-dinamicos form-control" id="txtmarcap" value="" placeholder="Nombre marca" autocomplete="off">
+					                        <div id="sugerenciasMarcap"></div>
+					                        <input type="hidden" id="marcaRealp">
 					                    </div>
 					                    <div class="form-group col-lg-3 col-xs-3">
 					                        <label for="txtproducto">Producto:</label>
 					                        <input type="text" class="campos-dinamicos form-control" id="txtproducto" value="" placeholder="nombre producto" autocomplete="off">
+					                        <div id="sugerenciasProductop"></div>
+					                        <input type="hidden" id="ProductoRealp">
 					                    </div>
 					                    <div class="form-group col-lg-3 col-xs-3">
 					                        <label for="txtcantidad">Cantidad:</label>

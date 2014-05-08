@@ -71,24 +71,6 @@ $('#txtmarca').keyup(function(){
     });
 });
 
-$(function(){
-
-    $('#txtmarcap').typeahead({
-
-        source: function (query, process) {
-            return $.getJSON(
-                '/tier_ebenezer/index.php/producto/obtener_marca_json',
-                { query: query },
-                function (data) {
-                    return process(data);
-                });
-        }
-    
-    });         
-    
-});
-
-
 $('#sugerencias').on('click','.sugerenciaMarca',function(){
     var id = $(this).attr('id');
     console.log(id);
@@ -102,6 +84,8 @@ $('#sugerencias').on('click','.sugerenciaMarca',function(){
     $('#sugerencias').fadeOut(500);
 });
 
+
+//COMPRA
 function facturaoboleta(){
     var id = $(this).val();
     if(id == 0){
@@ -137,3 +121,85 @@ function listarCompra(){
 
     $('.campos-dinamicos').val('');
 }
+
+$('#txtmarcap').keyup(function(){
+    var query = $(this).val();
+    var dataString = 'marca='+query;
+    $.ajax({
+        type: "POST",
+        url: "/tier_ebenezer/index.php/producto/obtener_marca_json",
+        data: dataString,
+        success: function(data) {
+            var inicio;
+            objetoJson = JSON.parse(data);
+            longitud = objetoJson.length;
+
+            var html = '';
+
+            for (var inicio = 0; inicio < longitud; inicio++) {
+                var id = objetoJson[inicio].id_subcategoria;
+                var nombre = objetoJson[inicio].nombre;
+
+                html += '<div id="idMarcap'+id+'" class="sugerenciaMarcap" >'+nombre;
+                html += '</div>';
+            };
+
+            //Escribimos las sugerencias que nos manda la consulta
+            $('#sugerenciasMarcap').fadeIn(500).html(html);
+        }
+    });
+});
+
+$('#sugerenciasMarcap').on('click','.sugerenciaMarcap',function(){
+    var id = $(this).attr('id');
+    console.log(id);
+    var idSub = id.replace('idMarcap','');
+    var texto = $(this).text();
+
+    //Editamos el valor del input con data de la sugerencia pulsada
+    $('#marcaRealp').val(idSub);
+    $('#txtmarcap').val(texto);
+    //Hacemos desaparecer el resto de sugerencias
+    $('#sugerenciasMarcap').fadeOut(500);
+});
+
+$('#txtproductop').keyup(function(){
+    var query = $(this).val();
+    var dataString = 'marca='+query;
+    $.ajax({
+        type: "POST",
+        url: "/tier_ebenezer/index.php/producto/obtener_marca_json",
+        data: dataString,
+        success: function(data) {
+            var inicio;
+            objetoJson = JSON.parse(data);
+            longitud = objetoJson.length;
+
+            var html = '';
+
+            for (var inicio = 0; inicio < longitud; inicio++) {
+                var id = objetoJson[inicio].id_subcategoria;
+                var nombre = objetoJson[inicio].nombre;
+
+                html += '<div id="idProductop'+id+'" class="sugerenciaProductop" >'+nombre;
+                html += '</div>';
+            };
+
+            //Escribimos las sugerencias que nos manda la consulta
+            $('#sugerenciasproductop').fadeIn(500).html(html);
+        }
+    });
+});
+
+$('#sugerenciasproductop').on('click','.sugerenciaProductop',function(){
+    var id = $(this).attr('id');
+    console.log(id);
+    var idSub = id.replace('idProductop','');
+    var texto = $(this).text();
+
+    //Editamos el valor del input con data de la sugerencia pulsada
+    $('#productoRealp').val(idSub);
+    $('#txtproducto').val(texto);
+    //Hacemos desaparecer el resto de sugerencias
+    $('#sugerenciasproductop').fadeOut(500);
+});
