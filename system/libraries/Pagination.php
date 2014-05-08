@@ -52,9 +52,9 @@ class CI_Pagination {
 	var $last_tag_close		= '</li>';
 	var $first_url			= ''; // Alternative URL for the First Page.
 	//var $cur_tag_open		= '&nbsp;<strong>';
-	var $cur_tag_open		= '<li><a href="#">';
+	var $cur_tag_open		= '<li><a href="#"><strong>';
 	//var $cur_tag_close		= '</strong>'
-	var $cur_tag_close		= '</a></li>';
+	var $cur_tag_close		= '</strong></a></li>';
 	//var $next_tag_open		= '&nbsp;';
 	var $next_tag_open		= '<li>';
 	//var $next_tag_close		= '&nbsp;';
