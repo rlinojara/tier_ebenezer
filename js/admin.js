@@ -113,10 +113,18 @@ function facturaoboleta(){
 }
 
 function listarCompra(){
+    var marca = $('#txtmarcap').val();
     var producto = $('#txtproducto').val();
     var cantidad = $('#txtcantidad').val();
     var punitario = $('#txtpunitario').val();
     var total = cantidad*punitario;
+
+    var campos = '<input type="hidden" value="'+marca+'" name="txtmarca[]">';
+    campos += '<input type="hidden" value="'+producto+'" name="txtproducto[]">';
+    campos += '<input type="hidden" value="'+cantidad+'" name="txtcantidad[]">';
+    campos += '<input type="hidden" value="'+punitario+'" name="txtpunitario[]">';
+
+    $('#appendCampos').append(campos);
 
     var html = '<tr>';
     html += '<td>'+producto+'</td>';
@@ -127,5 +135,5 @@ function listarCompra(){
 
     $('#listadoCompras').append(html);
 
-    $('#formRegistroCompra input').val('');
+    $('.campos-dinamicos').val('');
 }
