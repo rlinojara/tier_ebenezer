@@ -157,4 +157,20 @@ class Producto_model extends CI_Model
 	
 		return $query->result_array();
 	}
+	
+	/**
+	 * @param marca
+	 * @param producto 
+	 */
+	public function obtener_producto_por_marca($arg0)
+	{
+		$sql = 'SELECT id_producto,medida,modelo
+				FROM v_producto WHERE estado = 1 AND
+				id_marca = ? AND medida LIKE ?';
+		
+		$query = $this->db->query($sql,$arg0);
+		
+		return $query->result_array($sql,$arg0);
+	}
+	
 }

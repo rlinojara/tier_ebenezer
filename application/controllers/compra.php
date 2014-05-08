@@ -176,5 +176,44 @@ class Compra extends  MY_Controller
 		return $html;
 	}
 	
+	
+	public function obtener_marca_json()
+	{
+		$this->load->model('marca_model');
+	
+		if(isset($_POST['marca'])){
+			$nombre = strtoupper($this->input->post('marca')).'%';
+		}
+		else{
+			$nombre = strtoupper($this->input->get('query')).'%';
+		}
+	
+		$parametro = array($nombre);
+	
+		$marca = $this->marca_model->obtener_marca($parametro);
+	
+		echo json_encode($marca);
+	}
+	
+	public function obtener_producto_marca_json()
+	{
+		$this->load->model('producto_model');
+		
+		$marca = $this->input->post('marca');
+		
+		$nombre = '';
+		
+		if(isset($_POST['producto']))
+		{
+			$nombre = strtoupper($this->input->post('producto')).'%';
+		}
+		
+		$parametro = array($marca,$nombre);
+		
+		$marca = $this->producto_model->obtener_producto_por_marca($parametro);
+		
+		echo json_encode($marca);
+	}
+	
 }
 ?>
