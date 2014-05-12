@@ -26,13 +26,13 @@
 					                    </div>
 					                    <div class="form-group col-lg-6 col-xs-6">
 					                        <label for="txttipocompra">Tipo de compra:</label>
-					                        <select name="tipo_compra" id="txttipocompra" class="form-control">
+					                        <select name="tipo_compra" id="txttipocompra" class="form-control" disabled>
 					                        	<?php echo $tipo_compra?>	
 					                        </select>
 					                    </div>
 					                    <div class="form-group col-lg-6 col-xs-6">
 					                        <label for="txtnumerofb"># de factura o boleta:</label>
-					                        <input type="text" name="numero_documento" class="form-control" id="txtnumerofb" value="" placeholder="Número de factura o boleta">
+					                        <input type="text" name="numero_documento" class="form-control" id="txtnumerofb" value="" placeholder="Número de factura o boleta" disabled>
 					                    </div>
 					                    <div id="divGuia" class="form-group col-lg-6 col-xs-6">
 					                        <label for="txtguia"># de guía:</label>
@@ -106,6 +106,14 @@
 											                <th>Cantidad</th>
 											                <th>P. Unitario</th>
 											                <th>TOTAL</th>
+											                <th style="width:40px">Acciones</th>
+											            </tr>
+											            <tr>
+											                <td>Producto</td>
+											                <td>Cantidad</td>
+											                <td>P. Unitario</td>
+											                <td>TOTAL</td>
+											                <td>Acciones</td>
 											            </tr>
 											        </tbody></table>
 											    </div><!-- /.box-body -->
