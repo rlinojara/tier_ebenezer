@@ -120,10 +120,15 @@ class Compra extends  MY_Controller
 								$razon_social
 						   );
 		
-		$id_compra = $this->compra_model->registrar($parametros);
-		echo $id_compra.'-<br>';
+		
+		echo '<pre>';
 		print_r($parametros);
+		echo '</pre>';
+		
 		die();
+		
+		$id_compra = $this->compra_model->registrar($parametros);
+		
 		
 		/**
 		 * @see Registrando producto de compra 
