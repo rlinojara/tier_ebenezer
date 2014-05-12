@@ -64,6 +64,7 @@ class Compra extends  MY_Controller
 	
 	public function set_registrar_compra()
 	{
+		
 		$this->load->model('compra_model');
 		$this->load->model('compra_producto_model');
 		$this->load->model('producto_sucursal_model');
@@ -72,7 +73,7 @@ class Compra extends  MY_Controller
 		$fecha_compra = $this->input-post('fecha_compra');
 		$tipo_compra = $this->input->post('tipo_compra');
 		$numero_documento = $this->input->post('numero_documento');
-		$num_guia_remision = $this->input->post('num_guia_remision');
+		$num_guia_remision = $this->input->post('numero_guia');
 		$proveedor = $this->input->post('proveedor');
 		$razon_social = $this->input->post('razon_social');
 		$moneda = $this->input->post('moneda');
@@ -120,7 +121,9 @@ class Compra extends  MY_Controller
 						   );
 		
 		$id_compra = $this->compra_model->registrar($parametros);
-		
+		echo $id_compra.'-<br>';
+		print_r($parametros);
+		die();
 		
 		/**
 		 * @see Registrando producto de compra 

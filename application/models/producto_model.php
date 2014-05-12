@@ -98,7 +98,10 @@ class Producto_model extends CI_Model
 					   id_modelo_tipo,
 					   nombre_modelo_tipo,
 					   precio,
-					   estado
+					   estado,
+					   id_tp,
+					   pliegue,
+					   nombre_tp
 				FROM v_producto
 				WHERE id_producto = ?';
 	

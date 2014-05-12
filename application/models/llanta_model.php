@@ -8,8 +8,9 @@ class llanta_model extends CI_Model
 	 */
 	public function registrar($arg0)
 	{
-		$sql = 'INSERT INTO llanta(modelo,id_modelo_tipo,id_producto)
-				VALUES(?,?,?)';
+		$sql = 'INSERT INTO llanta
+				(modelo,id_modelo_tipo,id_producto,pliegue,id_tp)
+				VALUES(?,?,?,?,?)';
 		
 		$this->db->query($sql,$arg0);
 	}
@@ -24,7 +25,9 @@ class llanta_model extends CI_Model
 	{
 		$sql = 'UPDATE llanta
 				SET modelo = ?,
-					id_modelo_tipo = ?
+					id_modelo_tipo = ?,
+					id_tp = ?,
+					pliegue = ?
 				WHERE id_producto = ?';
 		
 		$this->db->query($sql,$arg0);

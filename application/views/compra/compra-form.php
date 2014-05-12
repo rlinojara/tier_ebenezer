@@ -15,28 +15,28 @@
 		    <div class="col-md-12">
 		        <!-- general form elements -->
 		        <div class="box box-primary">
-		            <form id="formRegistroCompra" action="<?php echo site_url('set_registrar_compra');?>" role="form" method="post">
+		            <form id="formRegistroCompra" action="<?php echo site_url('compra/set_registrar_compra');?>" role="form" method="post">
 			        	<div class="row">
 							<div class="col-md-12">
 								<div class="box">
 					                <div class="box-body" id="appendCampos">
 					                    <div class="form-group col-lg-6 col-xs-6">
 					                        <label for="txtfechacompra">Fecha de compra:</label>
-					                        <input type="text" name="fechacompra" class="form-control" id="txtfechacompra" value="" placeholder="Fecha de compra">
+					                        <input type="text" name="fecha_compra" class="form-control" id="txtfechacompra" value="" placeholder="Fecha de compra">
 					                    </div>
 					                    <div class="form-group col-lg-6 col-xs-6">
 					                        <label for="txttipocompra">Tipo de compra:</label>
-					                        <select name="tipocompra" id="txttipocompra" class="form-control">
+					                        <select name="tipo_compra" id="txttipocompra" class="form-control">
 					                        	<?php echo $tipo_compra?>	
 					                        </select>
 					                    </div>
 					                    <div class="form-group col-lg-6 col-xs-6">
 					                        <label for="txtnumerofb"># de factura o boleta:</label>
-					                        <input type="text" name="numerofb" class="form-control" id="txtnumerofb" value="" placeholder="Número de factura o boleta">
+					                        <input type="text" name="numero_documento" class="form-control" id="txtnumerofb" value="" placeholder="Número de factura o boleta">
 					                    </div>
 					                    <div id="divGuia" class="form-group col-lg-6 col-xs-6">
 					                        <label for="txtguia"># de guía:</label>
-					                        <input type="text" name="guia" class="form-control" id="txtguia" value="" placeholder="Número de guía">
+					                        <input type="text" name="numero_guia" class="form-control" id="txtguia" value="" placeholder="Número de guía">
 					                    </div>
 					                    <div class="form-group col-lg-12 col-xs-12">
 					                        <label for="txtproveedor">Proveedor:</label>
@@ -44,7 +44,7 @@
 					                    </div>
 					                    <div class="form-group col-lg-6 col-xs-6">
 					                        <label for="txttipocompra">Razón social:</label>
-					                        <select name="tipocompra" id="txttipocompra" class="form-control">
+					                        <select name="razon_social" id="txttipocompra" class="form-control">
 					                        	<option value="0">TIERS EBEN-EZER</option>
 					                        	<option value="1">MARIA ELENA ENCIZO CHAVEZ</option>
 					                        </select>
@@ -57,12 +57,12 @@
 					                    </div>
 					                    <div class="form-group col-lg-12 col-xs-12">
 					                        <label for="txtcambio">Tipo de cambio:</label>
-					                        <input type="text" name="cambio" class="form-control" id="txtcambio" value="" placeholder="Tipo de cambio">
+					                        <input type="text" name="tipo_cambio" class="form-control" id="txtcambio" value="" placeholder="Tipo de cambio">
 					                    </div>
 					                    <div class="col-lg-12 col-xs-12" style="padding:0">
 						                    <div class="form-group col-lg-6 col-xs-6">
 						                        <label for="txttipopago">Tipo de pago:</label>
-						                        <select name="tipopago" id="txttipopago" class="form-control">
+						                        <select name="tipo_pago" id="txttipopago" class="form-control">
 						                        	<?php echo $tipo_pago;?>
 						                        </select>
 						                    </div>
@@ -121,6 +121,7 @@
 								</div>
 							</div>
 						</div>
+						<input type="submit" value="Enviar">
 		            </form>
 		        </div>
 		    </div>

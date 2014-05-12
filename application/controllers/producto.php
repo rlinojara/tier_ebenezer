@@ -106,6 +106,8 @@ class Producto extends MY_Controller
 		$data['moneda'] = $this->combo_moneda('');
 		
 		$data['modelo_tipo'] = $this->combo_modelo_tipo('');
+		
+		$data['tp'] = $this->combo_tp('');
 	
 		$data['titulo'] = 'Registro';
 	
@@ -129,6 +131,8 @@ class Producto extends MY_Controller
 			$tipo = $this->input->post('modelo_tipo');
 			$precio = trim($this->input->post('precio'));
 			$moneda = $this->input->post('moneda');
+			$tp = $this->input->post('tp');
+			$pliegue = trim(strtoupper($this->input->post('pliegue')));
 			$data = array();
 				
 			/**
@@ -153,7 +157,7 @@ class Producto extends MY_Controller
 			     * Registrar llanta
 				 */
 				
-				$parametros = array($modelo,$tipo,$id_producto);
+				$parametros = array($modelo,$tipo,$id_producto,$pliegue,$tp);
 				$this->llanta_model->registrar($parametros);
 				
 				
@@ -181,13 +185,12 @@ class Producto extends MY_Controller
 			 * @see Parametros para la vista
 			 */
 			$this->load->model('sucursal_model');
-			$this->load->model('moneda_model');
-			$this->load->model('modelo_tipo_model');
 			$data['view'] = 'producto/producto-form';
 			$data['url_form'] = 'producto/set_registrar_producto';
 			$data['sucursales'] = $this->sucursal_model->obtener_sucursal_activas();
-			$data['modelo_tipo'] = $this->modelo_tipo_model->listar();
-			$data['moneda'] = $this->moneda_model->listar();
+			$data['modelo_tipo'] = $this->combo_modelo_tipo('');
+			$data['moneda'] = $this->combo_moneda('');
+			$data['tp'] = $this->combo_tp('');
 			$data['titulo'] = 'Registro';
 			$this->load->view('index',$data);
 		}
@@ -226,6 +229,7 @@ class Producto extends MY_Controller
 			$data['sucursales'] = $this->sucursal_model->obtener_sucursal_activas();
 			$data['modelo_tipo'] = $this->combo_modelo_tipo($data['producto']['id_modelo_tipo']);
 			$data['moneda'] = $this->combo_moneda($data['producto']['id_moneda']);
+			$data['tp'] = $this->combo_tp($data['producto']['id_tp']);
 			
 			
 			
@@ -264,6 +268,8 @@ class Producto extends MY_Controller
 				$modelo = trim(strtoupper($this->input->post('modelo')));
 				$tipo = $this->input->post('modelo_tipo');
 				$precio = trim($this->input->post('precio'));
+				$tp = $this->input->post('tp');
+				$pliegue = trim(strtoupper($this->input->post('pliegue')));
 				$moneda = $this->input->post('moneda');
 				
 				/**
@@ -275,7 +281,7 @@ class Producto extends MY_Controller
 				/**
 				 * Editarllanta
 				 */
-				$parametros = array($modelo,$tipo,$id_producto);
+				$parametros = array($modelo,$tipo,$tp,$pliegue,$id_producto);
 				$this->llanta_model->editar($parametros);
 				
 				
@@ -319,6 +325,7 @@ class Producto extends MY_Controller
 				$data['sucursales'] = $this->sucursal_model->obtener_sucursal_activas();
 				$data['moneda'] = $this->combo_moneda($moneda);
 				$data['modelo_tipo'] = $this->combo_modelo_tipo($tipo);
+				$data['tp'] = $this->combo_tp($tp);
 				$data['titulo'] = 'Editar';
 				$data['id'] = $id_producto;
 					
@@ -416,6 +423,39 @@ class Producto extends MY_Controller
 							);
 		}
 		
+		return $html;
+	}
+	
+	public function combo_tp($arg0)
+	{
+		$this->load->model('tp_model');
+	
+		$tp = $this->tp_model->listar();
+	
+		$plantilla = '<option value="%s" %s>%s</option>';
+	
+		$html = '';
+	
+		$opcion = '';
+	
+		for($i = 0 ; $i < count($tp) ; $i++)
+		{
+			
+			$opcion = '';
+						
+			if( $tp[$i]['id_tp'] == $arg0)
+			{
+				$opcion = ' selected="selected" ';
+			}
+		
+					$html .=  sprintf(
+										$plantilla,
+										$tp[$i]['id_tp'],
+										$opcion,
+										$tp[$i]['nombre']
+									 );
+		}
+	
 		return $html;
 	}
 	

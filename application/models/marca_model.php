@@ -135,7 +135,7 @@ class Marca_model extends CI_Model
 		}
 		
 		$sql .= ' LIMIT ?,?';
-		
+
 		array_push($parametros, $arg0[2]);
 		array_push($parametros, $arg0[3]);
 		

@@ -24,7 +24,8 @@ class Marca extends MY_Controller
 		$config['last_link'] = '>>';
 	
 		$this->pagination->initialize($config);
-	
+		
+		$pagina = intval($this->uri->segment(3,0));
 	
 		$parametros = array(
 							 1,
@@ -37,9 +38,12 @@ class Marca extends MY_Controller
 		
 		if( count($data['marcas']) == 0 )
 		{
+			$pagina--;
+			
 			$parametros = array(
 									1,
-									(intval($this->uri->segment(3,0)) - 1),
+									'',
+									abs($pagina),
 									intval($config['per_page'])
 							   );
 				
@@ -317,7 +321,7 @@ class Marca extends MY_Controller
 			$parametros = array(
 									1,
 									$nombre.'%',
-									$pagina,
+									abs($pagina),
 									intval($config['per_page'])
 								);
 		
