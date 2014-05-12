@@ -42,6 +42,11 @@ if(isset($proceso_form) and $proceso_form === FALSE)
     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
     <b>El campo del precio no puede estar vacio.</b>
 </div>
+<div id="errorpliegue" class="alert alert-danger alert-dismissable">
+    <i class="fa fa-ban"></i>
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+    <b>El campo del pliegue no puede estar vacio.</b>
+</div>
 <div class="row">
     <div class="col-md-12">
         <!-- general form elements -->
@@ -94,6 +99,22 @@ if(isset($proceso_form) and $proceso_form === FALSE)
                             <?php for( $i = 0 ; $i < count($moneda) ; $i++):?>
                             
                             <?php echo $moneda;?>
+                            
+                            <?php endfor?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="pliegue">Pliegue:</label>
+                        <input type="text" name="pliegue" 
+                               class="form-control" id="txtpliegue" 
+                               value="<?php if(isset($producto['pliegue'])) echo $producto['pliegue']?>" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label for="tp">TP:</label>
+                        <select name="tp" class="form-control">
+                            <?php for( $i = 0 ; $i < count($tp) ; $i++):?>
+                            
+                            <?php echo $tp;?>
                             
                             <?php endfor?>
                         </select>
