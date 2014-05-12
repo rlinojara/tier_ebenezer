@@ -107,17 +107,15 @@
 											                <th>P. Unitario</th>
 											                <th>TOTAL</th>
 											            </tr>
-											            <tr>
-											                <td>Producto</td>
-											                <td>Cantidad</td>
-											                <td>Punitario</td>
-											                <td>Total</td>
-											            </tr>
 											        </tbody></table>
 											    </div><!-- /.box-body -->
 											</div>
 										</div>
 									</div>
+									<div class="box-footer">
+                    					<div id="btnRegistroCompra" class="btn btn-primary btnInactivo btnEnviar">Validar</div>
+                    					<button value="asd" type="submit" id="btnRegistroCompra2" class="btn btn-primary btnActivo btnEnviar">Enviar</button>
+               						 </div>
 								</div>
 							</div>
 						</div>

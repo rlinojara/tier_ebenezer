@@ -1,40 +1,41 @@
 $('#btnRegistroUsuario').on('click',validarFormulario);
 $('#btnRegistroProducto').on('click',validarFormulario);
 $('#btnRegistroMarca').on('click',validarFormulario);
+$('#btnRegistroCompra').on('click',validarFormulario);
 $('#txttipocompra').on('change',facturaoboleta);
 $('#btnAgregarCompra').on('click',listarCompra);
 
-        function validarFormulario(data){
-            var idBtn = data.currentTarget.id;
-            console.log(idBtn);
-            var idForm = idBtn.replace('btn','form');
-            console.log(idForm);
-            var contador = 0;
+function validarFormulario(data){
+    var idBtn = data.currentTarget.id;
+    console.log(idBtn);
+    var idForm = idBtn.replace('btn','form');
+    console.log(idForm);
+    var contador = 0;
 
-            $('#'+idForm+' input').not(':button').each(function(){
-                var idCampo = $(this).attr('id');
+    $('#'+idForm+' input').not(':button').not('.campos-dinamicos').each(function(){
+        var idCampo = $(this).attr('id');
 
-                if(idCampo != undefined){
-                    var idBase = idCampo.replace('txt','');
-                    var valorCampo = $(this).val();
+        if(idCampo != undefined){
+            var idBase = idCampo.replace('txt','');
+            var valorCampo = $(this).val();
 
-                    if(valorCampo == ''){
-                        $(this).css('box-shadow','0 0 1px 1px #F45');
-                        $('#error'+idBase).show();
-                        contador++
-                    }
-                    else{
-                        $(this).css('box-shadow','0 0 2px 1px #aaa');
-                        $('#error'+idBase).hide();
-                    }
-                }
-            });
-
-            if(contador <= 0){
-                $('.btnInactivo').hide();
-                $('.btnActivo').show();
+            if(valorCampo == ''){
+                $(this).css('box-shadow','0 0 1px 1px #F45');
+                $('#error'+idBase).show();
+                contador++
+            }
+            else{
+                $(this).css('box-shadow','0 0 2px 1px #aaa');
+                $('#error'+idBase).hide();
             }
         }
+    });
+
+    if(contador <= 0){
+        $('.btnInactivo').hide();
+        $('.btnActivo').show();
+    }
+}
 
 
 
