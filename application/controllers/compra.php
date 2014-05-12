@@ -68,9 +68,9 @@ class Compra extends  MY_Controller
 		$this->load->model('compra_model');
 		$this->load->model('compra_producto_model');
 		$this->load->model('producto_sucursal_model');
-		$this->load->model('compra_producto_sucursal_model');
+		/*$this->load->model('compra_producto_sucursal_model');*/
 		
-		$fecha_compra = $this->input-post('fecha_compra');
+		$fecha_compra = $this->input->post('fecha_compra');
 		$tipo_compra = $this->input->post('tipo_compra');
 		$numero_documento = $this->input->post('numero_documento');
 		$num_guia_remision = $this->input->post('numero_guia');
@@ -80,9 +80,9 @@ class Compra extends  MY_Controller
 		$tipo_cambio = $this->input->post('tipo_cambio');
 		$tipo_pago = $this->input->post('tipo_pago');
 		
-		$producto = $this->input->post('producto');
-		$cantidad = $this->input->post('cantidad');
-		$precio_unitario = $this->input->post('precio_unitario');
+		$producto = $this->input->post('txtproducto');
+		$cantidad = $this->input->post('txtcantidad');
+		$precio_unitario = $this->input->post('txtpunitario');
 		
 		
 		/**
@@ -120,15 +120,7 @@ class Compra extends  MY_Controller
 								$razon_social
 						   );
 		
-		
-		echo '<pre>';
-		print_r($parametros);
-		echo '</pre>';
-		
-		die();
-		
 		$id_compra = $this->compra_model->registrar($parametros);
-		
 		
 		/**
 		 * @see Registrando producto de compra 
@@ -145,6 +137,7 @@ class Compra extends  MY_Controller
 			
 			$this->compra_producto_model->registrar($parametros);
 		}	
+		
 		
 		
 		/*** PRIMERA FORMA ACTUALIZAR STOCK ***/
@@ -169,7 +162,7 @@ class Compra extends  MY_Controller
 		
 		/*** SEGUNDA FORMA ACTUALIZAR STOCK ***/
 		
-		
+		/*
 		$sucursal = 5;
 		$parametro = array($id_compra);
 		$compra_producto = $this->compra_producto_model->
@@ -188,7 +181,8 @@ class Compra extends  MY_Controller
 				
 				$this->compra_producto_sucursal_model->registrar($parametros);
 			}	
-		}	
+		}
+		*/	
 
 	}
 	
