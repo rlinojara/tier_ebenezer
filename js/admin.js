@@ -4,6 +4,7 @@ $('#btnRegistroMarca').on('click',validarFormulario);
 $('#btnRegistroCompra').on('click',validarFormulario);
 $('#txttipocompra').on('change',facturaoboleta);
 $('#btnAgregarCompra').on('click',listarCompra);
+$('.btnDeshabilitar').on('click',deshabilitarMarca);
 
 function validarFormulario(data){
     var idBtn = data.currentTarget.id;
@@ -213,3 +214,17 @@ $('#sugerenciasProductop').on('click','.sugerenciaProductop',function(){
     //Hacemos desaparecer el resto de sugerencias
     $('#sugerenciasProductop').fadeOut(500);
 });
+
+function deshabilitarMarca(data){
+    event.preventDefault();
+
+    var txt;
+    var r = confirm("Estás seguro que quieres deshabilitar esta marca?");
+    if (r == true) {
+        id = data.currentTarget.id
+        id = id.replace('btnDeshabilitar','');
+        document.location.href='http://localhost/tier_ebenezer/index.php/marca/deshabilitar_marca/' + id;
+    } else {
+        console.log('Cancelado, eres un buen muchacho.');
+    }
+}

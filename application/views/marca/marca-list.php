@@ -74,7 +74,7 @@
 												 $marcas[$i]['id_subcategoria'].'/'.
 												 $pagina,'Editar','class="btn btn-info btn-sm"');
                                     if($marcas[$i]['estado'] == 1):
-                                        echo anchor('#','Deshabilitar','class="btn btn-danger btn-sm" id="btnDeshabilitar'.$pagina.'"'); 
+                                        echo anchor('#','Deshabilitar','class="btnDeshabilitar btn btn-danger btn-sm" id="btnDeshabilitar'.$marcas[$i]['id_subcategoria'].'"'); 
                                     else:
                                         echo anchor('marca/habilitar_marca/'.$marcas[$i]['id_subcategoria'].'/'.$pagina,'Habilitar','class="btn btn-success btn-sm"');
                                     endif;

@@ -61,6 +61,7 @@ class Marca extends MY_Controller
 		$data['paginacion'] =  $this->pagination->create_links();
 		$data['view'] = 'marca/marca-list';
 		$data['pagina'] = $this->uri->segment(3,'');
+
 		$this->load->view('index',$data);
 	}
 	
