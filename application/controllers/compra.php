@@ -79,6 +79,10 @@ class Compra extends  MY_Controller
 		$moneda = $this->input->post('moneda');
 		$tipo_cambio = $this->input->post('tipo_cambio');
 		$tipo_pago = $this->input->post('tipo_pago');
+		$subtotal = $this->input->post('subtotal');
+		$igv = $this->input->post('igv');
+		$total = $this->input->post('total');
+		
 		
 		$producto = $this->input->post('txtproducto');
 		$cantidad = $this->input->post('txtcantidad');
@@ -91,6 +95,7 @@ class Compra extends  MY_Controller
 		if( $tipo_pago == 2)
 		{
 			$num_guia_remision = '';
+			$igv = 0;
 		}
 		
 		/**
