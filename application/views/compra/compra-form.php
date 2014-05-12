@@ -27,8 +27,7 @@
 					                    <div class="form-group col-lg-6 col-xs-6">
 					                        <label for="txttipocompra">Tipo de compra:</label>
 					                        <select name="tipocompra" id="txttipocompra" class="form-control">
-					                        	<option value="0">Factura</option>
-					                        	<option value="1">Boleta</option>
+					                        	<?php echo $tipo_compra?>	
 					                        </select>
 					                    </div>
 					                    <div class="form-group col-lg-6 col-xs-6">
@@ -53,8 +52,7 @@
 					                    <div class="form-group col-lg-6 col-xs-6">
 					                        <label for="txtmoneda">Moneda:</label>
 					                        <select name="moneda" id="txtmoneda" class="form-control">
-					                        	<option value="0">moneda1</option>
-					                        	<option value="1">moneda2</option>
+					                        	<?php echo $moneda;?>
 					                        </select>
 					                    </div>
 					                    <div class="form-group col-lg-12 col-xs-12">
@@ -65,8 +63,7 @@
 						                    <div class="form-group col-lg-6 col-xs-6">
 						                        <label for="txttipopago">Tipo de pago:</label>
 						                        <select name="tipopago" id="txttipopago" class="form-control">
-						                        	<option value="0">tipopago1</option>
-						                        	<option value="1">tipopago2</option>
+						                        	<?php echo $tipo_pago;?>
 						                        </select>
 						                    </div>
 					                    </div>

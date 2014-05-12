@@ -56,6 +56,7 @@ class Compra extends  MY_Controller
 		 */
 		$data['tipo_compra'] = $this->combo_tipo_compra('');
 		$data['moneda'] = $this->combo_moneda('');
+		$data['tipo_pago'] = $this->combo_tipo_pago('');
 		
 		$data['view'] = 'compra/compra-form';
 		$this->load->view('index',$data);
@@ -63,6 +64,11 @@ class Compra extends  MY_Controller
 	
 	public function set_registrar_compra()
 	{
+		$this->load->model('compra_model');
+		$this->load->model('compra_producto_model');
+		$this->load->model('producto_sucursal_model');
+		$this->load->model('compra_producto_sucursal_model');
+		
 		$fecha_compra = $this->input-post('fecha_compra');
 		$tipo_compra = $this->input->post('tipo_compra');
 		$numero_documento = $this->input->post('numero_documento');
@@ -72,6 +78,110 @@ class Compra extends  MY_Controller
 		$moneda = $this->input->post('moneda');
 		$tipo_cambio = $this->input->post('tipo_cambio');
 		$tipo_pago = $this->input->post('tipo_pago');
+		
+		$producto = $this->input->post('producto');
+		$cantidad = $this->input->post('cantidad');
+		$precio_unitario = $this->input->post('precio_unitario');
+		
+		
+		/**
+		 * @see Si es boleta
+		 */
+		if( $tipo_pago == 2)
+		{
+			$num_guia_remision = '';
+		}
+		
+		/**
+		 * @see Si tipo de moneda es SOLES
+		 */
+		
+		if($moneda == 1)
+		{
+			$tipo_cambio = 0;
+		}	
+
+		
+		/**
+		 * @see Registrando compra
+		 */
+		
+		$parametros = array(
+								$tipo_compra,
+								$moneda,
+								1,
+								$tipo_pago,
+								$numero_documento,
+								$num_guia_remision,
+								$proveedor,
+								$tipo_cambio,
+								$fecha_compra,
+								$razon_social
+						   );
+		
+		$id_compra = $this->compra_model->registrar($parametros);
+		
+		
+		/**
+		 * @see Registrando producto de compra 
+		 */
+		
+		for( $i = 0 ; $i < count($producto) ; $i++)
+		{
+			$parametros = array(
+									$id_compra,
+									$producto[$i],
+									$cantidad[$i],
+									$precio_unitario[$i]
+							   );
+			
+			$this->compra_producto_model->registrar($parametros);
+		}	
+		
+		
+		/*** PRIMERA FORMA ACTUALIZAR STOCK ***/
+		/**
+		 * @see Si el ID de Sucursal "ALMACEN" es 5
+		 */
+		
+		$sucursal = 5;
+		
+		for( $i = 0 ; $i < count($producto) ; $i++)
+		{
+			$parametros = array(
+								 $cantidad[$i],
+								 $producto[$i],
+								 $sucursal
+							   );
+			
+			$this->producto_sucursal_model->
+				   agregar_stock_por_producto($parametros);
+		}	
+		
+		
+		/*** SEGUNDA FORMA ACTUALIZAR STOCK ***/
+		
+		
+		$sucursal = 5;
+		$parametro = array($id_compra);
+		$compra_producto = $this->compra_producto_model->
+								  obtener_por_compra($id_compra);
+		
+		for( $i = 0 ; $i < count($compra_producto) ; $i++)
+		{
+			for( $j = 0 ; $j < intval($compra_producto[$i]['cantidad']); $j++)
+			{
+				
+				$parametros = array(
+									 $compra_producto[$i]['id_compra_producto'],
+									 $sucursal,
+									 1 	
+								   );
+				
+				$this->compra_producto_sucursal_model->registrar($parametros);
+			}	
+		}	
+
 	}
 	
 	public function editar_compra()
@@ -144,7 +254,7 @@ class Compra extends  MY_Controller
 		return $html;
 	}
 	
-	public function tipo_pago($arg0)
+	public function combo_tipo_pago($arg0)
 	{
 		$this->load->model('compra_tipo_pago_model');
 		
@@ -213,6 +323,28 @@ class Compra extends  MY_Controller
 		$marca = $this->producto_model->obtener_producto_por_marca($parametro);
 		
 		echo json_encode($marca);
+	}
+	
+	
+	public function existe_numero_doc()
+	{
+		$this->load->model('compra_model');
+		
+		$num_doc = $this->input->post('num_doc');
+		$tipo_doc = $this->input->post('tipo_doc');
+		$proveedor = $this->input->post('proveedor');
+		
+		$parametros = array($num_doc,$tipo_doc,$proveedor);		
+		$total = $this->compra_model->existe_numero_doc($parametros);
+		
+		if( $total > 0)
+		{
+			return true;
+		}	
+		else 
+		{
+			return false;
+		}
 	}
 	
 }

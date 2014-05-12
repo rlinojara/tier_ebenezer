@@ -334,4 +334,27 @@ class Marca extends MY_Controller
 			
 	}
 	
+	/**
+	 * @param id_marca
+	 */
+	public function existe_producto_activo_por_marca($id_marca)
+	{
+		$this->load->model('producto_model');
+		
+		$parametro = array($id_marca);
+		
+		$total = $this->producto_model->
+			   existe_producto_activo_por_marca($parametro);
+		
+		if($total > 0)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}	
+			 	
+	}
+	
 }	

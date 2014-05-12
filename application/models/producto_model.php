@@ -173,4 +173,19 @@ class Producto_model extends CI_Model
 		return $query->result_array($sql,$arg0);
 	}
 	
+	/**
+	 * @param marca
+	 */
+	public function existe_producto_activo_por_marca($arg0)
+	{
+		$sql = 'SELECT COUNT(*) as total
+				FROM v_producto WHERE estado = 1 AND id_marca = ?';
+		
+		$query = $this->db->query($sql,$arg0);
+		
+		$result = $query->result_array();
+		
+		return $result[0]['total'];
+	}
+	
 }
