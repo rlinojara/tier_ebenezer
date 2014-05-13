@@ -90,7 +90,8 @@ $('#sugerencias').on('click','.sugerenciaMarca',function(){
 //COMPRA
 function facturaoboleta(){
     var id = $(this).val();
-    if(id == 0){
+    console.log(id);
+    if(id == 1){
         $('#divGuia').show();
     }
     else{
