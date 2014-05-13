@@ -111,6 +111,37 @@
 											    </div><!-- /.box-body -->
 											</div>
 										</div>
+										<input type="hidden" name="resultadosubtotal" id="txtresultadosubtotal">
+										<input type="hidden" name="resultadoigv" id="txtresultadoigv">
+										<input type="hidden" name="resultadototal" id="txtresultadototal">
+										<div class="col-md-4 text-right">
+											<div class="box">
+											    <div class="box-body">
+							                        <table class="table table-bordered">
+							                            <tbody>
+							                            <tr>
+							                           		<td>SUBTOTAL</td>
+							                           		<td id="resultado-subtotal">
+							                           			0
+							                           		</td>
+							                            </tr>							                            
+							                             <tr>
+							                                <td>IGV</td>
+							                                <td id="resultado-igv">
+							                                    0
+							                                </td>
+							                             </tr>
+							                             <tr>
+							                             	<td>TOTAL</td>
+							                                <td id="resultado-total">
+							                                	0
+							                                </td>
+							                             </tr>
+							                            </tbody>
+							                        </table>
+											    </div>
+											</div>
+										</div>
 									</div>
 									<div class="box-footer">
                     					<div id="btnRegistroCompra" class="btn btn-primary btnInactivo btnEnviar">Validar</div>

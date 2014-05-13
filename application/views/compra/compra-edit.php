@@ -2,7 +2,7 @@
     <section class="content-header">
     
         <h1>
-            Editar de Compra
+            titulo de Compra
             <small>Control panel</small>
         </h1>
         <ol class="breadcrumb">
@@ -26,7 +26,7 @@
 					                    </div>
 					                    <div class="form-group col-lg-6 col-xs-6">
 					                        <label for="txttipocompra">Tipo de compra:</label>
-					                        <select name="tipo_compra" id="txttipocompra" class="form-control" disabled>
+					                        <select name="tipo_compra" id="txttipocompra" class="form-control" disable>
 					                        	<?php echo $tipo_compra?>	
 					                        </select>
 					                    </div>
@@ -106,17 +106,40 @@
 											                <th>Cantidad</th>
 											                <th>P. Unitario</th>
 											                <th>TOTAL</th>
-											                <th style="width:40px">Acciones</th>
-											            </tr>
-											            <tr>
-											                <td>Producto</td>
-											                <td>Cantidad</td>
-											                <td>P. Unitario</td>
-											                <td>TOTAL</td>
-											                <td>Acciones</td>
 											            </tr>
 											        </tbody></table>
 											    </div><!-- /.box-body -->
+											</div>
+										</div>
+										<input type="hidden" name="resultadosubtotal" id="txtresultadosubtotal">
+										<input type="hidden" name="resultadoigv" id="txtresultadoigv">
+										<input type="hidden" name="resultadototal" id="txtresultadototal">
+										<div class="col-md-4 text-right">
+											<div class="box">
+											    <div class="box-body">
+							                        <table class="table table-bordered">
+							                            <tbody>
+							                            <tr>
+							                           		<td>SUBTOTAL</td>
+							                           		<td id="resultado-subtotal">
+							                           			0
+							                           		</td>
+							                            </tr>							                            
+							                             <tr>
+							                                <td>IGV</td>
+							                                <td id="resultado-igv">
+							                                    0
+							                                </td>
+							                             </tr>
+							                             <tr>
+							                             	<td>TOTAL</td>
+							                                <td id="resultado-total">
+							                                	0
+							                                </td>
+							                             </tr>
+							                            </tbody>
+							                        </table>
+											    </div>
 											</div>
 										</div>
 									</div>
@@ -127,7 +150,6 @@
 								</div>
 							</div>
 						</div>
-						<input type="submit" value="Enviar">
 		            </form>
 		        </div>
 		    </div>

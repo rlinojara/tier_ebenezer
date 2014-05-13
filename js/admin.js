@@ -120,12 +120,32 @@ function listarCompra(){
     html += '<td>'+producto+'</td>';
     html += '<td>'+cantidad+'</td>';
     html += '<td>'+punitario+'</td>';
-    html += '<td>'+total+'</td>';
+    html += '<td class="totaltd">'+total+'</td>';
     html += '</tr>';
 
     $('#listadoCompras').append(html);
 
     $('.campos-dinamicos').val('');
+
+    var subtotal = 0;
+
+    $('.totaltd').each(function(index){
+        subtotal = subtotal + parseInt($('.totaltd')[index].innerText);
+    });
+
+    subtotal = parseFloat(subtotal).toFixed(4);
+    $('#resultado-subtotal').html(subtotal);
+    $('#txtresultadosubtotal').val(subtotal);
+
+    var igv = subtotal*0.19;
+    igv = parseFloat(igv).toFixed(4);
+    $('#resultado-igv').html(igv);
+    $('#txtresultadoigv').val(igv);
+
+    var totalresultado = parseFloat(subtotal)+parseFloat(igv);
+    totalresultado = totalresultado.toFixed(4);
+    $('#resultado-total').html(totalresultado);
+    $('#txtresultadototal').val(totalresultado);
 }
 
 $('#txtmarcap').keyup(function(){
@@ -172,9 +192,6 @@ $('#txtproducto').keyup(function(){
     var marca = $('#marcaRealp').val();
     var query = $(this).val();
 
-    console.log(marca);
-    console.log(query);
-
     var dataString = 'marca='+marca+'&producto='+query;
     $.ajax({
         type: "POST",
@@ -204,7 +221,7 @@ $('#txtproducto').keyup(function(){
 
 $('#sugerenciasProductop').on('click','.sugerenciaProductop',function(){
     var id = $(this).attr('id');
-    console.log(id);
+
     var idSub = id.replace('idProductop','');
     var texto = $(this).text();
 
