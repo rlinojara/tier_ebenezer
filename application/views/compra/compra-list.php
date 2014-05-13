@@ -24,7 +24,6 @@
                         <table class="table table-striped">
                             <tbody>
                             	<tr>
-	                                <th style="width: 10px">#</th>
 	                                <th>Fecha</th>
 	                                <th>Tipo Doc.</th>
 	                                <th>N&uacute;m Doc.</th>
@@ -33,18 +32,20 @@
                             	</tr>
                             	<?php for( $i = 0 ; $i < count($compras) ; $i++):?>
 	                            <tr>
-	                             	<td>1</td>
-	                                <td><?php $compras[$i]['fecha_compra']?></td>
-	                                <td><?php $compras[$i]['nombre_tipo_doc']?></td>
-	                                <td><?php $compras[$i]['numero_doc']?></td>
-	                                <td><?php $compras[$i]['nombre_estado']?></td>
+	                                <td><?php echo $compras[$i]['fecha_compra']?></td>
+	                                <td><?php echo $compras[$i]['nombre_tipo_doc']?></td>
+	                                <td><?php echo $compras[$i]['numero_documento']?></td>
+	                                <td><?php echo $compras[$i]['nombre_estado']?></td>
 	                                <td>
 	                                    <?php 
-	                                    echo anchor('compra/editar_compra/'.'1','Editar','class="btn btn-info btn-sm"');
-	                                    if(1 == 1):
-	                                        echo anchor('compra/deshabilitar_compra/'.'1','Deshabilitar','class="btn btn-danger btn-sm"'); 
-	                                    else:
-	                                        echo anchor('compra/habilitar_compra/'.'1','Habilitar','class="btn btn-success btn-sm"');
+	                                    if( $compras[$i]['id_compra_estado'] == 2):
+	                                    	
+	                                    echo anchor('compra/editar_compra/'.$compras[$i]['id_compra'],'Copiar','class="btn btn-info btn-sm"');
+	                                    
+	                                    endif;
+	                                    
+	                                    if($compras[$i]['id_compra_estado'] == 1):
+	                                        echo anchor('compra/anular_compra/'.$compras[$i]['id_compra'],'Anular','class="btn btn-danger btn-sm"');
 	                                    endif;
 	                                    ?>
 	                                </td>

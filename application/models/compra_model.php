@@ -32,11 +32,14 @@ class Compra_model extends CI_Model
 	{
 		$parametros = array($arg0[0]);
 		
-		$sql = 'SELECT a.numero_documento,
+		$sql = 'SELECT
+					   a.id_compra,
+					   a.numero_documento,
 					   b.nombre as nombre_tipo_doc,
 					   a.fecha_compra,
 					   c.nombre as nombre_estado,
-					   a.nombre_proveedor 
+					   a.nombre_proveedor,
+					   a.id_compra_estado 
 				FROM compra as a
 				INNER JOIN compra_tipo_doc as b
 					ON a.id_compra_tipo_doc = b.id_compra_tipo_doc
@@ -51,7 +54,7 @@ class Compra_model extends CI_Model
 			array_push($parametros, $arg0[1]);
 		}*/
 		
-		$sql .= ' LIMIT ?,?';
+		$sql .= ' ORDER BY a.fecha_compra DESC LIMIT ?,?';
 		
 		array_push($parametros, $arg0[1]);
 		array_push($parametros, $arg0[2]);
@@ -75,10 +78,16 @@ class Compra_model extends CI_Model
 					nombre_proveedor,
 					cambio_moneda,
 					fecha_compra,
-					compra_razon_social
+					compra_razon_social,
+					subtotal,
+					igv,
+					total
 				)
 				VALUES
 				(
+					?,
+					?,
+					?,
 					?,
 					?,
 					?,
@@ -128,5 +137,18 @@ class Compra_model extends CI_Model
 		$result = $query->result_array();
 		
 		return $result[0]['total'];
+	}
+	
+	/**
+	 * @param id_compra_estado
+	 * @param id_compra
+	 */
+	public function actualizar_estado($arg0)
+	{
+		$sql = 'UPDATE compra
+				SET id_compra_estado = ?
+				WHERE id_compra = ?';
+		
+		$this->db->query($sql,$arg0);
 	}
 }

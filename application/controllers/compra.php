@@ -1,7 +1,9 @@
 <?php
 class Compra extends  MY_Controller
 {
-/**
+	
+	var $id_sucursal_almacen = 5;
+	/**
 	 * @abstract vista de listar compra
 	 */
 	public function listar_compra()
@@ -79,10 +81,10 @@ class Compra extends  MY_Controller
 		$moneda = $this->input->post('moneda');
 		$tipo_cambio = $this->input->post('tipo_cambio');
 		$tipo_pago = $this->input->post('tipo_pago');
-		$subtotal = $this->input->post('subtotal');
-		$igv = $this->input->post('igv');
-		$total = $this->input->post('total');
 		
+		$subtotal = $this->input->post('resultadosubtotal');
+		$igv = $this->input->post('resultadoigv');
+		$total = $this->input->post('resultadototal');
 		
 		$producto = $this->input->post('txtproducto');
 		$cantidad = $this->input->post('txtcantidad');
@@ -96,6 +98,7 @@ class Compra extends  MY_Controller
 		{
 			$num_guia_remision = '';
 			$igv = 0;
+			$total = $subtotal;
 		}
 		
 		/**
@@ -122,7 +125,10 @@ class Compra extends  MY_Controller
 								$proveedor,
 								$tipo_cambio,
 								$fecha_compra,
-								$razon_social
+								$razon_social,
+								$subtotal,
+								$igv,
+								$total
 						   );
 		
 		$id_compra = $this->compra_model->registrar($parametros);
@@ -149,15 +155,14 @@ class Compra extends  MY_Controller
 		/**
 		 * @see Si el ID de Sucursal "ALMACEN" es 5
 		 */
-		
-		$sucursal = 5;
+	
 		
 		for( $i = 0 ; $i < count($producto) ; $i++)
 		{
 			$parametros = array(
 								 $cantidad[$i],
 								 $producto[$i],
-								 $sucursal
+								 $this->id_sucursal_almacen
 							   );
 			
 			$this->producto_sucursal_model->
@@ -180,14 +185,16 @@ class Compra extends  MY_Controller
 				
 				$parametros = array(
 									 $compra_producto[$i]['id_compra_producto'],
-									 $sucursal,
+									 $id_sucursal_almacen,
 									 1 	
 								   );
 				
 				$this->compra_producto_sucursal_model->registrar($parametros);
 			}	
 		}
-		*/	
+		*/
+
+		redirect('compra/listar_compra');
 
 	}
 	
@@ -351,6 +358,85 @@ class Compra extends  MY_Controller
 		else 
 		{
 			return false;
+		}
+	}
+	
+	public function anular_compra()
+	{
+		$this->load->model('compra_model');
+		$this->load->model('compra_producto_model');
+		$this->load->model('producto_sucursal_model');
+		
+		$error = false;
+		
+		if( $this->uri->segment(3,0) > 0)
+		{
+			$parametros = array(2,$this->uri->segment(3,0));
+		
+			$this->compra_model->actualizar_estado($parametros);
+			
+			/**
+			 * @see Actualizar stock
+			 */
+			
+			$parametro = array($this->uri->segment(3,0));
+			$productos =  $this->compra_producto_model->
+								 obtener_por_compra($parametro);
+			
+			for( $i = 0 ; $i < count($productos) ; $i++)
+			{
+				/**
+				 * Obtener stock actual
+				 */
+				
+				$parametros = array(
+									$this->id_sucursal_almacen,
+									$productos[$i]['id_producto']
+								   );
+				
+				
+				$producto_stock = $this->producto_sucursal_model->
+					   		obtener_producto_sucursal($parametros);
+				
+				if($producto_stock['stock'] < $productos[$i]['cantidad'])
+				{
+					$error = true;
+				}	
+				
+			}
+
+			
+			if($error)
+			{
+				echo 'No se puede eliminar ya que el stock actual es menor a 
+					 a la cantidad que aparece en la compra para algunos productos';
+			}
+			else 
+			{
+				for( $i = 0 ; $i < count($productos) ; $i++)
+				{
+					$parametros = array(
+										$productos[$i]['cantidad'],
+										$productos[$i]['id_producto'],
+										$this->id_sucursal_almacen
+									    );
+					
+					$this->producto_sucursal_model->
+						   quitar_stock_por_producto($parametros);
+				}
+			}		
+			
+		}
+		
+		$pagina = $this->uri->segment(4,'');
+		
+		if(isset($_SESSION['compra']['busqueda']))
+		{
+			redirect('compra/buscar/'.$pagina,'refresh');
+		}
+		else
+		{
+			redirect('compra/listar_compra'.$pagina,'refresh');
 		}
 	}
 	

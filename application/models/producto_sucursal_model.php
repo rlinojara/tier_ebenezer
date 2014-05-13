@@ -52,4 +52,43 @@ class Producto_sucursal_model extends CI_Model
 		
 		$this->db->query($sql,$arg0);
 	}
+	
+	
+	/**
+	 * @param id_producto
+	 * @param id_sucursal
+	 */
+	public function obtener_producto_sucursal($arg0)
+	{
+		$sql = 'SELECT id_producto,id_sucursal,stock
+				FROM producto_sucursal
+				WHERE id_producto = ? AND id_sucursal = ?';
+		
+		$query = $this->db->query($sql,$arg0);
+		
+		$result = $query->result_array();
+		
+		if( count($result) == 1)
+		{
+			return $result[0];
+		}
+		else 
+		{
+			return array();
+		}		
+	}
+	
+	/**
+	 * @param stock
+	 * @param id_producto
+	 * @param id_sucursal
+	 */
+	public function quitar_stock_por_producto($arg0)
+	{
+		$sql = 'UPDATE producto_sucursal
+				SET stock = (stock - ?)
+				WHERE id_producto = ? AND id_sucursal = ?';
+	
+		$this->db->query($sql,$arg0);
+	}
 }
