@@ -22,7 +22,7 @@
 					                <div class="box-body" id="appendCampos">
 					                    <div class="form-group col-lg-6 col-xs-6">
 					                        <label for="txtfechacompra">Fecha de compra:</label>
-					                        <input type="text" name="fecha_compra" class="form-control" id="txtfechacompra" value="" placeholder="Fecha de compra">
+					                        <input type="text" name="fecha_compra" class="form-control" id="txtfechacompra" value="" placeholder="Fecha de compra" data-inputmask="'alias': 'dd/mm/aaaa'" data-mask>
 					                    </div>
 					                    <div class="form-group col-lg-6 col-xs-6">
 					                        <label for="txttipocompra">Tipo de compra:</label>

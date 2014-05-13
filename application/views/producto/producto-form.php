@@ -12,10 +12,23 @@
     </section>
     <section class="content">
 <?php
-if(isset($proceso_form) and $proceso_form === FALSE)
-{
-    print_r($error);
+if(isset($proceso_form)){
+    if($proceso_form === FALSE)
+    {
+        print_r($error);
+    }
+    else
+    {
+    ?>
+    <div class="alert alert-success alert-dismissable">
+        <i class="fa fa-check"></i>
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <b>Producto registrado satisfactoriamente.</b>
+    </div>
+    <?php
+    }
 }
+
 ?>
 <div id="errormarca" class="alert alert-danger alert-dismissable">
     <i class="fa fa-ban"></i>
@@ -164,7 +177,7 @@ if(isset($proceso_form) and $proceso_form === FALSE)
                     <br>
                 </div>
                 <div class="box-footer">
-                    <div id="btnRegistroProducto" class="btn btn-primary btnInactivo btnEnviar">Enviar</div>
+                    <div id="btnRegistroProducto" class="btn btn-primary btnInactivo btnEnviar">Validar</div>
                     <button value="asd" type="submit" id="btnRegistroProducto2" class="btn btn-primary btnActivo btnEnviar">Enviar</button>
                 </div>
             </form>
