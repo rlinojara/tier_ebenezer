@@ -162,7 +162,7 @@
 							                           			0
 							                           		</td>
 							                            </tr>							                            
-							                             <tr>
+							                             <tr id="trigv">
 							                                <td>IGV</td>
 							                                <td id="resultado-igv">
 							                                    0

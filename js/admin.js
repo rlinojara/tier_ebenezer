@@ -119,7 +119,6 @@ $('#sugerencias').on('click','.sugerenciaMarca',function(){
     var idSub = id.replace('idMarca','');
     var texto = $(this).text();
 
-    //Editamos el valor del input con data de la sugerencia pulsada
     $('#marcaReal').val(idSub);
     $('#txtmarca').val(texto);
     //Hacemos desaparecer el resto de sugerencias
@@ -132,9 +131,11 @@ function facturaoboleta(){
     var id = $(this).val();
     console.log(id);
     if(id == 1){
+        $('#trigv').show();
         $('#divGuia').show();
     }
     else{
+        $('#trigv').hide();
         $('#divGuia').hide();
         $('#txtguia').val('0');
     }
