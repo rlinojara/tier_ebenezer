@@ -11,6 +11,36 @@
         </ol>
     </section>
     <section class="content">
+    <div id="errorfechacompra" class="alert alert-danger alert-dismissable">
+	    <i class="fa fa-ban"></i>
+	    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+	    <b>Debes ingresar la fecha de compra.</b>
+	</div>
+    <div id="errornumerofb" class="alert alert-danger alert-dismissable">
+	    <i class="fa fa-ban"></i>
+	    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+	    <b>Debes ingresar el número de factura.</b>
+	</div>
+    <div id="errorguia" class="alert alert-danger alert-dismissable">
+	    <i class="fa fa-ban"></i>
+	    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+	    <b>Debes ingresar número de guía.</b>
+	</div>
+    <div id="errorproveedor" class="alert alert-danger alert-dismissable">
+	    <i class="fa fa-ban"></i>
+	    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+	    <b>Debes ingresar el proveedor.</b>
+	</div>
+    <div id="errorcambio" class="alert alert-danger alert-dismissable">
+	    <i class="fa fa-ban"></i>
+	    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+	    <b>Debes ingresar el tipo de cambio.</b>
+	</div>
+    <div id="errornumproducto" class="alert alert-danger alert-dismissable">
+	    <i class="fa fa-ban"></i>
+	    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+	    <b>Debes registrar por lo menos un productos para realizar la compra.</b>
+	</div>
 		<div class="row">
 		    <div class="col-md-12">
 		        <!-- general form elements -->
@@ -20,9 +50,9 @@
 							<div class="col-md-12">
 								<div class="box">
 					                <div class="box-body" id="appendCampos">
-					                    <div class="form-group col-lg-6 col-xs-6">
-					                        <label for="txtfechacompra">Fecha de compra:</label>
-					                        <input type="text" name="fecha_compra" class="form-control" id="txtfechacompra" value="" placeholder="Fecha de compra" data-inputmask="'alias': 'dd/mm/aaaa'" data-mask>
+					                    <div class="form-group col-lg-6 col-xs-6 relative">
+					                    <label for="txtfechacompra">Fecha de compra:</label>
+                                            <input type="text" name="fecha_compra" id="txtfechacompra" class="form-control">
 					                    </div>
 					                    <div class="form-group col-lg-6 col-xs-6">
 					                        <label for="txttipocompra">Tipo de compra:</label>
@@ -57,7 +87,7 @@
 					                    </div>
 					                    <div class="form-group col-lg-12 col-xs-12">
 					                        <label for="txtcambio">Tipo de cambio:</label>
-					                        <input type="text" name="tipo_cambio" class="form-control" id="txtcambio" value="" placeholder="Tipo de cambio">
+					                        <input type="text" name="tipo_cambio" class="form-control" id="txtcambio" value="0" placeholder="Tipo de cambio">
 					                    </div>
 					                    <div class="col-lg-12 col-xs-12" style="padding:0">
 						                    <div class="form-group col-lg-6 col-xs-6">
@@ -67,6 +97,13 @@
 						                        </select>
 						                    </div>
 					                    </div>
+					                    <div class="form-group col-lg-12 col-xs-12">
+									    <div id="errorlistadoproducto" class="alert alert-danger alert-dismissable">
+										    <i class="fa fa-ban"></i>
+										    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+										    <b>Debes ingresar todos los campos para agregar una compra.</b>
+										</div>
+										</div>
 					                    <div class="form-group col-lg-3 col-xs-3">
 					                        <label for="txtmarca">Marca:</label>
 					                        <input type="text" class="campos-dinamicos form-control" id="txtmarcap" value="" placeholder="Nombre marca" autocomplete="off">

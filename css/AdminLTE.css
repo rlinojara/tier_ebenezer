@@ -3446,3 +3446,7 @@ fieldset[disabled] .btn-vk.active {
 .btnActivo{
   display: none;
 }
+
+.relative{
+  position:  relative;
+}
