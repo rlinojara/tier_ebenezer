@@ -2,7 +2,7 @@
     <section class="content-header">
     
         <h1>
-            titulo de Compra
+            Registro de Compra
             <small>Control panel</small>
         </h1>
         <ol class="breadcrumb">

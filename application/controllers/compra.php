@@ -73,6 +73,9 @@ class Compra extends  MY_Controller
 		/*$this->load->model('compra_producto_sucursal_model');*/
 		
 		$fecha_compra = $this->input->post('fecha_compra');
+		$fecha_compra = str_replace("/", "-", $fecha_compra);
+		$fecha_compra = date('Y-m-d',strtotime($fecha_compra));
+		
 		$tipo_compra = $this->input->post('tipo_compra');
 		$numero_documento = $this->input->post('numero_documento');
 		$num_guia_remision = $this->input->post('numero_guia');
@@ -89,7 +92,7 @@ class Compra extends  MY_Controller
 		$producto = $this->input->post('txtproducto');
 		$cantidad = $this->input->post('txtcantidad');
 		$precio_unitario = $this->input->post('txtpunitario');
-		
+	
 		
 		/**
 		 * @see Si es boleta
@@ -130,7 +133,7 @@ class Compra extends  MY_Controller
 								$igv,
 								$total
 						   );
-		
+
 		$id_compra = $this->compra_model->registrar($parametros);
 		
 		/**
@@ -382,6 +385,7 @@ class Compra extends  MY_Controller
 			$parametro = array($this->uri->segment(3,0));
 			$productos =  $this->compra_producto_model->
 								 obtener_por_compra($parametro);
+		
 			
 			for( $i = 0 ; $i < count($productos) ; $i++)
 			{
@@ -390,8 +394,8 @@ class Compra extends  MY_Controller
 				 */
 				
 				$parametros = array(
-									$this->id_sucursal_almacen,
-									$productos[$i]['id_producto']
+									$productos[$i]['id_producto'],
+									$this->id_sucursal_almacen
 								   );
 				
 				
@@ -438,6 +442,15 @@ class Compra extends  MY_Controller
 		{
 			redirect('compra/listar_compra'.$pagina,'refresh');
 		}
+	}
+	
+	public function ver_comprar()
+	{
+		$this->load->model('compra_model');
+		$this->load->model('compra_producto_model');
+		
+		
+		
 	}
 	
 }

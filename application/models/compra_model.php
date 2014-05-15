@@ -151,4 +151,38 @@ class Compra_model extends CI_Model
 		
 		$this->db->query($sql,$arg0);
 	}
+	
+	
+	public function obtener_por_id($arg0)
+	{
+		$sql = 'SELECT 
+					a.id_compra,
+					a.id_compra_tipo_doc,
+					b.nombre as compra_tipo_doc_nombre,
+					a.id_moneda,
+					c.nombre as moneda_nombre,
+					a.id_compra_tipo_pago,
+					d.nombre as compra_tipo_doc_nombre,
+					a.numero_documento,
+					a.numero_guia_remision,
+					a.nombre_proveedor,
+					a.cambio_moneda,
+					a.fecha_compra,
+					a.compra_razon_social,
+					a.subtotal,
+					a.igv,
+					a.total
+				FROM compra as a
+				INNER JOIN compra_tipo_doc as b
+					ON a.id_compra_tipo_doc = b.id_compra_tipo_doc
+				INNER JOIN moneda as c
+					ON c.id_moneda = a.id_moneda
+				INNER JOIN compra_tipo_pago as d
+					ON d.id_compra_tipo_pago = a.id_compra_tipo_pago
+				WHERE a.id_compra = ?';
+		
+		$query = $this->db->query($sql,$arg0);
+		
+		return $query->result_array();
+	}
 }
